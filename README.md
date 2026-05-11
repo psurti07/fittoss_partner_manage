@@ -1,2 +1,1 @@
-# fittoss_manage
-fittoss manage portal
+# fittoss_partner_manage
