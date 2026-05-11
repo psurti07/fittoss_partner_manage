@@ -1,0 +1,11 @@
+{
+    "name": "CareerEnquiry",
+    "alias": "careerenquiry",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CareerEnquiry\\App\\Providers\\CareerEnquiryServiceProvider"
+    ],
+    "files": []
+}

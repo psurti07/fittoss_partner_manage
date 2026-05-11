@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/paymentlog",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\PaymentLog\\": "",
+            "Modules\\PaymentLog\\App\\": "app/",
+            "Modules\\PaymentLog\\Database\\Factories\\": "database/factories/",
+            "Modules\\PaymentLog\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\PaymentLog\\Tests\\": "tests/"
+        }
+    }
+}

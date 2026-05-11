@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/careerenquiry",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\CareerEnquiry\\": "",
+            "Modules\\CareerEnquiry\\App\\": "app/",
+            "Modules\\CareerEnquiry\\Database\\Factories\\": "database/factories/",
+            "Modules\\CareerEnquiry\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\CareerEnquiry\\Tests\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "DriveLinks",
+    "alias": "drivelinks",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\DriveLinks\\Providers\\DriveLinksServiceProvider"
+    ],
+    "files": []
+}

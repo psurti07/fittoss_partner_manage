@@ -1,0 +1,11 @@
+{
+    "name": "HolidayList",
+    "alias": "holidaylist",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\HolidayList\\Providers\\HolidayListServiceProvider"
+    ],
+    "files": []
+}

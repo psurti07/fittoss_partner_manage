@@ -1,0 +1,11 @@
+{
+    "name": "PaymentLog",
+    "alias": "paymentlog",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\PaymentLog\\App\\Providers\\PaymentLogServiceProvider"
+    ],
+    "files": []
+}

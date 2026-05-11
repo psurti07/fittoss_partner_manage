@@ -1,0 +1,11 @@
+{
+    "name": "BulkSms",
+    "alias": "bulksms",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\BulkSms\\App\\Providers\\BulkSmsServiceProvider"
+    ],
+    "files": []
+}

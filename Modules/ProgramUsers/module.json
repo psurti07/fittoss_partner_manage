@@ -1,0 +1,11 @@
+{
+    "name": "ProgramUsers",
+    "alias": "ProgramUsers",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ProgramUsers\\App\\Providers\\ProgramUsersServiceProvider"
+    ],
+    "files": []
+}

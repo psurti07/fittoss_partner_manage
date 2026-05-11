@@ -1,0 +1,11 @@
+{
+    "name": "JoiningEmployeeList",
+    "alias": "joiningemployeelist",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\JoiningEmployeeList\\Providers\\JoiningEmployeeListServiceProvider"
+    ],
+    "files": []
+}

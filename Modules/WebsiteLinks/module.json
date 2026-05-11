@@ -1,0 +1,11 @@
+{
+    "name": "WebsiteLinks",
+    "alias": "websitelinks",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\WebsiteLinks\\Providers\\WebsiteLinksServiceProvider"
+    ],
+    "files": []
+}

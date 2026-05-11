@@ -1,0 +1,11 @@
+{
+    "name": "ResignEmployeeList",
+    "alias": "resignemployeelist",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ResignEmployeeList\\Providers\\ResignEmployeeListServiceProvider"
+    ],
+    "files": []
+}

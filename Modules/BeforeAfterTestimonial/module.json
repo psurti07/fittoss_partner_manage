@@ -1,0 +1,11 @@
+{
+    "name": "BeforeAfterTestimonial",
+    "alias": "beforeaftertestimonial",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\BeforeAfterTestimonial\\App\\Providers\\BeforeAfterTestimonialServiceProvider"
+    ],
+    "files": []
+}

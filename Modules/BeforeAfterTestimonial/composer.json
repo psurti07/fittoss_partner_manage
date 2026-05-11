@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/beforeaftertestimonial",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\BeforeAfterTestimonial\\": "",
+            "Modules\\BeforeAfterTestimonial\\App\\": "app/",
+            "Modules\\BeforeAfterTestimonial\\Database\\Factories\\": "database/factories/",
+            "Modules\\BeforeAfterTestimonial\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\BeforeAfterTestimonial\\Tests\\": "tests/"
+        }
+    }
+}

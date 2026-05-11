@@ -1,0 +1,11 @@
+{
+    "name": "OfferUser",
+    "alias": "offeruser",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\OfferUser\\Providers\\OfferUserServiceProvider"
+    ],
+    "files": []
+}

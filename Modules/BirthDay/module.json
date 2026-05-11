@@ -1,0 +1,11 @@
+{
+    "name": "BirthDay",
+    "alias": "birthday",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\BirthDay\\Providers\\BirthDayServiceProvider"
+    ],
+    "files": []
+}
