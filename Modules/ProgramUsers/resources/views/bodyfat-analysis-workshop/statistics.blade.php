@@ -17,8 +17,8 @@
 
 @section('content')
 <div class="row">
-    <h4 class="text-center mt-2 mb-5">Today's Statistics</h4>
-    <div class="col-3">
+    <h4 class="text-center mb-3">Today's Statistics</h4>
+    <div class="col-lg-3 col-md-3 col-12">
         <a href="{{ route('manage.bodyfat-analysis-workshop.leads',['filter' => 'today']) }}" data-bs-original-title="" title="">
             <div class="card widget-1">
                 <div class="card-body">
@@ -32,7 +32,7 @@
             </div>
         </a>
     </div>
-    <div class="col-3">
+    <div class="col-lg-3 col-md-3 col-12">
         <a href="{{ route('manage.bodyfat-analysis-workshop.customers',['filter' => 'today']) }}" data-bs-original-title="" title="">
             <div class="card widget-1">
                 <div class="card-body">
@@ -46,7 +46,7 @@
             </div>
         </a>
     </div>
-    <div class="col-3">
+    <div class="col-lg-3 col-md-3 col-12">
         <a href="{{ route('manage.sendotps',['filter' => 'today','id' => config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID')]) }}" data-bs-original-title="" title="">
             <div class="card widget-1">
                 <div class="card-body">
@@ -60,7 +60,7 @@
             </div>
         </a>
     </div>
-    <div class="col-3">
+    <div class="col-lg-3 col-md-3 col-12">
         <a href="javascript:;" data-bs-original-title="" title="">
             <div class="card widget-1">
                 <div class="card-body">
