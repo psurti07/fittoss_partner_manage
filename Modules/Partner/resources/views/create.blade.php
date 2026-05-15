@@ -25,40 +25,26 @@
                     <h5 class="mb-0">Partner Account</h5>
                 </div>
                 <div class="card-body">
-                    <h6 class="mb-3">Partner Details</h6>
+                    <h6 class="mb-3">Owner Details</h6>
 
                     <form action="{{ route('manage.partner.store') }}" method="post" class="partner-create-form" id="partner-create-form">
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <label for="name">Name<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="name" id="name" value="" placeholder="Name" />
-                                @component('components.ajax-error', ['field' => 'name'])
+                                <label for="owner_name">Name<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="owner_name" id="owner_name" value="" placeholder="Name" />
+                                @component('components.ajax-error', ['field' => 'owner_name'])
                                 @endcomponent
                             </div>
                             <div class="col-md-4">
-                                <label for="email">Email<span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" name="email" id="email" value="" placeholder="john@gmail.com" />
-                                @component('components.ajax-error', ['field' => 'email'])
+                                <label for="owner_email">Email<span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" name="owner_email" id="owner_email" value="" placeholder="john@gmail.com" />
+                                @component('components.ajax-error', ['field' => 'owner_email'])
                                 @endcomponent
                             </div>
                             <div class="col-md-4">
-                                <label for="mobile_no">Mobile No<span class="text-danger">*</span></label>
-                                <input type="tel" class="form-control numeric-input" name="mobile_no" maxlength="10" minlength="10" id="mobile_no" value="" placeholder="6578451237" />
-                                @component('components.ajax-error', ['field' => 'mobile_no'])
-                                @endcomponent
-                            </div>
-                        </div>
-                        <div class="row g-3 mb-3">
-                            <div class="col-md-4">
-                                <label for="dob">Date Of Birth</label>
-                                <input type="date" class="form-control numeric-input" name="dob" id="dob" value="" placeholder="YYYY-MM-DD" />
-                                @component('components.ajax-error', ['field' => 'dob'])
-                                @endcomponent
-                            </div>
-                            <div class="col-md-4">
-                                <label for="address">Address</label>
-                                <textarea id="address" class="form-control" name="address" rows="3" placeholder="13A, ABC Apartments XYZ Park Extension New Delhi, Delhi 110016"></textarea>
-                                @component('components.ajax-error', ['field' => 'address'])
+                                <label for="owner_mobile_no">Mobile No<span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control numeric-input" name="owner_mobile_no" maxlength="10" minlength="10" id="owner_mobile_no" value="" placeholder="6578451237" />
+                                @component('components.ajax-error', ['field' => 'owner_mobile_no'])
                                 @endcomponent
                             </div>
                         </div>
@@ -88,32 +74,51 @@
 
                         <div class="row g-3 mb-3">
                             <div class="col-md-4">
-                                <label for="register_date">Registration Date<span class="text-danger">*</span></label>
-                                <input type="date" class="form-control" name="register_date" id="register_date" value="" placeholder="Registration Date" />
-                                @component('components.ajax-error', ['field' => 'register_date'])
-                                @endcomponent
-                            </div>
-                            <div class="col-md-4">
-                                <label for="company_live_date">Website Live<span class="text-danger">*</span></label>
-                                <input type="date" class="form-control" name="company_live_date" id="company_live_date" value="" placeholder="Registration Date" />
-                                @component('components.ajax-error', ['field' => 'company_live_date'])
-                                @endcomponent
-                            </div>
-                            <div class="col-md-4">
                                 <label for="website_url">Website URL<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="website_url" id="website_url" value="" placeholder="Website URL" />
                                 @component('components.ajax-error', ['field' => 'website_url'])
                                 @endcomponent
                             </div>
-                        </div>
-
-                        <div class="row g-3 mb-3">
                             <div class="col-md-4">
                                 <label for="company_email">Company Email<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="company_email" id="company_email" value="" placeholder="Company Email" />
                                 @component('components.ajax-error', ['field' => 'company_email'])
                                 @endcomponent
                             </div>
+                            <div class="col-md-4">
+                                <label for="company_type">Company Type<span class="text-danger">*</span></label>
+                                <select class="form-select" id="company_type" name="company_type">
+                                    <option disabled>Select Type</option>
+                                    @foreach(Modules\Partner\App\Models\Company::COMPANY_TYPES as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                                @component('components.ajax-error', ['field' => 'company_type'])
+                                @endcomponent
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-4">
+                                <label for="pincode">Pincode<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control numeric-input" name="pincode" id="pincode" value="{{ old('pincode') }}" placeholder="Pincode" maxlength="6" minlength="6" />
+                                @component('components.ajax-error',['field'=>'pincode'])@endcomponent
+                            </div>
+                            <div class="col-md-4">
+                                <label for="city">City<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="city" id="city" value="{{ old('city') }}" placeholder="City" />
+                                @component('components.ajax-error',['field'=>'city'])@endcomponent
+                            </div>
+                            <div class="col-md-4">
+                                <label for="state">State<span class="text-danger">*</span></label>
+                                <select class="form-select" name="state" id="state">
+                                    <option value="">Select State</option>
+                                    {!! getStateOption(old('state') ?? '') !!}
+                                </select>
+                                @component('components.ajax-error',['field'=>'state'])@endcomponent
+                            </div>
+                        </div>
+                        <div class="row g-3 mb-3">
                             <div class="col-md-4">
                                 <label for="company_gst_no">Company GST No</label>
                                 <input type="text" class="form-control" name="company_gst_no" id="company_gst_no" value="" placeholder="Company GST No" />
@@ -124,22 +129,6 @@
                                 <label for="company_fssai">Company FSSAI</label>
                                 <input type="text" class="form-control" name="company_fssai" id="company_fssai" value="" placeholder="FSSAI" />
                                 @component('components.ajax-error', ['field' => 'company_fssai'])
-                                @endcomponent
-                            </div>
-                        </div>
-
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <label for="company_type">Company Type<span class="text-danger">*</span></label>
-                                <select class="form-select" id="company_type" name="company_type">
-                                    <option disabled>Select Type</option>
-                                    <option value="Sole-Proprietor" selected>Sole-Proprietor</option>
-                                    <option value="Proprietor">Proprietor</option>
-                                    <option value="Private Limited">Private Limited</option>
-                                    <option value="Limited">Limited</option>
-                                    <option value="LLP">Limited Liability Partnership (LLP)</option>
-                                </select>
-                                @component('components.ajax-error', ['field' => 'company_type'])
                                 @endcomponent
                             </div>
                             <div class="col-md-4">
@@ -270,9 +259,10 @@
                     $(this).attr("disabled", false);
                     if (result.type === 'SUCCESS') {
                         toastr.success(result.message);
-                        setTimeout(function() {
-                            window.location.reload();
-                        }, 2);
+                        window.location.href = "{{ route('manage.partner.index') }}";
+                        // setTimeout(function() {
+                        //     window.location.reload();
+                        // }, 2);
                     } else {
                         toastr.error(result.message);
                         $('#customersBtn').html('Save');
@@ -291,6 +281,51 @@
                     $('#customersBtn').attr('disabled', false);
                 }
             });
+        }
+    });
+
+    $('#pincode').on('input', function() {
+        var pincode = $(this).val();
+
+        // Only make request if pincode is of 6 digits
+        if (pincode.length === 6) {
+            $('#loader').show(); // Show loader
+            $.ajax({
+                url: `{{ route('manage.postal.details') }}`, // Route to the Laravel controller
+                type: 'POST'
+                , data: {
+                    pincode: pincode
+                }
+                , headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Pass CSRF token
+                }
+                , beforeSend: function(xhr) {
+                    $(".pincode-msg").text('we are fetching cities and state..'); // Example: Show a loading indicator
+                }
+                , success: function(response) {
+                    $('#loader').hide(); // Hide loader
+                    if (response.status === 'success') {
+                        $(".pincode-msg").text('');
+                        // Populate District and State fields
+                        $('#city').val(response.district);
+                        $('#state').val(response.state);
+                    } else {
+                        alert(response.message);
+                        $(".pincode-msg").text('');
+                        $('#district').val('');
+                        $('#state').val('');
+                    }
+                }
+                , error: function() {
+                    $('#loader').hide(); // Hide loader on error
+                    $(".pincode-msg").text('');
+                    alert('An error occurred while fetching the details.');
+                }
+            });
+        } else {
+            // Clear the fields if pincode length is not 6 digits
+            $('#city').val('');
+            $('#state').val('');
         }
     });
 

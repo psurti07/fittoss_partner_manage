@@ -12,6 +12,8 @@ return [
     'COMPANY_ADDRESS' => "246, Unique Square,<br/>Singanpore Shubham K Mart,<br/> Katargam,Surat - 395004,<br/>Gujarat,India ",
     'COMPANY_ADDRESS_INVOICE' => "246, Unique Square,Singanpore Shubham K Mart, Katargam,<br/>Surat - 395004,Gujarat,India ",
 
+    'PARTNER_PORTAL_URL' => "https://partner.fittoss.com",
+
     'MANAGE_PANEL_PRODUCT_IMAGE_PATH' => env('MANAGE_PANEL_PRODUCT_IMAGE_PATH'),
     'GEOLOCATION_API_KEY' => env('GEOLOCATION_API_KEY'),
 

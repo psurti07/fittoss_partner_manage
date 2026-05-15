@@ -6,7 +6,6 @@ use App\Models\SupportRequestChat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
-use Modules\Auth\Database\Factories\AdministrationsFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Administrations extends Authenticatable
@@ -20,7 +19,7 @@ class Administrations extends Authenticatable
      */
     protected $fillable = ['id','rec_date','fullname','mobile','email','password','staff_code','role','is_active','is_delete'];
 
-    protected static function newFactory(): AdministrationsFactory
+    protected static function newFactory()
     {
         //return AdministrationsFactory::new();
     }

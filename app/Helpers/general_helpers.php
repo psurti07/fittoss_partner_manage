@@ -465,9 +465,14 @@ function generateRefCode($first_name)
     return strtoupper(substr($first_name, 0, 3)) . now()->format('His') . rand(10, 99);
 }
 
-function generateCompanyCode($name)
+function generateCompanyCode(string $name)
 {
-    return strtoupper(substr($name, 0, 3)) . now()->format('His') . rand(10, 99);
+    return strtoupper(substr($name, 0, 4)) . substr(now()->format('His') . rand(10, 99), 0, 4);
+}
+
+function generateStaffCode()
+{
+    return substr(now()->format('His') . rand(10, 99), 0, 4);
 }
 
 function interakt_message(array $postData)

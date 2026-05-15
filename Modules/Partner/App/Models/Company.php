@@ -10,11 +10,10 @@ class Company extends Model
     use HasFactory;
     protected $table = 'companies';
     public const IMAGE_FOLDER = 'company';
-    protected $appends = ['logo_url','icon_url'];
+    protected $appends = ['logo_url', 'icon_url'];
 
     protected $fillable = [
         'id',
-        'partner_id',
         'company_code',
         'company_name',
         'company_email',
@@ -27,27 +26,41 @@ class Company extends Model
         'company_icon',
         'company_live_date',
         'project_name',
+        'descriptions',
+        'royalty',
         'register_date',
         'website_url',
         'city',
         'state',
         'pincode',
+        'owner_name',
+        'owner_email',
+        'owner_mobile_no',
         'facebook_url',
         'instagram_url',
         'twitter_url',
         'linkedin_url',
         'youtube_url',
         'pinterest_url',
-        'is_verified',
         'is_active',
         'is_delete',
         'created_at',
         'updated_at',
     ];
 
-    public function partner()
+    public const COMPANY_TYPES = [
+        1  => 'Limited',
+        2  => 'Private Limited',
+        3  => 'Limited Liability Partnership (LLP)',
+        4  => 'Proprietor',
+        5  => 'Sole-Proprietor',
+        6  => 'Influlancer',
+        7  => 'Freelancer',
+    ];
+
+    public function staff()
     {
-        return $this->belongsTo(Partner::class, 'partner_id');
+        return $this->hasMany(CompanyStaff::class, 'company_id', 'id');
     }
 
     public function getLogoUrlAttribute()

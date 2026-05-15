@@ -2,8 +2,9 @@
 
 namespace App\DataTables;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Modules\Partner\App\Models\Partner;
+use Modules\Partner\App\Models\Company;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -27,17 +28,20 @@ class PartnerDataTable extends DataTable
                 $actionBtn = '<a class="" href="' . route('manage.partner.details', ['id' => encrypt($row->id)]) . '"><i class="fa fa-info-circle"></i></a>';
                 return $actionBtn;
             })
-            ->addColumn('company_code', function ($row) {
-                return $row->company->company_code ?? NULL;
+            ->editColumn('updated_at', function ($row) {
+                return Carbon::parse($row->updated_at)->format('Y-m-d H:i:s');
             })
-            ->addColumn('company_name', function ($row) {
-                return $row->company->company_name ?? NULL;
+            ->editColumn('company_code', function ($row) {
+                return $row->company_code ?? NULL;
             })
-            ->addColumn('company_mobile_no', function ($row) {
-                return $row->company->company_mobile_no ?? NULL;
+            ->editColumn('company_name', function ($row) {
+                return $row->company_name ?? NULL;
             })
-            ->addColumn('company_email', function ($row) {
-                return $row->company->company_email ?? NULL;
+            ->editColumn('company_mobile_no', function ($row) {
+                return $row->company_mobile_no ?? NULL;
+            })
+            ->editColumn('company_email', function ($row) {
+                return $row->company_email ?? NULL;
             })
             ->rawColumns(['action']);
     }
@@ -45,9 +49,9 @@ class PartnerDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Partner $model): QueryBuilder
+    public function query(Company $model): QueryBuilder
     {
-        return $model->with('company')->orderByDesc('created_at')->newQuery();
+        return $model->newQuery();
     }
 
     /**
@@ -61,7 +65,7 @@ class PartnerDataTable extends DataTable
             ->minifiedAjax()
             ->responsive(true)
             ->dom('Blfrtip')
-            // ->orderBy(1)
+            ->orderBy(1, 'desc')
             ->pageLength(50)
             ->lengthMenu([50, 100, 200, 300])
             ->selectStyleSingle()
@@ -81,8 +85,7 @@ class PartnerDataTable extends DataTable
 
         return [
             Column::make('DT_RowIndex')->title('#')->orderable(false)->searchable(false)->width(5),
-            Column::computed('name')->title('Name')->width(2),
-            Column::make('mobile_no')->width(2),
+            Column::make('updated_at')->title('Date')->width(2),
             Column::make('company_code')->width(2),
             Column::make('company_name')->width(2),
             Column::make('company_mobile_no')->width(2),
