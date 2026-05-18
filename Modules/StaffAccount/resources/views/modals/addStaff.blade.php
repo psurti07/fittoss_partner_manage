@@ -1,4 +1,4 @@
-<div class="modal fade" id="addAccounts" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div class="modal fade" id="addAccounts" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,32 +14,32 @@
                                 <label for="role">Role<span class="text-danger">*</span></label>
                                 <select class="form-control form-select" name="role" id="role">
                                     <option value="">Select Role</option>
-                                    <option value="1">Office Staff</option>
-                                    <option value="2">IVR/Support Staff</option>
-                                    <option value="3">IT Staff</option>
+                                    @foreach(\Modules\Partner\App\Models\CompanyStaff::roles() as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
                                 </select>
                                 @component('components.ajax-error',['field'=>'role'])@endcomponent
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group mb-3">
-                                <label for="fullname">Fullname<span class="text-danger">*</span></label>
-                                <input type="text" name="fullname" class="form-control" placeholder="Fullname" id="fullname" value="{{old('fullname')}}">
-                                @component('components.ajax-error',['field'=>'fullname'])@endcomponent
+                                <label for="name">Name<span class="text-danger">*</span></label>
+                                <input type="text" name="name" class="form-control" placeholder="Name" id="name" value="{{old('name')}}">
+                                @component('components.ajax-error',['field'=>'name'])@endcomponent
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group mb-3">
-                                <label for="email">Email Id<span class="text-danger">*</span></label>
+                                <label for="email">Email<span class="text-danger">*</span></label>
                                 <input type="email" name="email" class="form-control" placeholder="Email" id="email" value="{{old('email')}}" autocomplete="off">
                                 @component('components.ajax-error',['field'=>'email'])@endcomponent
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group mb-3">
-                                <label for="mobile">Mobile<span class="text-danger">*</span></label>
-                                <input type="text" maxlength="10" minlength="10" inputmode="numeric" name="mobile" class="form-control" placeholder="Mobile no" id="mobile" value="{{old('mobile')}}">
-                                @component('components.ajax-error',['field'=>'mobile'])@endcomponent
+                                <label for="mobile_no">Mobile<span class="text-danger">*</span></label>
+                                <input type="text" maxlength="10" minlength="10" inputmode="numeric" name="mobile_no" class="form-control" placeholder="Mobile no" id="mobile_no" value="{{old('mobile_no')}}">
+                                @component('components.ajax-error',['field'=>'mobile_no'])@endcomponent
                             </div>
                         </div>
                         <div class="col-12">
@@ -71,26 +71,26 @@
     </div>
 </div>
 <script>
-    $('.save-accounts-form').submit(function (event) {
+    $('.save-accounts-form').submit(function(event) {
         var status = document.activeElement.innerHTML;
         event.preventDefault();
         if (status) {
             $('.ajax-error').html('');
             var data = new FormData(this);
             $.ajax({
-                url: $(this).attr("action"),
-                headers: {
+                url: $(this).attr("action")
+                , headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'POST',
-                data: data,
-                processData: false,
-                contentType: false,
-                beforeSend:function(){
+                }
+                , type: 'POST'
+                , data: data
+                , processData: false
+                , contentType: false
+                , beforeSend: function() {
                     $('#account-btn').html('<span class="spinner-border spinner-border-sm"></span> Add');
                     $('#account-btn').attr('disabled', true);
-                },
-                success: function (result) {
+                }
+                , success: function(result) {
                     $(this).attr("disabled", false);
                     if (result.type === 'SUCCESS') {
                         toastr.success(result.message);
@@ -101,11 +101,12 @@
                         $('#account-btn').html('Add');
                         $('#account-btn').attr('disabled', false);
                     }
-                },
-                error: function (error) {
+                }
+                , error: function(error) {
                     $(this).attr("disabled", false);
-                    let errors = error.responseJSON.errors, errorsHtml = '';
-                    $.each(errors, function (key, value) {
+                    let errors = error.responseJSON.errors
+                        , errorsHtml = '';
+                    $.each(errors, function(key, value) {
                         errorsHtml = '<strong>' + value[0] + '</strong>';
                         $('.' + key).html(errorsHtml);
                     });
@@ -121,9 +122,10 @@
         document.getElementById('retypepassword').value = password;
         document.getElementById('textpswd').textContent = password;
     });
-    $(document).ready(function () {
-        $("#mobile").on("input", function () {
+    $(document).ready(function() {
+        $("#mobile").on("input", function() {
             this.value = this.value.replace(/[^0-9]/g, "");
         });
     });
+
 </script>

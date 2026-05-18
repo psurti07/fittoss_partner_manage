@@ -87,6 +87,7 @@ class CreateAccountController extends Controller
                 'amount.required' => 'The amount field is required.',
                 'created_at.required' => 'The registration date field is required.',
             ]);
+            $companyId = $request->company_id;
             $userDetail = Customer::where('mobile_no', $request->mobile_no)->where(['is_delete' => 0, 'is_active' => 1])->first();
             if (!empty($userDetail)) {
                 return response()->json(['type' => 'ERROR', 'message' => 'User with mobile number is already registered'], 200);
@@ -113,6 +114,7 @@ class CreateAccountController extends Controller
             /* DB transaction */
             DB::beginTransaction();
             $userReg = [
+                'company_id' => $companyId,
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'mobile_no' => $request->mobile_no,
@@ -142,6 +144,7 @@ class CreateAccountController extends Controller
                 'age' => $request->age ?? NULL,
                 'bmi' => $bmi ?? NULL,
                 'gender' => $request->gender ?? 1,
+                'company_id' => $companyId,
             ];
             UserPersonalDetails::updateOrCreate(
                 ['userid' => $userId],

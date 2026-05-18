@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Customer;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -40,10 +41,38 @@ class ExpertConsultCustomerDataTable extends DataTable
      */
     public function query(Customer $model): QueryBuilder
     {
-        return $model->newQuery()
+        $search = $this->request()->get('search')['value'];
+        $start_date = $this->request()->get('start_date');
+        $end_date = $this->request()->get('end_date');
+
+        $query = $model->newQuery()
             ->paid()
             ->where('is_delete', 0)
             ->where('product_id', config('constant.EXPERT_CONSULTATION_OFFER_ID'));
+
+        if (!empty($start_date) && !empty($end_date)) {
+            $start_date = Carbon::parse($start_date)->startOfDay();
+            $end_date = Carbon::parse($end_date)->endOfDay();
+            $query = $query->whereBetween('updated_at', [$start_date, $end_date]);
+        } else {
+            $start_date = date('Y-m-d', strtotime('-2 days'));
+            $end_date = date('Y-m-d');
+            $query = $query->whereBetween('updated_at', [$start_date, $end_date]);
+        }
+
+        if (!empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('order_id', 'like', "%{$search}%")
+                    ->orWhere('mobile_no', 'like', "%{$search}%")
+                    ->orWhere('first_name', 'like', "%{$search}%")
+                    ->orWhere('last_name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('city', 'like', "%{$search}%")
+                    ->orWhere('state', 'like', "%{$search}%");
+            });
+        }
+
+        return $query;
     }
 
     /**

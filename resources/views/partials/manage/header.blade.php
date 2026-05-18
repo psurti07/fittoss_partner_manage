@@ -23,20 +23,12 @@
                     <div class="media profile-media">
                         <img class="b-r-10 for-light" src="{{ asset('assets/images/logo/favicon.png') }}" alt="" style="width: 30px; height: auto;">
                         <img class="b-r-10 for-dark" src="{{ asset('assets/images/logo/favicon.png') }}" alt="" style="width: 30px; height: auto;">
-                        @php
-                            $roles = [
-                                0 => 'Admin',
-                                1 => 'Office Staff',
-                                2 => 'IVR Support Staff',
-                                3 => 'IT Staff'
-                            ];
-                        @endphp
-                        <div class="media-body"><span>{{ Auth::user()->fullname ?? Auth::user()->name }}</span>
-                            <p class="mb-0 font-roboto">{{ $roles[Auth::user()->role] ?? 'Unknown' }}<i class="middle fa fa-angle-down"></i></p>
+                        <div class="media-body"><span>{{ Auth::user()->name }}</span>
+                            <p class="mb-0 font-roboto">{{ \Modules\Partner\App\Models\CompanyStaff::getRoleName(Auth::user()->role) }}<i class="middle fa fa-angle-down"></i></p>
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
-                        <!-- <li><a href="javascript:;"><i data-feather="user"></i><span>Account </span></a></li> -->
+                        <li><a href="{{ route('manage.profile.detail') }}"><i data-feather="user"></i><span>Account </span></a></li>
                         <li><a href="{{ route('manage.changePassword') }}"><i data-feather="lock"></i><span>Change Password</span></a></li>
                         <li><a href="{{ route('manage.logout') }}"><i data-feather="log-out"> </i><span>Log out</span></a></li>
                     </ul>

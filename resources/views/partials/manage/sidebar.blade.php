@@ -34,7 +34,7 @@
                         </div>
                     </li>
 
-                     <li class="sidebar-list">
+                    <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.dashboard') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay">
@@ -76,7 +76,7 @@
                             <h6 class="heading-color">Weight Loss Program</h6>
                         </div>
                     </li>
-                    
+
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.weight-loss-program.statistics') }}" data-bs-original-title="" title="">
@@ -457,7 +457,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-main-title">
+                   {{-- <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Data List</h6>
                         </div>
@@ -522,9 +522,9 @@
                             <span class="">Disease</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
-                    </li>
+                    </li> --}}
 
-                    <li class="sidebar-main-title">
+                    {{-- <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">File Accounting</h6>
                         </div>
@@ -559,7 +559,7 @@
                             <i data-feather="repeat"></i>
                             <span class="">Refund Data</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="sidebar-main-title">
                         <div>
@@ -639,9 +639,9 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-main-title">
+                    {{-- <li class="sidebar-main-title">
                         <div>
-                            <h6 class="heading-color">HR</h6>
+                            <h6 class="heading-color">HR Recruiter</h6>
                         </div>
                     </li>
 
@@ -660,9 +660,9 @@
                             <li><a href="{{ route('manage.career.index') }}" data-bs-original-title="" title="">Career Openings</a></li>
                             <li><a href="{{ route('manage.careerenquiry.index') }}" data-bs-original-title="" title="">Career Enquiry</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
-                    <li class="sidebar-main-title">
+                    {{-- <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Main IVR</h6>
                         </div>
@@ -697,12 +697,12 @@
                             <span class="">Contact Enquiry</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
-                    </li>
+                    </li> --}}
 
 
 
 
-                    <li class="sidebar-main-title">
+                    {{-- <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">In-house HR Management</h6>
                         </div>
@@ -786,9 +786,9 @@
                             <span class="">Employee Account</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
-                    </li>
+                    </li> --}}
 
-                    <li class="sidebar-main-title">
+                    {{-- <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Data Management</h6>
                         </div>
@@ -817,9 +817,9 @@
                             </svg>
                             <span class="">Drive Links</span>
                         </a>
-                    </li>
+                    </li> --}}
 
-                    <li class="sidebar-main-title">
+                    {{-- <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Relationship Managment</h6>
                         </div>
@@ -846,7 +846,7 @@
                             <span class="">Add Partner</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="sidebar-main-title">
                         <div>
@@ -854,7 +854,7 @@
                         </div>
                     </li>
 
-                    <li class="sidebar-list">
+                    {{-- <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.website.links.index') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -864,7 +864,7 @@
                             </svg>
                             <span class="">Website Links</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
@@ -910,7 +910,7 @@
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>
-                    
+
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.sendotps') }}" data-bs-original-title="" title="">
@@ -967,7 +967,7 @@
                         </ul>
                     </li>
 
-                    <li class="sidebar-list">
+                    {{-- <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title" href="javascript:;" data-bs-original-title="" title="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
@@ -983,9 +983,9 @@
                             <li><a href="{{ route('manage.disclaimer') }}" data-bs-original-title="" title="">Disclaimer</a></li>
                             <li><a href="{{ route('manage.terms-conditions') }}" data-bs-original-title="" title="">Terms &amp; Conditions</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
-
+                    @if(auth()->user()->role == \Modules\Partner\App\Models\CompanyStaff::ROLE_PARTNER)
                     <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Site Options</h6>
@@ -1016,6 +1016,20 @@
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                             </svg>
                             <span class="">Staff Account</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
+                    @endif
+                    <li class="sidebar-main-title"></li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav " href="{{ route('manage.profile.detail') }}" data-bs-original-title="" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span class="">Account</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>

@@ -2,10 +2,12 @@
 
 namespace Modules\Partner\App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class CompanyStaff extends Model
+class CompanyStaff extends Authenticatable
 {
     use HasFactory;
     protected $table = 'company_staff';
@@ -43,6 +45,17 @@ class CompanyStaff extends Model
             self::ROLE_IVR_SUPPORT_STAFF => 'IVR/Support Staff',
             self::ROLE_IT_STAFF => 'IT Staff',
         ];
+    }
+    protected static function booted(): void
+    {
+        static::addGlobalScope('company', function (Builder $builder) {
+            if (app()->bound('company_id')) {
+                $builder->where(
+                    $builder->getModel()->getTable() . '.company_id',
+                    app('company_id')
+                );
+            }
+        });
     }
 
     /**

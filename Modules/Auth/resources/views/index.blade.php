@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-@section('title','Administrations')
+@section('title','Partner')
 @push('css-links')
 @endpush
 @push('style-css')

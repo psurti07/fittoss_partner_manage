@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,6 +25,7 @@ class ScheduleSlot extends Model
 
     protected $fillable = [
         'user_id',
+        'company_id',
         'product_id',
         'date',
         'time',
@@ -34,6 +36,24 @@ class ScheduleSlot extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function scopeCompany(Builder $query): Builder
+    {
+        if (auth()->check() && app()->bound('company_id')) {
+            $from = $query->getQuery()->from;
+            if (str_contains($from, ' as ')) {
+                $alias = trim(explode(' as ', $from)[1]);
+            } else {
+                $alias = $this->getTable();
+            }
+
+            $query->where(
+                $alias . '.company_id',
+                app('company_id')
+            );
+        }
+        return $query;
+    }
 
     public static function getLanguages()
     {

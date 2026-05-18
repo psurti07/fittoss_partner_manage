@@ -66,29 +66,25 @@
                                 <input type="hidden" name="userid" value="{{ $staffDetails->id }}">
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <h6 class="fw-normal">Registration on: <b>{{ date('d-m-Y H:i', strtotime($staffDetails->rec_date)) }}</b></h6>
+                                        <h6 class="fw-normal">Registration on: <b>{{ date('d-m-Y H:i', strtotime($staffDetails->created_at)) }}</b></h6>
                                     </div>
                                     <div class="col-md-6">
                                         <h6 class="fw-normal">Referal Code: <b>{{ $staffDetails->staff_code }}</b></h6>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="fullname">Staff Name<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Staff Name" value="{{ $staffDetails->fullname }}">
-                                        @component('components.ajax-error',['field'=>'fullname'])@endcomponent
+                                        <label for="name">Name<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $staffDetails->name }}">
+                                        @component('components.ajax-error',['field'=>'name'])@endcomponent
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="mobile">Mobile<span class="text-danger">*</span></label>
-                                        <input type="tel" inputmode="numeric" class="numeric-input form-control" placeholder="Mobile no" maxlength="10" minlength="10" id="mobile" name="mobile" value="{{ $staffDetails->mobile }}">
-                                        @component('components.ajax-error',['field'=>'mobile'])@endcomponent
+                                        <label for="mobile_no">Mobile<span class="text-danger">*</span></label>
+                                        <input type="tel" inputmode="numeric" class="numeric-input form-control" placeholder="Mobile no" maxlength="10" minlength="10" id="mobile_no" name="mobile_no" value="{{ $staffDetails->mobile_no }}">
+                                        @component('components.ajax-error',['field'=>'mobile_no'])@endcomponent
                                     </div>
                                     <div class="col-md-4">
                                         <label for="email">Email<span class="text-danger">*</span></label>
                                         <input type="email" class="form-control" placeholder="Email" id="email" name="email" value="{{ $staffDetails->email }}">
                                         @component('components.ajax-error',['field'=>'email'])@endcomponent
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="dob">DOB</label>
-                                        <input type="date" class="form-control" id="dob" name="dob" value="{{ $staffDetails->dob }}">
                                     </div>
                                     <div class="col-md-4">
                                         <label for="position">Position</label>
@@ -98,9 +94,9 @@
                                         <label for="role">Role</label>
                                         <select class="form-control form-select" name="role" id="role">
                                             <option value="">Select Role</option>
-                                            <option value="1" {{ $staffDetails->role == 1 ? 'selected' : '' }}>Office Staff</option>
-                                            <option value="2" {{ $staffDetails->role == 2 ? 'selected' : '' }}>IVR/Support Staff</option>
-                                            <option value="3" {{ $staffDetails->role == 3 ? 'selected' : '' }}>IT Staff</option>
+                                            @foreach(\Modules\Partner\App\Models\CompanyStaff::roles() as $key => $value)
+                                            <option value="{{ $key }}" {{ $staffDetails->role == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-12 mt-3 text-end">
@@ -201,10 +197,10 @@
 @push('script-tag')
 <script>
     $("#logs-list-table").DataTable({
-        pageLength: 50,
-        lengthMenu: [
-            [50, 100, 200],
+        pageLength: 50
+        , lengthMenu: [
             [50, 100, 200]
+            , [50, 100, 200]
         ]
     });
     $(".staff-update-form").submit(function() {
@@ -379,7 +375,7 @@
         });
     }
     $(document).ready(function() {
-        $("#mobile").on("input", function() {
+        $("#mobile_no").on("input", function() {
             this.value = this.value.replace(/[^0-9]/g, "");
         });
     });

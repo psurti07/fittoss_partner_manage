@@ -108,6 +108,7 @@ class BFAWorkshopController extends Controller
 
     public function usersDetailsUpdate(Request $request)
     {
+        $companyId = $request->company_id;
         $userId = $request->input('userid');
         $request->validate([
             'first_name' => 'required',
@@ -142,6 +143,7 @@ class BFAWorkshopController extends Controller
             'age' => $request->age ?? NULL,
             'bmi' => $bmi ?? NULL,
             'gender' => $request->gender ?? 1,
+            'company_id' => $companyId,
         ];
         UserPersonalDetails::updateOrCreate(
             ['userid' => $userId],

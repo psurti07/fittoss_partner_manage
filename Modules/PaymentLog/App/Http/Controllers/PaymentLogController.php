@@ -48,6 +48,7 @@ class PaymentLogController extends Controller
         }
 
         if ($request->ajax()) {
+            $companyId = $request->company_id;
             $columns = [
                 0 => 'p.id',
                 1 => 'p.rec_date',
@@ -82,6 +83,7 @@ class PaymentLogController extends Controller
                     'c.mobile_no',
                     'c.email'
                 )
+                ->where('p.company_id', $companyId)
                 ->join('customers as c', 'p.user_id', '=', 'c.id');
 
             if (!empty($fromDate) && !empty($toDate)) {

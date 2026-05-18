@@ -21,6 +21,7 @@ class InvoiceService
         }
 
         $invoice = Invoice::create([
+            'company_id' => $transaction->company_id,
             'userid' => $transaction->id,
             'user_type' => 2,
             'inv_prefix' => 'INV_',

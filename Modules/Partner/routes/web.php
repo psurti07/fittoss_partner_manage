@@ -19,3 +19,13 @@ Route::group([
     Route::post('account/deactivate', [PartnerController::class, 'deactivateAccount'])->name('account.deactivate');
     Route::post('account/delete', [PartnerController::class, 'destroy'])->name('account.delete');
 });
+
+// Partner/Staff
+Route::group([
+    'prefix' => '',
+    'as' => 'manage.',
+    'middleware' => ['auth', 'PreventBackHistory']
+], function () {
+    Route::get('profile', [PartnerController::class, 'partnerDetail'])->name('profile.detail');
+    Route::post('profile/update', [PartnerController::class, 'updatePartnerDetail'])->name('profile.update');
+});

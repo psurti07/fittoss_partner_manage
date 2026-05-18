@@ -262,6 +262,7 @@ class CustomersController extends Controller
 
     public function usersDetailsUpdate(Request $request)
     {
+        $companyId = $request->company_id;
         $userId = $request->input('userid');
         $request->validate([
             'first_name' => 'required',
@@ -288,6 +289,7 @@ class CustomersController extends Controller
             $bmi = $bmiData['bmi'] ?? 0;
         }
         $userPersonalDetail = [
+            'company_id' => $companyId,
             'userid' => $userId,
             'active_rate' => $request->active_rate ?? 0,
             'medical_issue' => !empty($request->medical_issue) ? json_encode($request->medical_issue) : NULL,

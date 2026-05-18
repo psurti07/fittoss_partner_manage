@@ -13,12 +13,22 @@ class UserPersonalDetails extends Model
     public $timestamps = false;
 
     protected $fillable = [
-       'userid', 'active_rate', 'medical_issue', 'height', 'weight', 'bmi', 'age', 'gender', 'dob', 'created_at', 'updated_at'
+        'userid',
+        'active_rate',
+        'medical_issue',
+        'height',
+        'weight',
+        'bmi',
+        'company_id',
+        'age',
+        'gender',
+        'dob',
+        'created_at',
+        'updated_at'
     ];
 
     protected $casts = [
         'dob' => 'date:Y-m-d',
         // 'medical_issue' => 'array',
     ];
-
 }

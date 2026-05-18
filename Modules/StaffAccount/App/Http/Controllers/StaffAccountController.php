@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Modules\Auth\App\Models\Administrations;
+use Modules\Partner\App\Models\Company;
+use Modules\Partner\App\Models\CompanyStaff;
 
 class StaffAccountController extends Controller
 {
@@ -32,7 +33,7 @@ class StaffAccountController extends Controller
 
     public function staffDetails($staffId)
     {
-        $staffDetails = Administrations::where('id', $staffId)->first();
+        $staffDetails = CompanyStaff::where('id', $staffId)->first();
         $logs = DB::table('administrations_logs')
             ->where('staff_id', $staffId)
             ->whereDate('created_at', '>=', Carbon::now()->subDays(30))
@@ -46,21 +47,40 @@ class StaffAccountController extends Controller
      */
     public function store(Request $request)
     {
-        $inputs = $request->all();
         $request->validate([
             'role' => 'required',
-            'fullname' => 'required',
-            'email' => 'required|email|unique:administrations,email',
-            'mobile' => ['required', 'numeric', 'regex:/^[6-9]\d{9}$/'],
+            'name' => 'required',
+            'email' => 'required|email|unique:company_staff,email',
+            'mobile_no' => ['required', 'numeric', 'regex:/^[6-9]\d{9}$/'],
             'password' => 'required|confirmed'
         ]);
-        $inputs['password'] = Hash::make($inputs['password']);
-        $inputs['role'] = (int)$inputs['role'];
-        $inputs['staff_code'] = random_code_num(4);
-        unset($inputs['password_confirmation']);
-        $result = Administrations::create($inputs);
-        $message = 'Staff created successfully';
-        if ($result) {
+        $companyId = $request->company_id;
+        $staffData = [
+            'company_id' => $companyId,
+            'name' => $request->name,
+            'email' => $request->email,
+            'mobile_no' => $request->mobile_no,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+            'staff_code' => generateStaffCode(),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+        $staff = CompanyStaff::create($staffData);
+        if ($staff) {
+            $emailContent = view('emails.partner_create', [
+                'company_code' => Company::where('id', $companyId)->value('company_code'),
+                'name' => $staff->name,
+                'email' => $staff->email,
+                'password' => $request->password,
+            ])->render();
+            $subject = "Welcome to Fittoss Partner Portal - Your Account Has Been Created!";
+            $maildata = array(
+                'fullname' => $staff->name,
+                'email' => $staff->email,
+            );
+            sendBrevoHtmlMail2($maildata, $subject, $emailContent);
+            $message = 'Staff created successfully';
             return response()->json(array('type' => 'SUCCESS', 'message' => $message, 'data' => []));
         } else {
             return response()->json(array('type' => 'ERROR', 'message' => 'Something went wrong', 'data' => []));
@@ -70,8 +90,8 @@ class StaffAccountController extends Controller
     public function statusChange(Request $request)
     {
         $input = $request->all();
-        $result = Administrations::where('id', $input['id'])->first();
-        Administrations::where('id', $result['id'])->update(['is_active' => $input['status'] == 1 ? 0 : 1]);
+        $result = CompanyStaff::where('id', $input['id'])->first();
+        CompanyStaff::where('id', $result['id'])->update(['is_active' => $input['status'] == 1 ? 0 : 1]);
         $message = 'Status changed successfully';
         if ($result) {
             return response()->json(array('type' => 'SUCCESS', 'message' => $message, 'data' => []));
@@ -82,7 +102,7 @@ class StaffAccountController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $user = Administrations::find($request->input('userid'));
+        $user = CompanyStaff::find($request->input('userid'));
         if ($user != null) {
             $request->validate([
                 'new_password' => 'required',
@@ -103,43 +123,37 @@ class StaffAccountController extends Controller
 
     public function deactivateAccount(Request $request)
     {
-        $user = Administrations::find($request->input('userid'));
-        if ($user) {
-            $updateData = array('is_active' => $request->input('status'));
-            $result = Administrations::where('id', $request->input('userid'))->update($updateData);
-            $message = '';
-            if ($request->input('status') == 1) {
-                $message = 'Account activated successfully';
-            } else {
-                $message = 'Account deactivate successfully';
-            }
-            if ($result > 0) {
-                return response()->json(['type' => 'SUCCESS', 'message' => $message]);
-            } else {
-                return response()->json(['type' => 'ERROR', 'message' => 'Something went wrong']);
-            }
+        $updateData = array('is_active' => $request->input('status'));
+        $result = CompanyStaff::where('id', $request->input('userid'))->update($updateData);
+        $message = '';
+        if ($request->input('status') == 1) {
+            $message = 'Account activated successfully';
         } else {
-            return response()->json(['type' => 'ERROR', 'message' => 'Invalid user perform action']);
+            $message = 'Account deactivate successfully';
+        }
+        if ($result > 0) {
+            return response()->json(['type' => 'SUCCESS', 'message' => $message]);
+        } else {
+            return response()->json(['type' => 'ERROR', 'message' => 'Something went wrong']);
         }
     }
 
     public function updateStaffDetails(Request $request)
     {
         $request->validate([
-            'fullname' => 'required',
+            'name' => 'required',
             'role' => 'required',
-            'email' => 'required|email|unique:administrations,email,' . $request->input('userid'),
-            'mobile' => ['required', 'numeric', 'regex:/^[6-9]\d{9}$/'],
+            'email' => 'required|email|unique:company_staff,email,' . $request->input('userid'),
+            'mobile_no' => ['required', 'numeric', 'regex:/^[6-9]\d{9}$/'],
         ]);
         $upd = [
-            'fullname' => $request->input('fullname'),
+            'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'mobile' => $request->input('mobile'),
-            'dob' => $request->input('dob'),
+            'mobile_no' => $request->input('mobile_no'),
             'position' => $request->input('position'),
             'role' => $request->input('role'),
         ];
-        $result = Administrations::where('id', $request->input('userid'))->update($upd);
+        $result = CompanyStaff::where('id', $request->input('userid'))->update($upd);
         if ($result > 0) {
             return response()->json(array('type' => 'SUCCESS', 'message' => 'Staff data updated successfully'));
         } else {
@@ -153,16 +167,11 @@ class StaffAccountController extends Controller
     public function destroy(Request $request)
     {
         $input = $request->all();
-        $result = Administrations::where('id', $input['userid'])->first();
-        if ($result) {
-            $res = Administrations::where('id', $result['id'])->update(['is_delete' => 1, 'is_active' => 0]);
-            if ($res > 0) {
-                $message = 'Staff Account deleted successfully';
-                return response()->json(array('type' => 'SUCCESS', 'message' => $message, 'data' => []));
-            }
-            return response()->json(array('type' => 'ERROR', 'message' => 'Something Went Wrong', 'data' => []));
-        } else {
-            return response()->json(array('type' => 'ERROR', 'message' => 'Something Went Wrong', 'data' => []));
+        $res = CompanyStaff::where('id', $input['userid'])->update(['is_delete' => 1, 'is_active' => 0]);
+        if ($res > 0) {
+            $message = 'Staff Account deleted successfully';
+            return response()->json(array('type' => 'SUCCESS', 'message' => $message, 'data' => []));
         }
+        return response()->json(array('type' => 'ERROR', 'message' => 'Something Went Wrong', 'data' => []));
     }
 }

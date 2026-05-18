@@ -76,7 +76,7 @@
                                         @if(count($remarks))
                                             @foreach($remarks as $remark)
                                                 <li class="list-group-item mb-3">
-                                                    {{ $remark->administrations->fullname ?? 'Unknown User' }}: 
+                                                    {{ $remark->staff->name ?? 'Unknown User' }}: 
                                                     <b>{{ $remark->remarks }}</b><br>
                                                     <small><em>{{ \Carbon\Carbon::parse($remark->rec_date)->format('d/m/Y') }}</em></small>
                                                 </li>
@@ -198,7 +198,7 @@
                         let html = "";
                         $.each(result.data, function (index, item) {
                             html += `<li class='list-group-item'>
-                                ${item.administrations.fullname} - <small><em>${new Date(item.rec_date).toLocaleDateString()}</em></small><br/>
+                                ${item.staff.name} - <small><em>${new Date(item.rec_date).toLocaleDateString()}</em></small><br/>
                                 <b>${item.remarks}</b>
                             </li>`;
                         });

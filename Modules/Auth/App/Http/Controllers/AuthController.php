@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Modules\Auth\App\Models\Administrations;
+use Modules\Partner\App\Models\CompanyStaff;
 
 class AuthController extends Controller
 {
@@ -23,7 +23,7 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        $user = Administrations::where('email', $credentials['email'])
+        $user = CompanyStaff::where('email', $credentials['email'])
             ->where('is_delete', 0)
             ->first();
 

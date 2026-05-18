@@ -103,6 +103,7 @@ class WLPCustomersController extends Controller
 
     public function usersDetailsUpdate(Request $request)
     {
+        $companyId = $request->company_id;
         $userId = $request->input('userid');
         $request->validate([
             'first_name' => 'required',
@@ -130,6 +131,7 @@ class WLPCustomersController extends Controller
         }
         $userPersonalDetail = [
             'userid' => $userId,
+            'company_id' => $companyId,
             'active_rate' => $request->active_rate ?? 0,
             'medical_issue' => !empty($request->medical_issue) ? json_encode($request->medical_issue) : NULL,
             'height' => $request->height ?? NULL,

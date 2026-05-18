@@ -24,14 +24,13 @@
                                                                     </p>
                                                                     <ul style="list-style: none;">
                                                                         <li style="font-size:15px">Company Code : <strong>{{ $company_code }}</strong></li>
-                                                                        <li style="font-size:15px">Mobile : <strong>{{ $mobile }}</strong></li>
                                                                         <li style="font-size:15px">Email : <strong>{{ $email }}</strong></li>
                                                                         <li style="font-size:15px">Password : <strong>{{ $password }}</strong></li>
                                                                     </ul>
 
                                                                     <p>Please visit Your Personalised Portal and login with your credentials:</p>
                                                                     
-                                                                    <a href="{{ config('constants.PARTNER_PORTAL_URL') }}" style="display:inline-block;background:#2c2c2c;color:#fff;font-family:Ubuntu,Helvetica,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;line-height:17.5px;margin:0;text-decoration:none;text-transform:none;padding:9px 26px 9px 26px; margin:auto; display:block; width: fit-content; mso-padding-alt:0;border-radius:10px" target="_blank"><span><strong><span style="font-family:Poppins,sans-serif;font-size:14px">Click to Login</span></strong></span></a>
+                                                                    <a href="{{ config('constant.PARTNER_PORTAL_URL') }}" style="display:inline-block;background:#2c2c2c;color:#fff;font-family:Ubuntu,Helvetica,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;line-height:17.5px;margin:0;text-decoration:none;text-transform:none;padding:9px 26px 9px 26px; margin:auto; display:block; width: fit-content; mso-padding-alt:0;border-radius:10px" target="_blank"><span><strong><span style="font-family:Poppins,sans-serif;font-size:14px">Click to Login</span></strong></span></a>
                                                                     <p style="font-size:13px">
                                                                         For security reasons, please keep this information confidential. If you did not request this password change, please contact our support team immediately.
                                                                     </p>

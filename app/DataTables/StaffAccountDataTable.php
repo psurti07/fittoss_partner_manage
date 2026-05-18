@@ -2,8 +2,8 @@
 
 namespace App\DataTables;
 
-use Modules\Auth\App\Models\Administrations;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Modules\Partner\App\Models\CompanyStaff;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -33,8 +33,8 @@ class StaffAccountDataTable extends DataTable
                           </ul>';
                 return $action;
             })
-            ->editColumn('rec_date', function ($row) {
-                return date('Y-m-d H:i:s', strtotime($row->rec_date));
+            ->editColumn('updated_at', function ($row) {
+                return date('Y-m-d H:i:s', strtotime($row->updated_at));
             })
             ->addColumn('status', function ($row) {
                 if ($row->is_active) {
@@ -49,7 +49,7 @@ class StaffAccountDataTable extends DataTable
                 return $statusBtn;
             })
             ->addColumn('role', function ($row) {
-                return (($row->role == 1) ? 'Office Staff' : (($row->role == 2) ? 'IVR/Support Staff' : (($row->role == 0) ? 'Admin' : 'IT Staff')));
+                return CompanyStaff::getRoleName($row->role);
             })
             ->setRowId('id')->rawColumns(['action', 'role', 'status']);
     }
@@ -57,9 +57,9 @@ class StaffAccountDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Administrations $model): QueryBuilder
+    public function query(CompanyStaff $model): QueryBuilder
     {
-        return $model->newQuery()->where(['is_delete' => 0, ['role', '!=', 5]]);
+        return $model->newQuery()->where(['is_delete' => 0, ['role', '!=', CompanyStaff::ROLE_PARTNER]]);
     }
 
     /**
@@ -92,10 +92,10 @@ class StaffAccountDataTable extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title('#')->width(5)->searchable(false)->exportable(false),
-            Column::make('rec_date')->title('Date'),
-            Column::make('fullname')->title('Staff Name')->data('fullname'),
+            Column::make('updated_at')->title('Date'),
+            Column::make('name')->title('Staff Name')->data('name'),
             Column::make('staff_code')->title('Staff Code')->data('staff_code'),
-            Column::make('mobile')->title('Mobile')->data('mobile'),
+            Column::make('mobile_no')->title('Mobile')->data('mobile_no'),
             Column::make('email')->title('Email')->data('email'),
             Column::make('role')->title('Role')->data('role'),
             Column::make('status')->searchable(false),

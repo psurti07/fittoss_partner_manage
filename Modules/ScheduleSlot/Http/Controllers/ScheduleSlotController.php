@@ -57,7 +57,8 @@ class ScheduleSlotController extends Controller
                     'c.email',
                     'c.mobile_no',
                     'p.product_title'
-                )->where('ss.is_deleted', 0);
+                )->company()
+                ->where('ss.is_deleted', 0);
 
             if (!empty($search)) {
                 $query->where(function ($q) use ($search) {

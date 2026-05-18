@@ -1,6 +1,6 @@
 <?php
 
-use Modules\Auth\App\Models\Administrations;
+use Modules\Partner\App\Models\CompanyStaff;
 
 return [
 
@@ -40,7 +40,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'partners',
         ],
     ],
 
@@ -62,9 +62,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'partners' => [
             'driver' => 'eloquent',
-            'model' => Administrations::class,
+            'model' => CompanyStaff::class,
         ],
 
         // 'users' => [

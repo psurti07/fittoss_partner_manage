@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,7 @@ class Customer extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'company_id',
         'first_name',
         'last_name',
         'email',
@@ -40,6 +42,29 @@ class Customer extends Model
         'created_at',
         'updated_at',
     ];
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope('company', function (Builder $builder) {
+            if (auth()->check() && app()->bound('company_id')) {
+                $builder->where(
+                    $builder->getModel()->getTable() . '.company_id',
+                    app('company_id')
+                );
+            }
+        });
+    }
+
+    // public function scopeCompany(Builder $query): Builder
+    // {
+    //     if (auth()->check() && app()->bound('company_id')) {
+    //         $query->where(
+    //             $this->getTable() . '.company_id',
+    //             app('company_id')
+    //         );
+    //     }
+    //     return $query;
+    // }
 
     public function scopePaid($query)
     {

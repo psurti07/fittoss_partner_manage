@@ -16,6 +16,7 @@ class Invoice extends Model
     public $timestamps = false;
     protected $fillable = [
         'id',
+        'company_id',
         'rec_date',
         'userid',
         'user_type',

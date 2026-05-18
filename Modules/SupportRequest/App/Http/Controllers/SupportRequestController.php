@@ -46,7 +46,7 @@ class SupportRequestController extends Controller
     public function show($id)
     {
         $supportRequest = SupportRequest::findOrFail($id);
-        $remarks =  SupportRequestChat::with('administrations')->where('requestid', $id)->where('is_delete', 0)->get();
+        $remarks =  SupportRequestChat::with('staff')->where('requestid', $id)->where('is_delete', 0)->get();
         return view('supportrequest::modals.SupportRequest', compact('supportRequest', 'remarks'));
     }
 
@@ -89,7 +89,7 @@ class SupportRequestController extends Controller
                 'is_delete' => 0
             ];
             $res = SupportRequestChat::create($insData);
-            $remarksData = SupportRequestChat::with('administrations')->where('requestid', $inputs['requestid'])->where('is_delete', 0)->get();
+            $remarksData = SupportRequestChat::with('staff')->where('requestid', $inputs['requestid'])->where('is_delete', 0)->get();
 
             if ($res) {
                 return response()->json(['type' => 'SUCCESS', 'data' => $remarksData, 'message' => 'Remarks added successfully'], 200);

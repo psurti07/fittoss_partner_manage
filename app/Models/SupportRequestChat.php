@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Auth\App\Models\Administrations;
+use Modules\Partner\App\Models\CompanyStaff;
 
 class SupportRequestChat extends Model
 {
@@ -22,8 +22,8 @@ class SupportRequestChat extends Model
 
     public $timestamps = false;
 
-    public function administrations()
+    public function staff()
     {
-        return $this->belongsTo(Administrations::class, 'staffid', 'id');
+        return $this->belongsTo(CompanyStaff::class, 'staffid', 'id');
     }
 }

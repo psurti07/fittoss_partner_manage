@@ -294,4 +294,43 @@ class PartnerController extends Controller
             return response()->json(['type' => 'ERROR', 'message' => 'Something went wrong while updating partner']);
         }
     }
+
+    /**============== Partner/Staff ======================= */
+    public function partnerDetail()
+    {
+        try {
+            $partnerId = auth()->user()->id;
+            $partner = CompanyStaff::where('id', $partnerId)->first();
+            return view('partner::profile_detail', compact('partner'));
+        } catch (\Exception $e) {
+            Log::error('partnerDetail', ['error' => $e->getMessage()]);
+        }
+    }
+
+    public function updatePartnerDetail(Request $request)
+    {
+        $partnerId = auth()->user()->id;
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:company_staff,email,' . $partnerId,
+            'mobile_no' => 'required|numeric|regex:/^[6-9]\d{9}$/',
+        ]);
+        try {
+            $partnerData = [
+                'name' => $request->name,
+                'mobile_no' => $request->mobile_no,
+                'email' => $request->email,
+                'updated_at' => date('Y-m-d H:i:s'),
+            ];
+            $result = CompanyStaff::where('id', $partnerId)->update($partnerData);
+            if ($result > 0) {
+                return response()->json(array('type' => 'SUCCESS', 'message' => 'Details updated successfully'));
+            } else {
+                return response()->json(array('type' => 'ERROR', 'message' => 'Something went wrong while updating partner'));
+            }
+        } catch (\Exception $e) {
+            Log::error('updatePartnerDetail', ['error' => $e->getMessage(), 'TraceAsString' => $e->getTraceAsString()]);
+            return response()->json(array('type' => 'ERROR', 'message' => 'Something went wrong while updating partner'));
+        }
+    }
 }
