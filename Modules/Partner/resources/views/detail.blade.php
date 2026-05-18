@@ -309,7 +309,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label for="instagram_url">Instagram URL</label>
-                                        <input type="tel" class="form-control numeric-input" name="instagram_url" maxlength="10" minlength="10" id="instagram_url" value="{{ $company->instagram_url }}" />
+                                        <input type="text" class="form-control numeric-input" name="instagram_url" maxlength="10" minlength="10" id="instagram_url" value="{{ $company->instagram_url }}" />
                                         @component('components.ajax-error', ['field' => 'instagram_url'])
                                         @endcomponent
                                     </div>
@@ -462,9 +462,9 @@
                 return;
             }
 
-            // ✅ Validate size (2MB)
-            if (file.size > 2 * 1024) {
-                alert('Image must be less than 1MB.');
+            // ✅ Validate size (1MB)
+            if (file.size > 1 * 1024 * 1024) {
+                alert('Logo must be less than 1MB.');
                 this.value = '';
                 logopreview.style.display = 'none';
                 return;
@@ -497,9 +497,9 @@
                 return;
             }
 
-            // ✅ Validate size (2MB)
-            if (file.size > 2 * 512) {
-                alert('Image must be less than 512KB.');
+            // ✅ Validate size (500KB)
+            if (file.size > 500 * 1024) {
+                alert('Icon must be less than 500KB.');
                 this.value = '';
                 iconPreview.style.display = 'none';
                 return;
@@ -815,7 +815,7 @@
                     if (response.status === 'success') {
                         $(".pincode-msg").text('');
                         // Populate City and State fields
-                        $('#city').val(response.city);
+                        $('#city').val(response.district);
                         $('#state').val(response.state);
                     } else {
                         alert(response.message);
