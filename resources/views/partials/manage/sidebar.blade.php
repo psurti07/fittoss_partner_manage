@@ -848,7 +848,7 @@
                         </a>
                     </li> --}}
 
-                    <li class="sidebar-main-title">
+                    <!--<li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Digital Marketing</h6>
                         </div>
@@ -924,10 +924,10 @@
                             <span class="">Send OTPs</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
-                    </li>
+                    </li> -->
 
 
-                    <li class="sidebar-main-title">
+                    <!-- <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Marketing Head</h6>
                         </div>
@@ -965,7 +965,7 @@
                             <li><a href="{{ route('manage.welcome-message') }}" data-bs-original-title="" title="">Welcome Page Message</a></li>
                             <li><a href="{{ route('manage.welcome_image_flyer.index') }}" data-bs-original-title="" title="">Welcome Image Flyer</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     {{-- <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
@@ -985,13 +985,13 @@
                         </ul>
                     </li> --}}
 
-                    @if(auth()->user()->role == \Modules\Partner\App\Models\CompanyStaff::ROLE_PARTNER)
                     <li class="sidebar-main-title">
                         <div>
-                            <h6 class="heading-color">Site Options</h6>
+                            <h6 class="heading-color">Site Setting</h6>
                         </div>
                     </li>
 
+                    @if(auth()->user()->role == \Modules\Partner\App\Models\CompanyStaff::ROLE_PARTNER)
                     @can('staff-list')
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
@@ -1020,7 +1020,6 @@
                         </a>
                     </li>
                     @endif
-                    <li class="sidebar-main-title"></li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav " href="{{ route('manage.profile.detail') }}" data-bs-original-title="" title="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
@@ -1029,7 +1028,7 @@
                                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                             </svg>
-                            <span class="">Account</span>
+                            <span class="">My Profile</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>

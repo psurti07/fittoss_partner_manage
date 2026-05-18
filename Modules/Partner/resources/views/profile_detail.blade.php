@@ -56,8 +56,9 @@
                             @component('components.ajax-error', ['field' => 'email'])
                             @endcomponent
                         </div>
-                        <div class="form-footer mt-3">
+                        <div class="form-footer mt-3 d-flex justify-content-between align-items-center">
                             <button type="submit" class="btn btn-primary" id="customersBtn" name="customersBtn">Update</button>
+                            <a href="{{ route('manage.changePassword') }}" class="text-primary">Change Password</a>
                         </div>
                     </form>
                 </div>
