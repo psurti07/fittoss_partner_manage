@@ -309,7 +309,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label for="instagram_url">Instagram URL</label>
-                                        <input type="text" class="form-control numeric-input" name="instagram_url" maxlength="10" minlength="10" id="instagram_url" value="{{ $company->instagram_url }}" />
+                                        <input type="text" class="form-control" name="instagram_url" id="instagram_url" value="{{ $company->instagram_url }}" />
                                         @component('components.ajax-error', ['field' => 'instagram_url'])
                                         @endcomponent
                                     </div>
