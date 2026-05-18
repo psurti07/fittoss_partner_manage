@@ -94,7 +94,7 @@ class DndListDataTable extends DataTable
         return [
             Column::make('DT_RowIndex')->title('#')->searchable(false),
             Column::make('fullname')->data('fullname')->title('Full Name'),
-            Column::make('mobile')->data('mobile')->title('Mobile'),
+            Column::make('mobile_no')->title('Mobile'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

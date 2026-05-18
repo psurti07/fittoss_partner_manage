@@ -10,7 +10,7 @@ class Company extends Model
     use HasFactory;
     protected $table = 'companies';
     public const IMAGE_FOLDER = 'company';
-    protected $appends = ['logo_url', 'icon_url'];
+    protected $appends = ['logo_url', 'icon_url', 'color_logo_url'];
 
     protected $fillable = [
         'id',
@@ -23,6 +23,7 @@ class Company extends Model
         'company_type',
         'company_address',
         'company_logo',
+        'company_color_logo',
         'company_icon',
         'company_live_date',
         'project_name',
@@ -73,6 +74,12 @@ class Company extends Model
     {
         return $this->company_icon
             ? asset("assets/uploads/" . self::IMAGE_FOLDER . "/{$this->company_icon}")
+            : asset("assets/images/no-image-icon.png");
+    }
+    public function getColorLogoUrlAttribute()
+    {
+        return $this->company_color_logo
+            ? asset("assets/uploads/" . self::IMAGE_FOLDER . "/{$this->company_color_logo}")
             : asset("assets/images/no-image-icon.png");
     }
 }

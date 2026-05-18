@@ -188,6 +188,7 @@ class PartnerController extends Controller
             'state' => 'nullable',
             'pincode' => 'nullable',
             'company_logo' => 'nullable|image|mimes:png|max:1024',
+            'company_color_logo' => 'nullable|image|mimes:png|max:1024',
             'company_icon' => 'nullable|image|mimes:png|max:512',
         ]);
         try {
@@ -215,9 +216,14 @@ class PartnerController extends Controller
                 $this->deleteImage($oldLogo, Company::IMAGE_FOLDER);
                 $updateData['company_logo'] = $this->uploadImage($request->file('company_logo'), Company::IMAGE_FOLDER);
             }
+            if ($request->hasFile('company_color_logo')) {
+                $oldColorLogo = Company::where('id', $request->company_id)->value('company_color_logo');
+                $this->deleteImage($oldColorLogo, Company::IMAGE_FOLDER);
+                $updateData['company_color_logo'] = $this->uploadImage($request->file('company_color_logo'), Company::IMAGE_FOLDER);
+            }
             if ($request->hasFile('company_icon')) {
-                $oldLogo = Company::where('id', $request->company_id)->value('company_icon');
-                $this->deleteImage($oldLogo, Company::IMAGE_FOLDER);
+                $oldIcon = Company::where('id', $request->company_id)->value('company_icon');
+                $this->deleteImage($oldIcon, Company::IMAGE_FOLDER);
                 $updateData['company_icon'] = $this->uploadImage($request->file('company_icon'), Company::IMAGE_FOLDER);
             }
 
