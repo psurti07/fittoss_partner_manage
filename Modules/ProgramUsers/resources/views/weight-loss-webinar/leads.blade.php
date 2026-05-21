@@ -1,5 +1,5 @@
 @extends('layouts.manage')
-@section('title', 'Webinar Users')
+@section('title', 'Weight Loss Webinar Leads')
 
 @push('css-links')
 @include('stacks.css.manage.datatables')
@@ -57,6 +57,13 @@
                                     <th>City</th>
                                     <th>State</th>
                                     <th>Pincode</th>
+                                    <!-- hidden export columns -->
+                                    <th>Height</th>
+                                    <th>Weight</th>
+                                    <th>BMI</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Medical Issue</th>
                                     <th class="text-center">Details</th>
                                 </tr>
                             </thead>
@@ -111,11 +118,45 @@
                 {data: 'city', name: 'city'},
                 {data: 'state', name: 'state'},
                 {data: 'pincode', name: 'pincode'},
+
+                // extra export columns
+                {data: 'height', name: 'height', visible: false},
+                {data: 'weight', name: 'weight', visible: false},
+                {data: 'bmi', name: 'bmi', visible: false},
+                {data: 'age', name: 'age', visible: false},
+                {data: 'gender', name: 'gender', visible: false},
+                {data: 'medical_issue', name: 'medical_issue', visible: false},
+
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             order: [[1, 'desc']],
             dom: 'Blfrtip',
-            buttons: [ 'excel', 'csv', 'pdf', 'print' ],
+            buttons: [
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    }
+            ],
             lengthMenu: [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]],
             pageLength: 100,
         });

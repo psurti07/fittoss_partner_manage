@@ -1,5 +1,5 @@
 @extends('layouts.manage')
-@section('title', 'Webinar Users')
+@section('title', 'Bodyfat Analysis Workshop Customers')
 
 @push('css-links')
 @include('stacks.css.manage.datatables')

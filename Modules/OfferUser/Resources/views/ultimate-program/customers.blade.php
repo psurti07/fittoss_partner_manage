@@ -1,5 +1,5 @@
 @extends('layouts.manage')
-@section('title', 'Webinar Users')
+@section('title', 'Customers')
 
 @push('css-links')
 @include('stacks.css.manage.datatables')
@@ -15,7 +15,7 @@
 @endpush
 
 @section('breadcrumb-title')
-<h3>Users</h3>
+<h3>Customers</h3>
 @endsection
 
 @section('breadcrumb-items')

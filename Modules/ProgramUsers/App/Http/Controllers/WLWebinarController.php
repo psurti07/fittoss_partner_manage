@@ -289,18 +289,19 @@ class WLWebinarController extends Controller
             $orderDir = $request->input('order.0.dir', 'asc');
             $fromDate = $request->input('fromDate');
             $toDate = $request->input('toDate');
-            $query = Customer::select(
-                'id',
-                'first_name',
-                'last_name',
-                'email',
-                'mobile_no',
-                'product_id',
-                'city',
-                'pincode',
-                'state',
-                'updated_at'
-            )
+            $query = Customer::with('personalDetails')
+                ->select(
+                    'id',
+                    'first_name',
+                    'last_name',
+                    'email',
+                    'mobile_no',
+                    'product_id',
+                    'city',
+                    'pincode',
+                    'state',
+                    'updated_at'
+                )
                 ->where('is_active', 1)
                 ->where('is_user', 0)
                 ->where('is_delete', 0)
@@ -329,6 +330,29 @@ class WLWebinarController extends Controller
                 })
                 ->addColumn('fullname', function ($row) {
                     return $row->first_name . ' ' . $row->last_name;
+                })
+                // Export columns
+                ->addColumn('height', function ($row) {
+                    return optional($row->personalDetails)->height;
+                })
+                ->addColumn('weight', function ($row) {
+                    return optional($row->personalDetails)->weight;
+                })
+                ->addColumn('bmi', function ($row) {
+                    return optional($row->personalDetails)->bmi;
+                })
+                ->addColumn('age', function ($row) {
+                    return optional($row->personalDetails)->age;
+                })
+                ->addColumn('gender', function ($row) {
+                    return  match (optional($row->personalDetails)->gender) {
+                        1 => 'Male',
+                        2 => 'Female',
+                        default => 'Other'
+                    };
+                })
+                ->addColumn('medical_issue', function ($row) {
+                    return optional($row->personalDetails)->medical_issue;
                 })
                 ->addColumn('action', function ($row) {
                     $actionBtn = '<ul class="action" style="display:block">
