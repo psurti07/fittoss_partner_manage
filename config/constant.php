@@ -18,7 +18,7 @@ return [
     'GEOLOCATION_API_KEY' => env('GEOLOCATION_API_KEY'),
 
     'COMPANY_FACEBOOK' => "https://www.facebook.com/fittoss",
-    'COMPANY_INSTAGRAM' => "https://www.instagram.com/fittoss.official",
+    'COMPANY_INSTAGRAM' => "https://www.instagram.com/fittossapp/",
     'COMPANY_TWITTER' => "https://x.com/fittossofficial",
     'COMPANY_LINKEDIN' => "https://www.linkedin.com/company/fittoss",
     'COMPANY_PINTEREST' => "https://in.pinterest.com/fittossofficial",

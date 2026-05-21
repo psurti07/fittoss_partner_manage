@@ -158,6 +158,18 @@
                                                                                     <img src="https://fittoss.com/public/storage/icons/facebook.png" width="24" alt="Icon">
                                                                                 </a>
                                                                             </td>
+                                                                            <td align="center" valign="top" style="padding: 0; margin: 0;padding-right:10px">
+                                                                                <a target="_blank" href="{{ config('constant.COMPANY_LINKEDIN') }}" style="
+                                                                                                                -webkit-text-size-adjust: none;
+                                                                                                                -ms-text-size-adjust: none;
+                                                                                                                mso-line-height-rule: exactly;
+                                                                                                                text-decoration: underline;
+                                                                                                                color: #000f26;
+                                                                                                                font-size: 14px;
+                                                                                                                ">
+                                                                                    <img src="https://fittoss.com/public/storage/icons/linkedin.png" width="24" alt="Icon">
+                                                                                </a>
+                                                                            </td>
                                                                             <td align="center" valign="top" style="padding: 0; margin: 0;">
                                                                                 <a target="_blank" href="{{ config('constant.COMPANY_INSTAGRAM') }}" style="
                                                                                                                 -webkit-text-size-adjust: none;
