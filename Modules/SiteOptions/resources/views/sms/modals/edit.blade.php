@@ -9,8 +9,20 @@
                 <form method="POST" class="mt-2" id="updateSmsSettingForm">
                     @csrf
                     <input type="hidden" name="id" id="id">
-
-                    @component('components.ajax-error',['field'=>'key'])@endcomponent
+                    <div class="form-group">
+                        <label>Username:<span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="username" id="username">
+                        </div>
+                    </div>
+                    @component('components.ajax-error',['field'=>'username'])@endcomponent
+                    <div class="form-group">
+                        <label>Password:<span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="password" id="password">
+                        </div>
+                    </div>
+                    @component('components.ajax-error',['field'=>'password'])@endcomponent
                     <div class="form-group">
                         <label>Sender ID:<span class="text-danger">*</span></label>
                         <div class="input-group">

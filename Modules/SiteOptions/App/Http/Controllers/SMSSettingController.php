@@ -2,12 +2,10 @@
 
 namespace Modules\SiteOptions\App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\SMSSetting;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class SMSSettingController extends Controller
@@ -26,11 +24,13 @@ class SMSSettingController extends Controller
                 ->select(
                     'ss.id',
                     'ss.product_id',
+                    'ss.username',
+                    'ss.password',
                     'ss.sender_id',
                     'ss.remarketing_sender_id',
                     'p.product_title as product_name',
                     'ss.updated_at',
-                );
+                )->company();
             if (!empty($productId)) {
                 $query->where('ss.product_id', $productId);
             }
@@ -48,7 +48,7 @@ class SMSSettingController extends Controller
                     return date('d-m-Y h:i:s A', strtotime($row->updated_at));
                 })
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="javascript:;" class="editBtn" data-id="' . $row->id . '" data-sender_id="' . $row->sender_id . '" data-remarketing_sender_id="' . $row->remarketing_sender_id . '">
+                    $actionBtn = '<a href="javascript:;" class="editBtn" data-id="' . $row->id . '" data-username="' . $row->username . '" data-password="' . $row->password . '" data-sender_id="' . $row->sender_id . '" data-remarketing_sender_id="' . $row->remarketing_sender_id . '">
                                     <i class="text-success icon-pencil-alt"></i>
                                   </a>';
                     return $actionBtn;
@@ -56,8 +56,7 @@ class SMSSettingController extends Controller
                 ->rawColumns(['action', 'updated_at'])
                 ->make(true);
         }
-        $products = Product::select('id', 'product_title')->get();
-        return view('siteoptions::sms.index', compact('products'));
+        return view('siteoptions::sms.index');
     }
 
     /**
@@ -70,11 +69,15 @@ class SMSSettingController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:sms_settings,id',
+            'username' => 'nullable',
+            'password' => 'nullable',
             'sender_id' => 'nullable',
             'remarketing_sender_id' => 'nullable',
         ]);
 
         SMSSetting::where('id', $request->id)->update([
+            'username' => $request->username,
+            'password' => $request->password,
             'sender_id' => $request->sender_id,
             'remarketing_sender_id' => $request->remarketing_sender_id
         ]);

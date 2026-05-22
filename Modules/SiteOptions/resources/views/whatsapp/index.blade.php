@@ -26,15 +26,9 @@
 <div class="container-fluid">
     <div class="row g-3">
         <div class="col-12 text-end d-inline align-content-end">
-            <div class="row g-3">
-                <div class="col-md-5 position-relative text-start">
-                    <label class="form-label" for="product_id">Product</label>
-                    <select class="form-control" id="product_id" name="product_id">
-                        <option value="">Select Product</option>
-                        @foreach($products as $product)
-                        <option value="{{ $product->id }}" {{ request('product_id') == $product->id ? 'selected' : '' }}>{{ $product->product_title }}</option>
-                        @endforeach
-                    </select>
+            <div class="row g-3 d-flex align-items-center">
+                <div class="col-md-3 position-relative text-start">
+                    <x-product-dropdown />
                 </div>
                 <div class="col-md-2 position-relative text-start">
                     <button type="button" class="mt-4 btn btn-outline-warning" id="filterBtn">Show</button>
@@ -126,13 +120,14 @@
             }
         , ]
         , columnDefs: [{
-            targets: [0, 5]
+            targets: [0]
+            , orderable: false
             , createdCell: function(td) {
                 $(td).addClass('text-center');
             }
         }]
         , order: [
-            [0, 'desc']
+            [1, 'desc']
         ]
         , dom: 'Blfrtip'
         , buttons: ['excel', 'csv', 'pdf', 'print']

@@ -26,15 +26,9 @@
 <div class="container-fluid">
     <div class="row g-3">
         <div class="col-12 text-end d-inline align-content-end">
-            <div class="row g-3">
-                <div class="col-md-5 position-relative text-start">
-                    <label class="form-label" for="product_id">Product</label>
-                    <select class="form-control" id="product_id" name="product_id">
-                        <option value="">Select Product</option>
-                        @foreach($products as $product)
-                        <option value="{{ $product->id }}" {{ request('product_id') == $product->id ? 'selected' : '' }}>{{ $product->product_title }}</option>
-                        @endforeach
-                    </select>
+            <div class="row g-3 d-flex align-items-center">
+                <div class="col-md-3 position-relative text-start">
+                    <x-product-dropdown />
                 </div>
                 <div class="col-md-2 position-relative text-start">
                     <button type="button" class="mt-4 btn btn-outline-warning" id="filterBtn">Show</button>
@@ -51,6 +45,8 @@
                                     <th>Id</th>
                                     <th>Update Date</th>
                                     <th>Product Name</th>
+                                    <th>Username</th>
+                                    <th>Password</th>
                                     <th>Sender ID</th>
                                     <th>Remarketing Sender ID</th>
                                     <th class="text-center">Action</th>
@@ -108,6 +104,14 @@
                 , name: 'p.product_title'
             }
             , {
+                data: 'username'
+                , name: 'ss.username'
+            }
+            , {
+                data: 'password'
+                , name: 'ss.password'
+            }
+            , {
                 data: 'sender_id'
                 , name: 'ss.sender_id'
             }
@@ -123,13 +127,14 @@
             }
         , ]
         , columnDefs: [{
-            targets: [0, 5]
+            targets: [0]
+            , orderable: false
             , createdCell: function(td) {
                 $(td).addClass('text-center');
             }
         }]
         , order: [
-            [0, 'desc']
+            [1, 'desc']
         ]
         , dom: 'Blfrtip'
         , buttons: ['excel', 'csv', 'pdf', 'print']
@@ -139,6 +144,7 @@
         ]
         , pageLength: 100
     , });
+
     $('#filterBtn').on('click', function() {
         table.ajax.reload();
     });
@@ -150,7 +156,9 @@
 
             document.getElementById("id").value = btn.dataset.id;
             document.getElementById("sender_id").value = btn.dataset.sender_id;
-            document.getElementById("remarketing_sender_id").value = btn.dataset.remarketing_sender_id;            
+            document.getElementById("username").value = btn.dataset.username;
+            document.getElementById("password").value = btn.dataset.password;
+            document.getElementById("remarketing_sender_id").value = btn.dataset.remarketing_sender_id;
 
             const modalEl = document.getElementById("editSmsSetting");
             const modal = new bootstrap.Modal(modalEl);

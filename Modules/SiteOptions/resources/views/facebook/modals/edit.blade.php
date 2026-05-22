@@ -10,13 +10,13 @@
                     @csrf
                     <input type="hidden" name="id" id="id">
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label>Facebook Domain Verification Id</label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="domain_key" id="domain_key">
                         </div>
                     </div>
-                    @component('components.ajax-error',['field'=>'domain_key'])@endcomponent
+                    @component('components.ajax-error',['field'=>'domain_key'])@endcomponent --}}
                     <div class="form-group">
                         <label>Facebook Event Name</label>
                         <div class="input-group">

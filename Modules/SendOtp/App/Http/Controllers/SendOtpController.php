@@ -10,12 +10,6 @@ class SendOtpController extends Controller
 {
     public function index(SendOtpDataTable $dataTable)
     {
-        $products = Product::select(
-            'product_title',
-            'id',
-        )
-            ->where('is_active', 1)
-            ->get();
-        return $dataTable->render('sendotp::index', compact('products'));
+        return $dataTable->render('sendotp::index');
     }
 }

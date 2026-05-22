@@ -35,37 +35,13 @@
                                     <th>#</th>
                                     <th>Update Date</th>
                                     <th>Product Name</th>
-                                    <th>FB Domain Verification Id</th>
-                                    <th>FB Pixel Key</th>
-                                    <th>FB Access Token</th>
-                                    <th>FB Event Name</th>
-                                    <th>FB Event Id</th>
+                                    <th>Pixel Key</th>
+                                    <th>Access Token</th>
+                                    <th>Event Name</th>
+                                    <th>Event Id</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach($data ?? [] as $fb)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $fb->updated_at }}</td>
-                                    <td>{{ $fb->product_title }}</td>
-                                    <td>{{ $fb->domain_key }}</td>
-                                    <td>{{ $fb->pixel_key }}</td>
-                                    <td>{{ substr($fb->access_token, 0, 6) }}************{{ substr($fb->access_token, -6) }}</td>
-                                    <td>{{ $fb->event_name }}</td>
-                                    <td>{{ $fb->event_id }}</td>
-                                    <td>
-                                        <ul class="action text-center">
-                                            <li class="edit">
-                                                <a href="javascript:;" class="editBtn" data-id="{{ $fb->id }}" data-domain="{{ $fb->domain_key }}" data-pixel="{{ $fb->pixel_key }}" data-token="{{ $fb->access_token }}" data-eventname="{{ $fb->event_name }}" data-eventid="{{ $fb->event_id }}">
-                                                    <i class="text-success icon-pencil-alt"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -97,40 +73,92 @@
 </script>
 @endif
 <script>
-    $(document).ready(function() {
-        $('#facebookSettingsTable').DataTable({
-            scrollX: false
-            , autoWidth: false
-            , responsive: true
-            , pageLength: 50
-            , lengthMenu: [50, 100, 200]
-            , columnDefs: [{
-                    orderable: false
-                    , targets: -1
-                },
-                {
-                    orderable: false
-                    , targets: 4
-                }
-            ]
-        });
+    var table = $('#facebookSettingsTable').DataTable({
+        responsive: true
+        , processing: true
+        , serverSide: true
+        , ajax: {
+            url: "{{ route('manage.facebook-setting.index') }}"
+            , data: function(d) {
+                d.product_id = $('#product_id').val();
+            }
+        }
+        , columns: [{
+                data: 'DT_RowIndex'
+                , name: 'fpd.id'
+                , title: '#'
+            }
+            , {
+                data: 'updated_at'
+                , name: 'fpd.updated_at'
+            }
+            , {
+                data: 'product_name'
+                , name: 'p.product_title'
+            }
+            // , {
+            //     data: 'domain_key'
+            //     , name: 'fpd.domain_key'
+            // }
+            , {
+                data: 'pixel_key'
+                , name: 'fpd.pixel_key'
+            }
+            , {
+                data: 'access_token'
+                , name: 'fpd.access_token'
+            }
+            , {
+                data: 'event_name'
+                , name: 'fpd.event_name'
+            }
+            , {
+                data: 'event_id'
+                , name: 'fpd.event_id'
+            }
+            , {
+                data: 'action'
+                , name: 'action'
+                , orderable: false
+                , searchable: false
+            }
+        , ]
+        , columnDefs: [{
+            targets: [0, 5, 6]
+            , orderable: false
+            , createdCell: function(td) {
+                $(td).addClass('text-center');
+            }
+        }]
+        , order: [
+            [1, 'desc']
+        ]
+        , dom: 'Blfrtip'
+        , buttons: ['excel', 'csv', 'pdf', 'print']
+        , lengthMenu: [
+            [100, 250, 500, 1000, -1]
+            , [100, 250, 500, 1000, "All"]
+        ]
+        , pageLength: 100
+    , });
+
+    $('#filterBtn').on('click', function() {
+        table.ajax.reload();
     });
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const modalEl = document.getElementById("editFacebookSetting");
-
-        document.querySelectorAll(".editBtn").forEach(btn => {
-            btn.addEventListener("click", () => {
-                document.getElementById("id").value = btn.dataset.id;
-                document.getElementById("domain_key").value = btn.dataset.domain;
-                document.getElementById("pixel_key").value = btn.dataset.pixel;
-                document.getElementById("access_token").value = btn.dataset.token;
-                document.getElementById("event_name").value = btn.dataset.eventname;
-                document.getElementById("event_id").value = btn.dataset.eventid;
-                const modal = new bootstrap.Modal(modalEl);
-                modal.show();
-            });
-        });
+     document.addEventListener("click", function(e) {
+        if (e.target.closest(".editBtn")) {
+            const btn = e.target.closest(".editBtn");
+            document.getElementById("id").value = btn.dataset.id;
+            // document.getElementById("domain_key").value = btn.dataset.domain;
+            document.getElementById("pixel_key").value = btn.dataset.pixel;
+            document.getElementById("access_token").value = btn.dataset.token;
+            document.getElementById("event_name").value = btn.dataset.eventname;
+            document.getElementById("event_id").value = btn.dataset.eventid;
+            const modalEl = document.getElementById("editFacebookSetting");
+            const modal = new bootstrap.Modal(modalEl);
+            modal.show();
+        }
     });
 
     document.addEventListener("DOMContentLoaded", () => {

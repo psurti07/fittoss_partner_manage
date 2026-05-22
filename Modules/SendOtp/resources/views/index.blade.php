@@ -16,34 +16,33 @@
 <li class="breadcrumb-item active">Send OTPs</li>
 @endsection
 
-@php 
+@php
 $productID = request('id');
 @endphp
 
 @section('content')
 <div class="container-fluid">
-    <div class="row g-3 d-flex align-items-center">
-        <div class="col-md-5 position-relative">
-            <label for="product_id">Product</label>
-            <select name="product_id" id="product_id" class="form-select">
-                <option value="" selected>All</option>
-                @foreach($products as $key => $product)
-                <option value={{ $product->id }} {{ $productID == $product->id ? 'selected' :"" }}>{{ $product->product_title }}</option>
-                @endforeach
-            </select>
-            @component('components.ajax-error', ['field' => 'product_id'])@endcomponent
+    <div class="row g-3">
+        <div class="col-12">
+            <div class="row g-3 d-flex align-items-center">
+                <div class="col-md-3 position-relative">
+                    <x-product-dropdown />
+                    @component('components.ajax-error', ['field' => 'product_id'])@endcomponent
+                </div>
+                <div class="col-md-2 position-relative">
+                    <label class="form-label">From Date</label>
+                    <input class="form-control" type="date" name="fromdate" id="fromdate" value="{{ request('filter') == 'today' ? date('Y-m-d') : date('Y-m-d',strtotime('-2 days')) }}">
+                </div>
+                <div class="col-md-2 position-relative">
+                    <label class="form-label">To Date</label>
+                    <input class="form-control" type="date" name="todate" id="todate" value="{{ request('todate', date('Y-m-d')) }}">
+                </div>
+                <div class="col-md-2 position-relative">
+                    <button type="button" class="mt-4 btn btn-outline-warning" id="dateBtn">Show</button>
+                </div>
+            </div>
         </div>
-        <div class="col-md-2 position-relative">
-            <label class="form-label">From Date</label>
-            <input class="form-control" type="date" name="fromdate" id="fromdate" value="{{ request('filter') == 'today' ? date('Y-m-d') : date('Y-m-d',strtotime('-2 days')) }}">
-        </div>
-        <div class="col-md-2 position-relative">
-            <label class="form-label">To Date</label>
-            <input class="form-control" type="date" name="todate" id="todate" value="{{ request('todate', date('Y-m-d')) }}">
-        </div>
-        <div class="col-md-2 position-relative">
-            <button type="button" class="mt-4 btn btn-outline-warning" id="dateBtn">Show</button>
-        </div>
+
         <div class="col-12">
             <div class="card">
                 <div class="card-body">

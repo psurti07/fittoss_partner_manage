@@ -2,12 +2,10 @@
 
 namespace Modules\SiteOptions\App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\WhatsappSetting;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class WhatsappSettingController extends Controller
@@ -33,7 +31,7 @@ class WhatsappSettingController extends Controller
                     'ws.media_name',
                     'ws.media_url',
                     'ws.updated_at',
-                );
+                )->company();
             if (!empty($productId)) {
                 $query->where('ws.product_id', $productId);
             }
@@ -63,8 +61,7 @@ class WhatsappSettingController extends Controller
                 ->rawColumns(['action', 'event_name', 'updated_at'])
                 ->make(true);
         }
-        $products = Product::select('id', 'product_title')->get();
-        return view('siteoptions::whatsapp.index', compact('products'));
+        return view('siteoptions::whatsapp.index');
     }
 
     /**
