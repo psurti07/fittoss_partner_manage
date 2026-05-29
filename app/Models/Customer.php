@@ -27,7 +27,6 @@ class Customer extends Model
         'amount',
         'grand_total',
         'payment_image',
-        'is_paid',
         'is_mobile_verified',
         'preferred_datetime',
         'password',
@@ -68,11 +67,11 @@ class Customer extends Model
 
     public function scopePaid($query)
     {
-        return $query->where('is_paid', 1);
+        return $query->where('is_user', 1);
     }
     public function scopeUnpaid($query)
     {
-        return $query->where('is_paid', 0);
+        return $query->where('is_user', 0);
     }
 
     public function product()

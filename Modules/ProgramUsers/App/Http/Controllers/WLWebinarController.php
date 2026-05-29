@@ -478,12 +478,10 @@ class WLWebinarController extends Controller
             'process_step' => $userDetail->process_step,
             'order_id' => $userDetail->order_id,
             'is_user' => $userDetail->is_user,
-            'is_paid' => $userDetail->is_paid,
         ];
         try {
             DB::transaction(function () use ($userDetail, $paymentDetail) {
                 $updateData = [
-                    'is_paid'  => 1,
                     'is_user'  => 1,
                     'process_step'  => 5,
                     'order_id' => $paymentDetail->order_id,
