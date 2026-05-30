@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Modules\Partner\App\Models\Company;
 use Modules\Partner\App\Models\CompanyStaff;
 
 class AuthController extends Controller
@@ -20,14 +21,17 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'company_code' => 'required|exists:companies,company_code'
         ]);
 
+        $companyId = Company::where('company_code', $request->company_code)->value('id');
         $user = CompanyStaff::where('email', $credentials['email'])
+            ->where('company_id', $companyId)
             ->where('is_delete', 0)
             ->first();
 
-        if ($user && Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
+        if ($user && Auth::attempt(['company_id' => $companyId, 'email' => $credentials['email'], 'password' => $credentials['password']])) {
             DB::table('administrations_logs')->insert([
                 'staff_id' => $user->id,
                 'type' => 1

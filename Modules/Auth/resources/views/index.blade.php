@@ -20,6 +20,11 @@
                         <form class="theme-form auth-form" action="{{ route('manage.authenticate') }}" method="POST">
                             <h5>Sign in to account</h5>
                             <div class="form-group">
+                                <label class="col-form-label">Company Code <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" placeholder="CODE" name="company_code" id="company_code" value="{{ old('company_code') }}" />
+                                @component('components.ajax-error',['field'=>'company_code'])@endcomponent
+                            </div>
+                            <div class="form-group">
                                 <label class="col-form-label">Email Address <span class="text-danger">*</span></label>
                                 <input class="form-control" type="email" placeholder="Enter Email" name="email" id="email" value="{{ old('email') }}" />
                                 @component('components.ajax-error',['field'=>'email'])@endcomponent

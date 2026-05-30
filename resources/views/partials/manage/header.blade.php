@@ -10,7 +10,10 @@
                 <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
             </div>
         </div>
-        <div class="nav-right col-xxl-7 col-xl-6 col-md-7 col-8 pull-right right-header p-0 ms-auto">
+        <div class="nav-right col-xxl-12 col-xl-12 col-md-12 col-12 pull-right right-header p-0 d-flex justify-content-between">
+            <div class="media profile-media">
+                <h5 class="media-body">Company : <b>{{ auth()->user()->company?->company_name }}</b></h5>
+            </div>
             <ul class="nav-menus">
                 <!-- <li>
                     <div class="mode">
