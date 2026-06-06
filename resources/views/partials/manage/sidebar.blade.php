@@ -440,6 +440,46 @@
 
                     <li class="sidebar-main-title">
                         <div>
+                            <h6 class="heading-color">Events</h6>
+                        </div>
+                    </li>
+                    
+                    <li class="sidebar-list {{ request()->routeIs('manage.events.index') ? 'active' : '' }}">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title link-nav {{ request()->routeIs('manage.events.index') ? 'active' : '' }}" href="{{ route('manage.events.index') }}" data-bs-original-title="" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <span class="">Events</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-list {{ request()->routeIs('manage.events.*') ? 'active' : 'close' }}">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title {{ request()->routeIs('manage.events.*') ? 'active' : '' }}" href="#" data-bs-original-title="" title="">
+                            <i data-feather="tag"></i>
+                            <span class="">Event Data</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                        <ul class="sidebar-submenu" style="display: {{ request()->routeIs('manage.events.*') ? 'block' : 'none' }};">
+                            <li class="{{ request()->routeIs('manage.events.leads') || request()->routeIs('manage.events.leads.details') ? 'active' : '' }}">
+                                <a href="{{ route('manage.events.leads') }}" class="{{ request()->routeIs('manage.events.leads') || request()->routeIs('manage.events.leads.details') ? 'active' : '' }}">
+                                    Leads
+                                </a>
+                            </li>
+                            <li class="{{ request()->routeIs('manage.events.customers') || request()->routeIs('manage.events.customers.details') ? 'active' : '' }}">
+                                <a href="{{ route('manage.events.customers') }}" class="{{ request()->routeIs('manage.events.customers') || request()->routeIs('manage.events.customers.details') ? 'active' : '' }}">
+                                    Customers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-main-title">
+                        <div>
                             <h6 class="heading-color">Schedule Slots</h6>
                         </div>
                     </li>

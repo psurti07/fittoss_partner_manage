@@ -43,5 +43,6 @@
     "HolidayList": true,
     "JoiningEmployeeList": true,
     "LeaveApplication": true,
-    "ResignEmployeeList": true
+    "ResignEmployeeList": true,
+    "Event": true
 }
