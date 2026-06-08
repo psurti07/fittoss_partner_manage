@@ -63,12 +63,12 @@ class DriveLinks extends Model
         45 => 'Associate Partner Meeting Manager-2',
         46 => 'Marketing Coordinator',
         47 => 'CRM WhatsApp Marketing',
-        48 => 'IT Coordinator',
+        // 48 => 'IT Coordinator',
         49 => 'Marketing Analysis',
-        50 => 'Graphic Designer',
+        // 50 => 'Graphic Designer',
         51 => 'HL Relationship Manager 2',
         52 => 'Associate Relationship Manager 2',
         53 => 'Basic SEO 2',
-        54 => 'Content Writer 2',
+        // 54 => 'Content Writer 2',
     ];
 }
