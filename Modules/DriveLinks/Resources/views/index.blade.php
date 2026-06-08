@@ -82,11 +82,11 @@
         <div class="col-md-2 mt-auto">
             <button class="btn btn-outline-warning" id="filterBtn">Show</button>
         </div>
-        <div class="col-md-7 text-end">
+        {{-- <div class="col-md-7 text-end">
             <button class="btn btn-outline-primary" onclick="openAddModal()">
                 <i class="fa fa-plus"></i> Add Drive Link
             </button>
-        </div>
+        </div> --}}
     </div>
 
 
@@ -110,7 +110,7 @@
         <div class="row g-3 mb-4 department-section" data-department="{{ $departmentId }}">
             @foreach($links as $link)
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 drive-card" id="driveCard{{ $link->id }}" data-department="{{ $link->department }}">
-                <div class="card drive-modern-card h-100">
+                <div class="card drive-modern-card">
                     <div class="card-body p-3">
                         <!-- Top Row -->
                         <div class="d-flex justify-content-between align-items-start mb-2">
@@ -130,7 +130,7 @@
                         <!-- Bottom Actions -->
                         <div>
                             <!-- Top Row -->
-                            <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
+                            {{-- <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
                                 <div class="d-flex gap-2">
                                     <button class="btn btn-xs btn-light action-btn" onclick="openEditModal({{ $link->id }})">
                                         <i class="fa fa-edit"></i>
@@ -143,7 +143,7 @@
                                     {{ $link->isActive ? 'btn-outline-success' : 'btn-outline-danger' }}" id="statusBtn{{ $link->id }}" onclick="changeStatus({{ $link->id }})">
                                     {{ $link->isActive ? 'Active' : 'Inactive' }}
                                 </button>
-                            </div>
+                            </div> --}}
                             <!-- Open Drive Button -->
                             <button class="btn btn-sm btn-primary w-100 mt-2" onclick="window.open('{{ $link->link }}','_blank')">
                                 <i class="fa fa-folder-open"></i> Open Drive
