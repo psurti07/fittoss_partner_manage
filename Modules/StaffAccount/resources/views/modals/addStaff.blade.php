@@ -15,7 +15,9 @@
                                 <select class="form-control form-select" name="role" id="role">
                                     <option value="">Select Role</option>
                                     @foreach(\Modules\Partner\App\Models\CompanyStaff::roles() as $key => $value)
-                                    <option value="{{ $key }}">{{ $value }}</option>
+                                        @if($key != 1)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 @component('components.ajax-error',['field'=>'role'])@endcomponent
