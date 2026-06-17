@@ -48,7 +48,7 @@ class InvoiceDataTable extends DataTable
                                     </a>
                                 </li>
                                 <li class="delete">
-                                    <a href="javascript:;" onclick="deleteInvoice('.$row->id.')">
+                                    <a href="javascript:;" onclick="deleteInvoice(' . $row->id . ')">
                                         <i class="icon-trash"></i>
                                     </a>
                                 </li>
@@ -71,7 +71,10 @@ class InvoiceDataTable extends DataTable
                 return isset($row->user->state) ? $row->user->state : '-';
             })
             ->addColumn('product_name', function ($row) {
-                return isset($row->user->product->productname) ? $row->user->product->productname : '-';
+                if ($row->user_type == 1) {
+                    return isset($row->user->product->productname) ? $row->user->product->productname : '-';
+                }
+                return 'Event';
             })
             ->setRowId('id')->rawColumns(['action', 'date', 'full_name', 'mobile', 'city', 'state']);
     }
@@ -85,7 +88,10 @@ class InvoiceDataTable extends DataTable
         $start_date = $this->request()->get('start_date');
         $end_date = $this->request()->get('end_date');
 
-        $query = $model->newQuery()->with('user')->where('is_delete', 0);
+        $query = $model->newQuery()
+            ->with('user')
+            ->where('is_delete', 0)
+            ->company();
 
         if (!empty($start_date) && !empty($end_date)) {
             $start_date = Carbon::parse($start_date)->startOfDay();
@@ -100,7 +106,8 @@ class InvoiceDataTable extends DataTable
         if (!empty($search)) {
             $query->where(function ($q) use ($search) {
                 $q->whereHas('user', function ($query) use ($search) {
-                    $query->where('name', 'like', "%{$search}%")
+                    $query->where('first_name', 'like', "%{$search}%")
+                        ->orWhere('last_name', 'like', "%{$search}%")
                         ->orWhere('mobile_no', 'like', "%{$search}%")
                         ->orWhere('city', 'like', "%{$search}%")
                         ->orWhere('state', 'like', "%{$search}%");

@@ -6,6 +6,7 @@ use App\DataTables\InvoiceDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\Customer;
+use App\Models\EventCustomer;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -43,6 +44,7 @@ class InvoiceController extends Controller
                 c.city,
                 c.state')
                 ->where('r.is_delete', 0)
+                ->where('r.company_id', $request->company_id)
                 ->orderByDesc('r.created_at');
             if (!empty($fromDate) && !empty($toDate)) {
                 $fromDate = Carbon::parse($fromDate)->startOfDay();
@@ -83,6 +85,7 @@ class InvoiceController extends Controller
                 c.city,
                 c.state')
                 ->where('invoices.is_delete', 0)
+                ->company()
                 ->orderByDesc('invoices.created_at');
             if (!empty($fromDate) && !empty($toDate)) {
                 $fromDate = Carbon::parse($fromDate)->startOfDay();
@@ -134,10 +137,16 @@ class InvoiceController extends Controller
             'invoice' => $invoice,
             'user' => $invoice->user
         ];
+        if ($invoice->user_type == 1) {
+            $pdf = Pdf::loadView('invoice.invoice_pdf', $invoiceData)->setPaper('a4', 'portrait');
+            return $pdf->download('invoice-' . $invoice->order_id . '.pdf');
+            // return $pdf->stream('invoice.pdf');
+        }
 
-        $pdf = Pdf::loadView('invoice.invoice_pdf', $invoiceData)->setPaper('a4', 'portrait');
+        $eventDetail = EventCustomer::with('event:title,id')->where('order_id', $invoice->order_id)->first();
+        $invoiceData['event_title'] = $eventDetail->event->title ?? 'N/A';
+        $pdf = Pdf::loadView('invoice.event_invoice_pdf', $invoiceData)->setPaper('a4', 'portrait');
         return $pdf->download('invoice-' . $invoice->order_id . '.pdf');
-        // return $pdf->stream('invoice.pdf');
     }
 
     public function generateInvoice($id)
@@ -149,7 +158,13 @@ class InvoiceController extends Controller
             'invoice' => $invoice,
             'user' => $invoice->user
         ];
-        return view('invoice.invoice', $invoiceData);
+        if ($invoice->user_type == 1) {
+            return view('invoice.invoice', $invoiceData);
+        }
+
+        $eventDetail = EventCustomer::with('event:title,id')->where('order_id', $invoice->order_id)->first();
+        $invoiceData['event_title'] = $eventDetail->event->title ?? 'N/A';
+        return view('invoice.event_invoice', $invoiceData);
     }
 
     public function refundProcess($invId, $invNo)
@@ -169,6 +184,7 @@ class InvoiceController extends Controller
                 $refundNumber = date('md') . random_code_num(6);
                 $data = array(
                     'user_id' => $invData->userid,
+                    'company_id' => $invData->company_id,
                     'invoice_id' => $invData->id,
                     'ref_number' => $refundNumber,
                     'ref_price' => $invData->inv_price,
