@@ -70,5 +70,6 @@ class DriveLinks extends Model
         52 => 'Associate Relationship Manager 2',
         53 => 'Basic SEO 2',
         // 54 => 'Content Writer 2',
+        55 => 'UI Designer',
     ];
 }
