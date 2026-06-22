@@ -25,6 +25,7 @@ Route::group([
     Route::get('phonepay-log', [PaymentLogController::class, 'index'])->name('phonepay-log');
     Route::get('vegaah-log', [PaymentLogController::class, 'index'])->name('vegaah-log');
     Route::get('paygic-log', [PaymentLogController::class, 'index'])->name('paygic-log');
+    Route::get('ccavenue-log', [PaymentLogController::class, 'index'])->name('ccavenue-log');
 
     Route::get('cipherpay-log', [PaymentLogController::class, 'index'])->name('cipherpaylog');
     Route::get('lyra-log', [PaymentLogController::class, 'index'])->name('lyralog');

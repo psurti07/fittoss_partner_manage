@@ -6,6 +6,7 @@
         'manage.phonepay-log': '{{ route("manage.phonepay-log") }}',
         'manage.vegaah-log': '{{ route("manage.vegaah-log") }}',
         'manage.paygic-log': '{{ route("manage.paygic-log") }}',
+        'manage.ccavenue-log': '{{ route("manage.ccavenue-log") }}',
         'manage.cipherpaylog': '{{ route("manage.cipherpaylog") }}',
         'manage.lyralog': '{{ route("manage.lyralog") }}'
     };

@@ -33,6 +33,9 @@ class PaymentLogController extends Controller
             case 'paygic-log':
                 $table = 'paygic_logs as p';
                 break;
+            case 'ccavenue-log':
+                $table = 'ccavenue_logs as p';
+                break;
             case 'cipherpay-log':
                 $table = 'cipherpayentry as p';
                 break;
