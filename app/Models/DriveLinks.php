@@ -45,13 +45,13 @@ class DriveLinks extends Model
         27 => 'Google Ads',
         28 => 'Bulk SMS/RCS',
         29 => 'Trainer Department',
-        30 => 'Lead Auto Department',
+        30 => 'Lead Auto/Webinar',
         31 => 'IVR Department',
         32 => 'Health Coach Auto',
         33 => 'File Accounting',
         34 => 'Online Counselor',
         35 => 'Health Coach Club',
-        36 => 'Lead Webinar',
+        36 => 'Lead Opportunity',
         37 => 'Project Head',
         38 => 'Income Management',
         39 => 'Sign Up Department',
@@ -71,5 +71,7 @@ class DriveLinks extends Model
         53 => 'Basic SEO 2',
         // 54 => 'Content Writer 2',
         55 => 'UI Designer',
+        56 => 'Chartered accountant (CA)',
+        57 => 'Company Security (CS)',
     ];
 }
