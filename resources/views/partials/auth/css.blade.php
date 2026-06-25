@@ -11,7 +11,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" href="{{asset('assets/images/logo/apple-touch-icon-16x16.png')}}" type="image/x-icon">
         <link rel="shortcut icon" href="{{asset('assets/images/logo/apple-touch-icon-16x16.png')}}" type="image/x-icon">
-        <title>{{ env('APP_NAME') }} :: @yield('title')</title>
+        <title>{{ config('app.name') }} :: @yield('title')</title>
         <!-- Google font-->
         <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
