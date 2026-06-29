@@ -247,7 +247,7 @@ if ($('#pageWrapper').hasClass('compact-wrapper')) {
     $(".sidebar-wrapper nav").find("a").removeClass("active");
     $(".sidebar-wrapper nav").find("li").removeClass("active");
 
-    let currentPath = window.location.pathname;
+    let currentPath = window.location.pathname + window.location.search;
     let bestMatch = null;
     let bestLength = 0;
 
@@ -257,7 +257,10 @@ if ($('#pageWrapper').hasClass('compact-wrapper')) {
         if (!href || href === "#") {
             return;
         }
-        let linkPath = new URL(href, window.location.origin).pathname;
+        // let linkPath = new URL(href, window.location.origin).pathname;
+        let url = new URL(href, window.location.origin);
+        let linkPath = url.pathname + url.search;
+
         if (
             currentPath === linkPath ||
             currentPath.startsWith(linkPath + "/")

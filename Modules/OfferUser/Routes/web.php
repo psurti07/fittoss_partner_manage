@@ -57,6 +57,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('customers', [CustomersController::class, 'WLWOCustomers'])->name('customers');
     });
 
+    Route::group(['prefix' => 'child-nutrition-offer', 'as' => 'manage.child-nutrition-offer.'], function () {
+        Route::get('leads', [LeadsController::class, 'CNLeads'])->name('leads');
+        Route::get('customers', [CustomersController::class, 'CNCustomers'])->name('customers');
+    });
+
     Route::group(['prefix' => 'fitone', 'as' => 'manage.fitone.'], function () {
         Route::get('leads', [FitoneUserController::class, 'leads'])->name('leads');
         Route::get('customers', [FitoneUserController::class, 'customers'])->name('customers');

@@ -76,6 +76,10 @@ class MailService
                 'subject'  => 'Congratulations: Webinar Registration Confirmed ',
                 'template' => 'front.offers.weight-loss-webinar-offer.emails.payment_success'
             ],
+            config('constant.CHILD_NUTRITION_OFFER_ID') => [
+                'subject'  => 'Congratulations: Webinar Registration Confirmed ',
+                'template' => 'front.offers.child-nutrition-offer.emails.payment_success'
+            ],
             config('constant.EXPERT_CONSULTATION_OFFER_ID') => [
                 'subject'  => 'Welcome to Fittoss – Your Health Journey Starts Here',
                 'template' => 'front.offers.expert-consultation.emails.payment_success'

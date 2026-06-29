@@ -422,6 +422,27 @@
                         </ul>
                     </li>
 
+                    <li class="sidebar-list  {{ request()->routeIs('manage.child-nutrition-offer.*') ? 'active' : 'close' }}">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title {{ request()->routeIs('manage.child-nutrition-offer.*') ? 'active' : '' }}" href="#" data-bs-original-title="" title="">
+                            <i data-feather="tag"></i>
+                            <span class="">Child Nutrition Offer</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                        <ul class="sidebar-submenu" style="display: {{ request()->routeIs('manage.child-nutrition-offer.*') ? 'block' : 'none' }};">
+                            <li class="{{ request()->routeIs('manage.child-nutrition-offer.leads') || request()->routeIs('manage.child-nutrition-offer.customer.details') ? 'active' : '' }}">
+                                <a href="{{ route('manage.child-nutrition-offer.leads') }}" class="{{ request()->routeIs('manage.child-nutrition-offer.leads') || request()->routeIs('manage.child-nutrition-offer.customer.details') ? 'active' : '' }}">
+                                    Leads
+                                </a>
+                            </li>
+                            <li class="{{ request()->routeIs('manage.child-nutrition-offer.customers') || request()->routeIs('manage.child-nutrition-offer.customer.details') ? 'active' : '' }}">
+                                <a href="{{ route('manage.child-nutrition-offer.customers') }}" class="{{ request()->routeIs('manage.child-nutrition-offer.customers') || request()->routeIs('manage.child-nutrition-offer.customer.details') ? 'active' : '' }}">
+                                    Customers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="sidebar-list  {{ request()->routeIs('manage.onboard-upi-payment.*') ? 'active' : 'close' }}">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title {{ request()->routeIs('manage.onboard-upi-payment.*') ? 'active' : '' }}" href="#" data-bs-original-title="" title="">

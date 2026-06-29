@@ -111,17 +111,21 @@ class SmsService
         return match ((int)$product_id) {
             config('constant.WEIGHT_LOSS_PROGRAM_ID') => 'weight-loss-program-payment-successful',
             config('constant.WEIGHT_LOSS_WEBINAR_ID') => 'weight-loss-webinar-payment-successful',
+            config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID') => 'bodyfat-analysis-workshop-payment-successful',
             config('constant.WEIGHT_LOSS_OFFER_ID') => 'weight-loss-offer-payment-successful',
             config('constant.ULTIMATE_PROGRAM_ID') => 'ultimate-program-payment-successful',
             config('constant.CUSTOMIZE_PROGRAM_ID') => 'customize-program-payment-successful',
             config('constant.WEIGHT_LOSS_WEBINAR_OFFER_ID') => 'weight-loss-webinar-offer-payment-successful',
             config('constant.EXPERT_CONSULTATION_OFFER_ID') => 'expert-consultation-payment-successful',
+            config('constant.HEALTH_CONSULTATION_PLAN_ID') => 'health-consultation-plan-payment-successful',
             config('constant.MEMBERSHIP_PLAN_OFFER_ID') => 'membership-plan-payment-successful',
             config('constant.ASSOCIATE_PARTNER_PROGRAM_OFFER_ID') => 'associate-partner-program-payment-successful',
             config('constant.ADVANCE_PLAN_OFFER_ID') => 'advance-plan-payment-successful',
             config('constant.ONBOARD_UPI_PAYMENT_OFFER_ID') => 'onboard-upi-payment-successful',
             config('constant.EXPERT_CONSULTATION_PLAN_ID') => 'expert-consultation-plan-payment-successful',
             config('constant.HEALTH_COACH_WEBINAR_PRODUCT_ID') => 'health-coach-webinar-payment-successful',
+            config('constant.HEALTH_AWARENESS_WORKSHOP_ID') => 'health-awareness-workshop-payment-successful',
+            config('constant.CHILD_NUTRITION_OFFER_ID') => 'child-nutrition-offer-payment-successful',
             default => 'fitone-payment-successful',
         };
     }
@@ -130,17 +134,21 @@ class SmsService
         return match ((int)$product_id) {
             config('constant.WEIGHT_LOSS_PROGRAM_ID') => 'weight-loss-program-payment-failed',
             config('constant.WEIGHT_LOSS_WEBINAR_ID') => 'weight-loss-webinar-payment-failed',
+            config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID') => 'bodyfat-analysis-workshop-payment-failed',
             config('constant.WEIGHT_LOSS_OFFER_ID') => 'weight-loss-offer-payment-failed',
             config('constant.ULTIMATE_PROGRAM_ID') => 'ultimate-program-payment-failed',
             config('constant.CUSTOMIZE_PROGRAM_ID') => 'customize-program-payment-failed',
             config('constant.WEIGHT_LOSS_WEBINAR_OFFER_ID') => 'weight-loss-webinar-offer-payment-failed',
             config('constant.EXPERT_CONSULTATION_OFFER_ID') => 'expert-consultation-payment-failed',
+            config('constant.HEALTH_CONSULTATION_PLAN_ID') => 'health-consultation-plan-payment-failed',
             config('constant.MEMBERSHIP_PLAN_OFFER_ID') => 'membership-plan-payment-failed',
             config('constant.ASSOCIATE_PARTNER_PROGRAM_OFFER_ID') => 'associate-partner-program-payment-failed',
             config('constant.ADVANCE_PLAN_OFFER_ID') => 'advance-plan-payment-failed',
             config('constant.ONBOARD_UPI_PAYMENT_OFFER_ID') => 'onboard-upi-payment-failed',
             config('constant.EXPERT_CONSULTATION_PLAN_ID') => 'expert-consultation-plan-payment-failed',
             config('constant.HEALTH_COACH_WEBINAR_PRODUCT_ID') => 'health-coach-webinar-payment-failed',
+            config('constant.HEALTH_AWARENESS_WORKSHOP_ID') => 'health-awareness-workshop-payment-failed',
+            config('constant.CHILD_NUTRITION_OFFER_ID') => 'child-nutrition-offer-payment-failed',
             default => 'fitone-payment-failed',
         };
     }

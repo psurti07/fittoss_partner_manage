@@ -61,6 +61,8 @@
                 $routeName = route('manage.health-coach-webinar.leads');
             } elseif ($userData->product_id == config('constant.WEIGHT_LOSS_WEBINAR_OFFER_ID')) {
                 $routeName = route('manage.weight-loss-webinar-offer.leads');
+            } elseif ($userData->product_id == config('constant.CHILD_NUTRITION_OFFER_ID')) {
+                $routeName = route('manage.child-nutrition-offer.leads');
             } elseif ($userData->product_id == config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID')) {
                 $routeName = route('manage.bodyfat-analysis-workshop.leads');
             }else{

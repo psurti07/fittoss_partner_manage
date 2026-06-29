@@ -232,6 +232,50 @@ class LeadsController extends Controller
         return view('offeruser::weight-loss-webinar-offer.leads');
     }
 
+    // child nutrition offer leads
+    public function CNLeads(Request $request)
+    {
+        if ($request->ajax()) {
+            $columns = Customer::DATATABLE_COLUMNS;
+            $search = $request->input('search')['value'] ?? NULL;
+            $orderColumnIndex = $request->input('order.0.column');
+            $orderDir = $request->input('order.0.dir', 'asc');
+            $fromDate = $request->input('fromDate');
+            $toDate = $request->input('toDate');
+
+            $query = Customer::query()
+                ->baseCustomerQuery()
+                ->userType(Customer::TYPE_LEAD)
+                ->product(config('constant.CHILD_NUTRITION_OFFER_ID'))
+                ->dateRange($fromDate, $toDate)
+                ->search($search);
+
+            if (isset($columns[$orderColumnIndex])) {
+                $query->orderBy($columns[$orderColumnIndex], $orderDir);
+            } else {
+                $query->orderBy('customers.updated_at', 'desc');
+            }
+
+            return DataTables::of($query)
+                ->addIndexColumn()
+                ->addColumn('date', function ($row) {
+                    return date('d-m-Y', strtotime($row->updated_at)) . '<br>' . date('h:i:s A', strtotime($row->updated_at));
+                })
+                ->addColumn('fullname', function ($row) {
+                    return $row->first_name . ' ' . $row->last_name;
+                })
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '<ul class="action justify-content-center">
+                                    <li class="info"> <a href="javascript:;" onclick="openInfoModal(' . $row->id . ')"><i class="fa fa-info-circle"></i></a></li>
+                                </ul>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['date', 'fullname', 'action'])
+                ->make(true);
+        }
+        return view('offeruser::child-nutrition-offer.leads');
+    }
+
     public function info(Request $request)
     {
         $customer = Customer::with('personalDetails')->where('id', $request->input('infoId'))->first();
@@ -258,6 +302,8 @@ class LeadsController extends Controller
             $tableId = "healthCoachWebinarLeadTable";
         } elseif ($customer->product_id == config('constant.WEIGHT_LOSS_WEBINAR_OFFER_ID')) {
             $tableId = "weightLossWebinarOfferLeadTable";
+        } elseif ($customer->product_id == config('constant.CHILD_NUTRITION_OFFER_ID')) {
+            $tableId = "childNutritionOfferLeadTable";
         }
         $rec['tableId'] = $tableId;
         return view('offeruser::infodetails')->with($rec);
