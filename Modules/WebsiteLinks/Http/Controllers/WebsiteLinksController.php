@@ -43,8 +43,9 @@ class WebsiteLinksController extends Controller
         ]);
 
         try {
-            $websiteLink = WebsiteLinks::create([
+            WebsiteLinks::create([
                 'rec_date' => now(),
+                'company_id' => $request->company_id,
                 'title' => $validated['title'],
                 'link' => $validated['link'],
                 'short_link' => $validated['short_link'],
@@ -56,9 +57,8 @@ class WebsiteLinksController extends Controller
                 'type' => 'SUCCESS',
                 'message' => 'Website Links created successfully!',
             ], 200);
-
         } catch (\Exception $e) {
-            Log::error('Website Links Store Error: '.$e->getMessage(), [
+            Log::error('Website Links Store Error: ' . $e->getMessage(), [
                 'trace' => $e->getTraceAsString()
             ]);
 
@@ -115,14 +115,13 @@ class WebsiteLinksController extends Controller
                 'isActive' => 1,
                 'isDelete' => 0,
             ];
-            
+
             $websiteLink->update($dataToUpdate);
 
             return response()->json([
                 'type' => 'SUCCESS',
                 'message' => 'Website links updated successfully!',
             ], 200);
-            
         } catch (\Exception $e) {
             return response()->json(['type' => 'ERROR', 'message' => 'Something went wrong.'], 500);
         }
@@ -143,7 +142,7 @@ class WebsiteLinksController extends Controller
             return response()->json(['type' => 'ERROR', 'message' => 'Something Went Wrong.']);
         }
     }
-    
+
     public function changeStatus($id)
     {
         try {

@@ -71,6 +71,7 @@ class WebsiteLinksDataTable extends DataTable
     public function query(WebsiteLinks $model, Request $request): QueryBuilder
     {
         return $model->newQuery()
+            ->company()
             ->where('isDelete', 0);
 
         // if (request()->filled('fromdate') && request()->filled('todate')) {

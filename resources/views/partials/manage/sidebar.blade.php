@@ -921,13 +921,13 @@
                         </a>
                     </li> --}}
 
-                    <!--<li class="sidebar-main-title">
+                    <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Digital Marketing</h6>
                         </div>
                     </li>
 
-                    {{-- <li class="sidebar-list">
+                    <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.website.links.index') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -937,9 +937,9 @@
                             </svg>
                             <span class="">Website Links</span>
                         </a>
-                    </li> --}}
+                    </li>
 
-                    <li class="sidebar-list">
+                    <!-- <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title link-nav " href="{{ route('manage.sms.smsmessage') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square">
@@ -959,7 +959,7 @@
                             </svg>
                             <span class="">Remarketing Logs</span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
@@ -997,7 +997,7 @@
                             <span class="">Send OTPs</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
-                    </li> -->
+                    </li>
 
 
                     <li class="sidebar-main-title">

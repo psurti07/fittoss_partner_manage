@@ -43,6 +43,7 @@ class DNDController extends Controller
         }
 
         $updatedCount = Customer::whereIn('mobile_no', $mobileNumbers)
+            ->where('company_id', $request->company_id)
             ->update(['is_dnd' => 1]);
         return response()->json([
             'message' => "$updatedCount records updated successfully!",

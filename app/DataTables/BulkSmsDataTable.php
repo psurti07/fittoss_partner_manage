@@ -46,7 +46,7 @@ class BulkSmsDataTable extends DataTable
         $start_date = $this->request()->get('start_date');
         $end_date = $this->request()->get('end_date');
 
-        $query = $model->newQuery()->orderByDesc('id');
+        $query = $model->newQuery()->company()->orderByDesc('id');
 
         if(!empty($start_date) && !empty($end_date)){
             $start_date = Carbon::parse($start_date);

@@ -50,6 +50,7 @@ class BulkSmsController extends Controller
 
                 $input = [
                     'rec_date' => now()->format('Y-m-d'),
+                    'company_id' => $request->company_id,
                     'fullname' => trim($row[$fullnameIndex] ?? ''),
                     'mobile'   => trim($row[$mobileIndex] ?? ''),
                     'email'    => strtolower(trim($row[$emailIndex] ?? '')),
@@ -75,7 +76,7 @@ class BulkSmsController extends Controller
         if (!empty($records)) {
             DB::table('bulksms')->upsert(
                 $records,
-                ['mobile'], // Unique column
+                ['mobile', 'company_id'], // Unique column
                 ['fullname', 'email', 'rec_date'] // Columns to update if exists
             );
         }
