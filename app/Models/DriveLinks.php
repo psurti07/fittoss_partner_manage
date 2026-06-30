@@ -34,7 +34,7 @@ class DriveLinks extends Model
         // 16 => 'IT & Professional AMC Coordinator',
         17 => 'Graphic Head',
         18 => 'Associate Partener Graphic Designer',
-        19 => 'Content Writer',
+        19 => 'Associate Content Writer',
         20 => 'Video Editor',
         21 => 'Basic SEO',
         22 => 'IT Coordinator',
@@ -73,5 +73,6 @@ class DriveLinks extends Model
         55 => 'UI Designer',
         56 => 'Chartered accountant (CA)',
         57 => 'Company Security (CS)',
+        58 => 'Content Writer',
     ];
 }
