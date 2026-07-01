@@ -50,7 +50,7 @@ class DriveLinks extends Model
         32 => 'Health Coach Auto',
         33 => 'File Accounting',
         34 => 'Online Counselor',
-        35 => 'Health Coach Club',
+        35 => 'Health Coach Club customer',
         36 => 'Lead Opportunity',
         37 => 'Project Head',
         38 => 'Income Management',
@@ -59,8 +59,8 @@ class DriveLinks extends Model
         41 => 'Website Devloper',
         42 => 'Facebook Query',
         43 => 'Profassinal Manager',
-        44 => 'Associate Partner Meeting Manager-1',
-        45 => 'Associate Partner Meeting Manager-2',
+        44 => 'Meeting Manager 2',
+        45 => 'Meeting Manager 1',
         46 => 'Marketing Coordinator',
         47 => 'CRM WhatsApp Marketing',
         // 48 => 'IT Coordinator',
@@ -74,5 +74,7 @@ class DriveLinks extends Model
         56 => 'Chartered accountant (CA)',
         57 => 'Company Security (CS)',
         58 => 'Content Writer',
+        59 => 'Health Coach Club Associate',
+        60 => 'Meeting Manager 3',
     ];
 }
