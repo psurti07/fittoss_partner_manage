@@ -1,5 +1,5 @@
 {
-    "name": "nwidart/remarketinglog",
+    "name": "nwidart/remarketing",
     "description": "",
     "authors": [
         {
@@ -17,15 +17,15 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\RemarketingLog\\": "",
-            "Modules\\RemarketingLog\\App\\": "app/",
-            "Modules\\RemarketingLog\\Database\\Factories\\": "database/factories/",
-            "Modules\\RemarketingLog\\Database\\Seeders\\": "database/seeders/"
+            "Modules\\Remarketing\\": "",
+            "Modules\\Remarketing\\App\\": "app/",
+            "Modules\\Remarketing\\Database\\Factories\\": "database/factories/",
+            "Modules\\Remarketing\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Modules\\RemarketingLog\\Tests\\": "tests/"
+            "Modules\\Remarketing\\Tests\\": "tests/"
         }
     }
 }

@@ -1,14 +1,10 @@
 <?php
 
-namespace Modules\RemarketingLog\App\Http\Controllers;
+namespace Modules\Remarketing\App\Http\Controllers;
 
 use App\DataTables\RemarketingLogDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\SmsLog;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 
 class RemarketingLogController extends Controller
 {
@@ -17,12 +13,12 @@ class RemarketingLogController extends Controller
      */
     public function index(RemarketingLogDataTable $dataTable)
     {
-        return $dataTable->render('remarketinglog::index');
+        return $dataTable->render('remarketing::index');
     }
 
     public function details($remarketingId){
         $data = SmsLog::findOrFail($remarketingId);
-        return view('remarketinglog::details', compact('data'));
+        return view('remarketing::details', compact('data'));
     }
 
 }

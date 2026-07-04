@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\RemarketingLog\Database\Seeders;
+namespace Modules\Remarketing\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 

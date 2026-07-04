@@ -23,7 +23,7 @@
     "DND": true,
     "BulkSms": true,
     "SendOtp": true,
-    "RemarketingLog": true,
+    "Remarketing": true,
     "AdsContent": true,
     "Reports": true,
     "CreateAccount": true,

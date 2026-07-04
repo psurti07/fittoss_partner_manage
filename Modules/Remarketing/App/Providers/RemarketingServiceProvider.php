@@ -1,15 +1,15 @@
 <?php
 
-namespace Modules\RemarketingLog\App\Providers;
+namespace Modules\Remarketing\App\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
-class RemarketingLogServiceProvider extends ServiceProvider
+class RemarketingServiceProvider extends ServiceProvider
 {
-    protected string $moduleName = 'RemarketingLog';
+    protected string $moduleName = 'Remarketing';
 
-    protected string $moduleNameLower = 'remarketinglog';
+    protected string $moduleNameLower = 'remarketing';
 
     /**
      * Boot the application events.

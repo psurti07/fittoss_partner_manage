@@ -1020,6 +1020,7 @@
                             <li><a href="{{ route('manage.facebook-setting.index') }}" data-bs-original-title="" title="">Facebook Settings</a></li>
                             <li><a href="{{ route('manage.whatsapp-setting.index') }}" data-bs-original-title="" title="">Whatsapp Settings</a></li>
                             <li><a href="{{ route('manage.sms-setting.index') }}" data-bs-original-title="" title="">SMS Settings</a></li>
+                            {{-- <li><a href="{{ route('manage.remarketing.schedule.index') }}">Remarketing Schedule</a></li> --}}
                         </ul>
                     </li>
 
