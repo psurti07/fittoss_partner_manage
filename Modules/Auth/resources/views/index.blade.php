@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xl-12 p-0">
-            <div class="login-card login-dark">
+            <div class="login-card login-dark bg-lending-gradient">
                 <div>
                     <div class="login-main" style="border: 2px solid #0815420d;">
                         <div class="w-50">
@@ -38,7 +38,7 @@
                                  @component('components.ajax-error',['field'=>'password'])@endcomponent
                             </div>
                             <div class="form-group mt-3 mb-0">
-                                <button class="btn btn-block submit-btn w-100" id="signInBtn" class="signInBtn" type="submit">Sign in</button>
+                                <button class="btn btn-lg submit-btn w-100" id="signInBtn" class="signInBtn" type="submit">Sign in</button>
                             </div>
                         </form>
                     </div>
