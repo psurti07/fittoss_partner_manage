@@ -5,6 +5,7 @@
 @include('stacks.css.manage.datatables')
 @endpush
 @push('style-css')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 <style>
     .custom-rounded {
         border-radius: 10px;
@@ -80,7 +81,14 @@
 
 </script>
 @endif
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
+    $('#product_id').select2({
+        placeholder: 'Search Product',
+        allowClear: true,
+        width: '100%'
+    });
     var table = $('#whatsappSettingTable').DataTable({
         responsive: true
         , processing: true

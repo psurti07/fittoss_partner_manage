@@ -5,6 +5,7 @@
 @include('stacks.css.manage.datatables')
 @endpush
 @push('style-css')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 @endpush
 
 @section('breadcrumb-title')
@@ -59,7 +60,14 @@ $productID = request('id');
 @endpush
 @push('script-tag')
 {{ $dataTable->scripts(attributes:['type' => 'module']) }}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
+    $('#product_id').select2({
+        placeholder: 'Search Product',
+        allowClear: true,
+        width: '100%'
+    });
     const table = $("#sendotp-table");
     table.on('preXhr.dt', function(e, settings, data) {
         data.start_date = $("#fromdate").val();
