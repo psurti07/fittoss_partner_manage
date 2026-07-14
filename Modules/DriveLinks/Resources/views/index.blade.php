@@ -72,7 +72,7 @@
     <div class="row align-items-end g-3 mb-4">
         <div class="col-md-3">
             <label class="form-label">Department</label>
-            <select class="form-select" id="parentid">
+            <select class="form-select" id="deptid">
                 <option value="">All</option>
                 @foreach(\App\Models\DriveLinks::DEPARTMENTS as $key => $value)
                 <option value="{{ $key }}">{{ $value }}</option>
@@ -172,7 +172,7 @@
         // FILTER BY DEPARTMENT
         $('#filterBtn').click(function() {
 
-            let department = $('#parentid').val();
+            let department = $('#deptid').val();
 
             if (department === "") {
                 $('.department-section').show();
