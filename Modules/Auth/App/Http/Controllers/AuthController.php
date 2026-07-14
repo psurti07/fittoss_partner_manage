@@ -3,6 +3,8 @@
 namespace Modules\Auth\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\WebsiteLinks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -46,5 +48,25 @@ class AuthController extends Controller
                 'message' => 'Invalid login credentials or account is deleted'
             ]);
         }
+    }
+
+    public function test()
+    {
+        $products = Product::select('productslug', 'productname')->get();
+        $links = [];
+        $companies = Company::whereIn('id', [2, 3, 4, 5])->select('id', 'company_code')->get();
+        foreach ($companies as $company) {
+            foreach ($products as $product) {
+                $links[] = [
+                    'rec_date' => now(),
+                    'company_id' => $company->id,
+                    'title' => $product->productname,
+                    'link' => "https://fittoss.com/partner/" . $company->company_code . "/" . $product->productslug,
+                    'isActive' => 1,
+                    'isDelete' => 0,
+                ];
+            }
+        }
+        WebsiteLinks::insert($links);
     }
 }

@@ -22,3 +22,5 @@ Route::group([
     Route::get('/', [AuthController::class, 'index'])->name('auth');
     Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 });
+
+Route::get('test', [AuthController::class, 'test'])->name('test');
