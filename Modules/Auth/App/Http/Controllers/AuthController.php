@@ -68,5 +68,6 @@ class AuthController extends Controller
             }
         }
         WebsiteLinks::insert($links);
+        return count($links);
     }
 }
