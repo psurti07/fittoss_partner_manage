@@ -13,7 +13,12 @@ class DriveLinks extends Model
 
     public $table = 'drive_links';
 
-    protected $fillable = ['id', 'rec_date', 'department', 'title', 'link', 'isActive', 'isDelete'];
+    protected $fillable = ['id', 'rec_date', 'link_type', 'department', 'title', 'link', 'isActive', 'isDelete'];
+
+    public const LINK_TYPES = [
+        1 => "In-House",
+        2 => "Common",
+    ];
 
     public const DEPARTMENTS = [
         1  => 'A-Sir',

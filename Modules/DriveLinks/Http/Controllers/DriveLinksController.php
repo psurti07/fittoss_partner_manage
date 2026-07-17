@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\DriveLinks;
+use Illuminate\Support\Facades\Log;
 
 class DriveLinksController extends Controller
 {
@@ -16,11 +17,12 @@ class DriveLinksController extends Controller
     public function index()
     {
         $drivelinks = DriveLinks::where('isDelete', 0)
-                        ->orderBy('department')
-                        ->orderByDesc('rec_date')
-                        ->get()
-                        ->groupBy('department');
-    
+            ->where('link_type', 2)
+            ->orderBy('department')
+            ->orderByDesc('rec_date')
+            ->get()
+            ->groupBy('department');
+
         return view('drivelinks::index', compact('drivelinks'));
     }
 
@@ -61,9 +63,8 @@ class DriveLinksController extends Controller
                 'message' => 'Drive Links created successfully!',
                 'data' => $driveLink
             ], 200);
-
         } catch (\Exception $e) {
-            Log::error('Drive Links Store Error: '.$e->getMessage(), [
+            Log::error('Drive Links Store Error: ' . $e->getMessage(), [
                 'trace' => $e->getTraceAsString()
             ]);
 
@@ -120,7 +121,7 @@ class DriveLinksController extends Controller
                 'isActive' => 1,
                 'isDelete' => 0,
             ];
-            
+
             $drivelinks->update($dataToUpdate);
 
             return response()->json([
@@ -128,7 +129,6 @@ class DriveLinksController extends Controller
                 'message' => 'Drive links updated successfully!',
                 'data' => $drivelinks
             ], 200);
-            
         } catch (\Exception $e) {
             return response()->json(['type' => 'ERROR', 'message' => 'Something went wrong.'], 500);
         }
@@ -149,7 +149,7 @@ class DriveLinksController extends Controller
             return response()->json(['type' => 'ERROR', 'message' => 'Something Went Wrong.']);
         }
     }
-    
+
     public function changeStatus($id)
     {
         try {

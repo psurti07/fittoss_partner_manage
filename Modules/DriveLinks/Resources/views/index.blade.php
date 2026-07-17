@@ -53,7 +53,24 @@
         border-radius: 6px;
     }
 
+    .select2-container--default .select2-selection--single {
+        height: calc(2.25rem + 2px) !important;
+        border: 1px solid #ced4da;
+        border-radius: .375rem;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: calc(1.25rem + 2px) !important;
+        padding-left: .75rem;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: calc(1.25rem + 2px) !important;
+    }
+    .select2-container {
+        width: 100% !important;
+    }
+
 </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 @endpush
 
 @section('breadcrumb-title')
@@ -166,7 +183,13 @@
 
 
 @push('script-tag')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
+     $('#deptid').select2({
+        placeholder: 'Search Department',
+        allowClear: true,
+        width: '100%'
+    });
     $(document).ready(function() {
 
         // FILTER BY DEPARTMENT
