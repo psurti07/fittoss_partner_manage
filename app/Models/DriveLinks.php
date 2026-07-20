@@ -61,7 +61,7 @@ class DriveLinks extends Model
         38 => 'Income Management',
         39 => 'Sign Up Department',
         40 => 'Developer Head',
-        41 => 'Website Devloper',
+        41 => 'Website Developer',
         42 => 'Facebook Query',
         43 => 'Profassinal Manager',
         44 => 'Meeting Manager 2',
@@ -82,5 +82,6 @@ class DriveLinks extends Model
         59 => 'Health Coach Club Associate',
         60 => 'Meeting Manager 3',
         61 => 'Video Anchor',
+        62 => 'Lead Opportunity 2',
     ];
 }
