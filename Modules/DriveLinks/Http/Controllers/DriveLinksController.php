@@ -17,7 +17,9 @@ class DriveLinksController extends Controller
     public function index()
     {
         $drivelinks = DriveLinks::where('isDelete', 0)
-            ->where('link_type', 2)
+            ->when(app('company_id') != 1, function ($query) {
+                $query->where('link_type', 2);
+            })
             ->orderBy('department')
             ->orderByDesc('rec_date')
             ->get()
