@@ -80,7 +80,7 @@ class DriveLinks extends Model
         57 => 'Company Security (CS)',
         58 => 'Content Writer',
         59 => 'Health Coach Club Associate',
-        60 => 'Meeting Manager 3',
+        // 60 => 'Meeting Manager 3',
         61 => 'Video Anchor',
         62 => 'Lead Opportunity 2',
     ];
