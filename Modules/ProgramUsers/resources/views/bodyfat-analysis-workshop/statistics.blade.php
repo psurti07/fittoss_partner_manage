@@ -47,7 +47,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-md-3 col-12">
-        <a href="{{ route('manage.sendotps',['filter' => 'today','id' => config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID')]) }}" data-bs-original-title="" title="">
+        <a href="{{ route('manage.sendotps',['filter' => 'today','product_id' => config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID')]) }}" data-bs-original-title="" title="">
             <div class="card widget-1">
                 <div class="card-body">
                     <div class="widget-content">
