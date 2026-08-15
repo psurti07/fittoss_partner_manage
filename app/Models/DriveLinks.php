@@ -50,7 +50,7 @@ class DriveLinks extends Model
         27 => 'Google Ads',
         28 => 'Bulk SMS/RCS',
         29 => 'Trainer Department',
-        30 => 'Lead Auto/Webinar',
+        30 => 'Lead auto webinar 1',
         31 => 'IVR Department',
         32 => 'Health Coach Auto',
         33 => 'File Accounting',
@@ -82,6 +82,8 @@ class DriveLinks extends Model
         59 => 'Health Coach Club Associate',
         // 60 => 'Meeting Manager 3',
         61 => 'Video Anchor',
-        62 => 'Lead Opportunity 2',
+        62 => 'Lead auto webinar 2',
+        63 => 'Lead auto webinar 3',
+        64 => 'Diagnose call counsellor',
     ];
 }
