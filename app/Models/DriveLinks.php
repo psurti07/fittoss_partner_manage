@@ -40,7 +40,7 @@ class DriveLinks extends Model
         17 => 'Graphic Head',
         18 => 'Associate Partener Graphic Designer',
         // 19 => 'Associate Content Writer',
-        // 20 => 'Video Editor',
+        20 => 'Video Editor',
         21 => 'Basic SEO',
         22 => 'IT Coordinator',
         23 => 'Social Media Profile Manager',
