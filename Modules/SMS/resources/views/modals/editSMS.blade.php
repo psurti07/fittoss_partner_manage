@@ -10,7 +10,12 @@
                     <input type="hidden" name="id" value="{{$data['id']}}">
                     <div class="row">
                         <div class="form-group col-md-12 mb-3">
-                            <p class="text-info fw-8">Info : Use %26 instead of & symbol</p>
+                            <ul>
+                                <li class="text-info fw-8">Use <code>%26</code> instead of <code>&amp;</code> in the message.</li>
+                                <li class="text-info fw-8">Use the exact <code>{bmi}</code> variable to insert BMI.</li>
+                                <li class="text-info fw-8">Use the exact <code>{disease}</code> variable to insert Disease.</li>
+                                <li class="text-info fw-8">Use the exact <code>{link}</code> variable to insert Process or schedule slot link.</li>
+                            </ul>
                             <label>Message <span class="text-danger">*</span></label>
                             <textarea class="form-control input-air-primary" name="message" id="message" rows="5" placeholder="Enter SMS message">{{ $data['message'] }}</textarea>
                             @component('components.ajax-error', ['field' => 'message']) @endcomponent
