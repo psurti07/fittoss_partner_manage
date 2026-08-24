@@ -57,6 +57,7 @@
                                     <th>City</th>
                                     <th>State</th>
                                     <th>Pincode</th>
+                                    <th>Attend</th>
                                     <th class="text-center">Details</th>
                                 </tr>
                             </thead>
@@ -111,6 +112,7 @@
                 {data: 'city', name: 'city'},
                 {data: 'state', name: 'state'},
                 {data: 'pincode', name: 'pincode'},
+                {data: 'attend', name: 'is_attend', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             order: [[1, 'desc']],
@@ -123,6 +125,56 @@
             table.ajax.reload();
         });
     });
+
+    function attended(user_id, status) {
+        const url = "{{ route('manage.weight-loss-webinar.customers.attended') }}";
+        let text = (status == 1) ? "Mark customer as attended." : "Mark customer as Not attended."
+        swal({
+            title: "Are you sure?",
+            text: text,
+            icon: "info",
+            dangerMode: true,
+            buttons: ["No", "Yes"]
+        }).then((performYes) => {
+
+            if (!performYes) return;
+
+            document.querySelectorAll('.attendBtn').forEach(btn => {
+                btn.disabled = true;
+            });
+
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                        user_id: user_id,
+                        status: status
+                      }),
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.type === 'SUCCESS') {
+                    toastr.success(result.message);
+                    $('#WLWCustomersTable').DataTable().ajax.reload(null, false);
+                } else {
+                    toastr.error(result.message);
+                }
+            })
+            .catch(() => {
+                toastr.error('Something went wrong.');
+            })
+            .finally(() => {
+                document.querySelectorAll('.attendBtn').forEach(btn => {
+                    btn.disabled = false;
+                });
+            });
+
+        });
+    }
 
 </script>
 @endpush

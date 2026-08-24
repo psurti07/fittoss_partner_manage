@@ -61,6 +61,7 @@ Route::group([
     Route::post('customers/update', [WLWebinarController::class, 'usersDetailsUpdate'])->name('customers.update');
     Route::get('/invoice/{id}/pdf', [WLWebinarController::class, 'downloadPdf'])->name('customers.invoice.pdf');
     Route::get('bmi/{id}/pdf', [WLWebinarController::class, 'downloadBMIReport'])->name('customers.bmi.pdf');
+    Route::post('attended', [WLWebinarController::class, 'markAsAttended'])->name('customers.attended');
 
     Route::post('customers/update-password', [WLWebinarController::class, 'updatePassword'])->name('customers.update.password');
     Route::post('customers/deactivate-account', [WLWebinarController::class, 'deactivateAccount'])->name('customers.deactivate.account');

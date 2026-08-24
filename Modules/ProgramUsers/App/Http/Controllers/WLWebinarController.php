@@ -52,6 +52,7 @@ class WLWebinarController extends Controller
                 'city',
                 'pincode',
                 'state',
+                'is_attend',
                 'updated_at'
             )
                 ->where('is_active', 1)
@@ -83,11 +84,25 @@ class WLWebinarController extends Controller
                 ->addColumn('fullname', function ($row) {
                     return $row->first_name . ' ' . $row->last_name;
                 })
+                ->addColumn('attend', function ($row) {
+                    if ($row->is_attend) {
+                        return '<button type="button"
+                                class="btn btn-sm btn-success attendBtn"
+                                onclick="attended(' . $row->id . ',0)">
+                                Attended
+                            </button>';
+                    }
+                    return '<button type="button"
+                                class="btn btn-sm btn-info attendBtn"
+                                onclick="attended(' . $row->id . ',1)">
+                                Not Attend
+                            </button>';
+                })
                 ->addColumn('action', function ($row) {
                     $actionBtn = '<a class="" href="' . route('manage.weight-loss-webinar.customers.details', ['userId' => $row->id]) . '"><i class="fa fa-info-circle"></i></a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['date', 'fullname', 'action'])
+                ->rawColumns(['date', 'fullname', 'attend', 'action'])
                 ->make(true);
         }
         return view('programusers::weight-loss-webinar.customers');
@@ -152,6 +167,20 @@ class WLWebinarController extends Controller
             return response()->json(array('type' => 'SUCCESS', 'message' => 'Data updated successfully', 'data' => ''));
         } else {
             return response()->json(array('type' => 'ERROR', 'message' => 'Data already updated!', 'data' => ''));
+        }
+    }
+
+    public function markAsAttended(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required',
+            'status' => 'required'
+        ]);
+        $res = Customer::where('id', $request->user_id)->update(['is_attend' => $request->status]);
+        if ($res) {
+            return response()->json(array('type' => 'SUCCESS', 'message' => 'User\'s attend status change successfully!', 'data' => ''));
+        } else {
+            return response()->json(array('type' => 'ERROR', 'message' => 'Oops! Something went wrong.', 'data' => ''));
         }
     }
 

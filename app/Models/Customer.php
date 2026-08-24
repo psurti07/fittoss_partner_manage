@@ -36,6 +36,7 @@ class Customer extends Model
         'refcode',
         'process_step',
         'is_user',
+        'is_attend',
         'is_active',
         'is_agree',
         'is_dnd',
@@ -122,6 +123,7 @@ class Customer extends Model
                 'customers.city',
                 'customers.pincode',
                 'customers.state',
+                'customers.is_attend',
                 'customers.updated_at',
                 'c.company_name'
             )
