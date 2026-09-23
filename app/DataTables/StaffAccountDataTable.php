@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 use Modules\Partner\App\Models\CompanyStaff;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -59,7 +60,11 @@ class StaffAccountDataTable extends DataTable
      */
     public function query(CompanyStaff $model): QueryBuilder
     {
-        return $model->newQuery()->where('is_delete', 0)->whereNotIn('role', [CompanyStaff::SUPER_ADMIN, CompanyStaff::ADMIN]);
+        if (Auth::user()->role == CompanyStaff::SUPER_ADMIN) {
+            return $model->newQuery()->where('is_delete', 0)->whereNotIn('role', [CompanyStaff::SUPER_ADMIN]);
+        } else {
+            return $model->newQuery()->where('is_delete', 0)->whereNotIn('role', [CompanyStaff::SUPER_ADMIN, CompanyStaff::ADMIN]);
+        }
     }
 
     /**
