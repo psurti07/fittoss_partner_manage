@@ -17,7 +17,7 @@ use Modules\SMS\App\Http\Controllers\SMSController;
 Route::group([
     'prefix' => 'sms/',
     'as' => 'manage.sms.',
-    'middleware' => ['auth', 'PreventBackHistory']
+    'middleware' => ['auth', 'PreventBackHistory', 'role:super_admin']
 ], function () {
     Route::get('sms-message', [SMSController::class, 'smsMessage'])->name('smsmessage');
     Route::get('send-custom-sms', [SMSController::class, 'sendCustomSms'])->name('send.custom.sms');

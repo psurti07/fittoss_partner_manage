@@ -940,7 +940,8 @@
                             <span class="">Website Links</span>
                         </a>
                     </li>
-
+                    
+                    @role(['super_admin'])
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title link-nav " href="{{ route('manage.sms.smsmessage') }}">
@@ -951,6 +952,7 @@
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>
+                    @endrole
 
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
