@@ -888,9 +888,9 @@
             <div class="address">
                 <strong>Add:</strong> 325, Unique Square, Singanpore Shubham K Mart, Katargam, Surat - 395004, Gujarat, India.
             </div>
-            <div class="mobile">
+            {{-- <div class="mobile">
                 +91 81403 90170
-            </div>
+            </div> --}}
         </div>
     </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
