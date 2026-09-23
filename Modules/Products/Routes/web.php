@@ -17,7 +17,7 @@ use Modules\Products\Http\Controllers\ProductsController;
 Route::group([
     'prefix' => 'products',
     'as' => 'manage.products.',
-    'middleware' => ['auth', 'PreventBackHistory']
+    'middleware' => ['auth', 'PreventBackHistory', 'role:super_admin']
 ], function () {
     Route::get('/', [ProductsController::class, 'index'])->name('index');
     Route::get('/{product}/edit', [ProductsController::class, 'edit'])->name('edit');

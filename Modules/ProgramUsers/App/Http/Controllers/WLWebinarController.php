@@ -212,7 +212,7 @@ class WLWebinarController extends Controller
         $safeName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $userData->first_name . '_' . $userData->last_name);
         $product = Product::find(config('constant.WEIGHT_LOSS_WEBINAR_OFFER_ID'));
         $url = "https://fittoss.com/weight-loss-webinar-offer";
-        return view('programusers::bmi_detail', compact('userData', 'personalDetails', 'product', 'url'));
+        return view('programusers::weight-loss-webinar.bmi_detail', compact('userData', 'personalDetails', 'product', 'url'));
         $pdf = Pdf::loadView('programusers::bmi_report_pdf', compact('userData', 'personalDetails', 'product'))
             ->setPaper('a4', 'portrait');
         return $pdf->download('bmi_report_' . $safeName . '.pdf');

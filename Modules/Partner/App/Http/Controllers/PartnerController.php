@@ -79,7 +79,7 @@ class PartnerController extends Controller
             'email' => $request->owner_email,
             'mobile_no' => $request->owner_mobile_no,
             'password' => Hash::make($password),
-            'role' => CompanyStaff::ROLE_PARTNER,
+            'role' => CompanyStaff::ADMIN,
             'position' => 'Owner',
             'staff_code' => generateStaffCode($request->owner_name),
             'created_at' => date('Y-m-d H:i:s'),

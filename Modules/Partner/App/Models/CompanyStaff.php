@@ -13,10 +13,13 @@ class CompanyStaff extends Authenticatable
     protected $table = 'company_staff';
 
     // Roles
-    public const ROLE_PARTNER = 1;
-    public const ROLE_OFFICE_STAFF = 2;
-    public const ROLE_IVR_SUPPORT_STAFF = 3;
-    public const ROLE_IT_STAFF = 4;
+    public const SUPER_ADMIN = 'super_admin';
+    public const ADMIN = 'admin';
+    public const STAFF = 'staff';
+    // public const HR = 'hr';
+    // public const OFFICE_STAFF = 'office_staff';
+    // public const MARKETING = 'marketing';
+    // public const ACCOUNTING = 'accounting';
 
     protected $fillable = [
         'id',
@@ -40,10 +43,9 @@ class CompanyStaff extends Authenticatable
     public static function roles()
     {
         return [
-            self::ROLE_PARTNER => 'Partner',
-            self::ROLE_OFFICE_STAFF => 'Office Staff',
-            self::ROLE_IVR_SUPPORT_STAFF => 'IVR/Support Staff',
-            self::ROLE_IT_STAFF => 'IT Staff',
+            self::SUPER_ADMIN => 'Super Admin',
+            self::ADMIN => 'Admin',
+            self::STAFF => 'Staff',
         ];
     }
     protected static function booted(): void
@@ -61,7 +63,7 @@ class CompanyStaff extends Authenticatable
     /**
      * Get Single Role Name
      */
-    public static function getRoleName(int $role)
+    public static function getRoleName(string $role)
     {
         return self::roles()[$role] ?? 'Unknown';
     }
@@ -71,8 +73,19 @@ class CompanyStaff extends Authenticatable
         return $this->belongsTo(Company::class, 'company_id');
     }
 
-    public function isPartner()
+    /** Role base */
+    public function hasRole(string $role): bool
     {
-        return $this->role === self::ROLE_PARTNER;
+        return $this->role == $role;
+    }
+
+    public function hasAnyRole(array $roles): bool
+    {
+        return in_array($this->role, $roles, true);
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === self::SUPER_ADMIN;
     }
 }

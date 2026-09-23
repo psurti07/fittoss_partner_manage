@@ -13,10 +13,10 @@
                             <div class="form-group mb-3">
                                 <label for="role">Role<span class="text-danger">*</span></label>
                                 <select class="form-control form-select" name="role" id="role">
-                                    <option value="">Select Role</option>
+                                    <option value="" disabled>Select Role</option>
                                     @foreach(\Modules\Partner\App\Models\CompanyStaff::roles() as $key => $value)
-                                        @if($key != 1)
-                                            <option value="{{ $key }}">{{ $value }}</option>
+                                        @if(!in_array($key,[\Modules\Partner\App\Models\CompanyStaff::SUPER_ADMIN,\Modules\Partner\App\Models\CompanyStaff::ADMIN]))
+                                            <option value="{{ $key }}" >{{ $value }}</option>
                                         @endif
                                     @endforeach
                                 </select>

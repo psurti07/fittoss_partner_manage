@@ -20,7 +20,7 @@ use Modules\SiteOptions\App\Http\Controllers\WhatsappSettingController;
 Route::group([
     'prefix' => '',
     'as' => 'manage.',
-    'middleware' => ['auth', 'PreventBackHistory']
+    'middleware' => ['auth', 'PreventBackHistory', 'role:super_admin']
 ], function () {
     Route::get('/welcome-message', [SiteOptionsController::class, 'welcomeMessage'])->name('welcome-message');
     Route::post('/welcome-message/update', [SiteOptionsController::class, 'welcomeMessageUpdate'])->name('welcome-message.update');
@@ -38,7 +38,7 @@ Route::group([
         Route::get('/', [WhatsappSettingController::class, 'index'])->name('index');
         Route::post('/', [WhatsappSettingController::class, 'update'])->name('update');
     });
-    
+
     Route::group(['prefix' => 'sms-setting', 'as' => 'sms-setting.'], function () {
         Route::get('/', [SMSSettingController::class, 'index'])->name('index');
         Route::post('/', [SMSSettingController::class, 'update'])->name('update');

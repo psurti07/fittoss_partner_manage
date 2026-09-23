@@ -6,7 +6,7 @@ use Modules\Partner\App\Http\Controllers\PartnerController;
 Route::group([
     'prefix' => 'partner',
     'as' => 'manage.partner.',
-    'middleware' => ['auth', 'PreventBackHistory']
+    'middleware' => ['auth', 'PreventBackHistory', 'role:super_admin']
 ], function () {
     Route::get('', [PartnerController::class, 'index'])->name('index');
     Route::get('create', [PartnerController::class, 'create'])->name('create');

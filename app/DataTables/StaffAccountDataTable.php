@@ -59,7 +59,7 @@ class StaffAccountDataTable extends DataTable
      */
     public function query(CompanyStaff $model): QueryBuilder
     {
-        return $model->newQuery()->where(['is_delete' => 0, ['role', '!=', CompanyStaff::ROLE_PARTNER]]);
+        return $model->newQuery()->where('is_delete', 0)->whereNotIn('role', [CompanyStaff::SUPER_ADMIN, CompanyStaff::ADMIN]);
     }
 
     /**

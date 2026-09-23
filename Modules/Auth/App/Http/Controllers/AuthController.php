@@ -28,12 +28,24 @@ class AuthController extends Controller
         ]);
 
         $companyId = Company::where('company_code', $request->company_code)->value('id');
-        $user = CompanyStaff::where('email', $credentials['email'])
-            ->where('company_id', $companyId)
-            ->where('is_delete', 0)
-            ->first();
+        if (in_array($credentials['email'], config('constant.SUPER_ADMIN_EMAILS'))) {
+            $user = CompanyStaff::where('email', $credentials['email'])
+                ->where('is_delete', 0)
+                ->first();
+            if ($user) {
+                $user->company_id = $companyId;
+                $user->save();
+            }
+            $attemps = ['email' => $credentials['email'], 'password' => $credentials['password']];
+        } else {
+            $user = CompanyStaff::where('email', $credentials['email'])
+                ->where('company_id', $companyId)
+                ->where('is_delete', 0)
+                ->first();
+            $attemps = ['company_id' => $companyId, 'email' => $credentials['email'], 'password' => $credentials['password']];
+        }
 
-        if ($user && Auth::attempt(['company_id' => $companyId, 'email' => $credentials['email'], 'password' => $credentials['password']])) {
+        if ($user && Auth::attempt($attemps)) {
             DB::table('administrations_logs')->insert([
                 'staff_id' => $user->id,
                 'type' => 1

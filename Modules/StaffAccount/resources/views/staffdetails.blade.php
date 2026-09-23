@@ -93,9 +93,11 @@
                                     <div class="col-md-4">
                                         <label for="role">Role</label>
                                         <select class="form-control form-select" name="role" id="role">
-                                            <option value="">Select Role</option>
+                                            <option value="" disabled>Select Role</option>
                                             @foreach(\Modules\Partner\App\Models\CompanyStaff::roles() as $key => $value)
-                                            <option value="{{ $key }}" {{ $staffDetails->role == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                                @if(!in_array($key,[\Modules\Partner\App\Models\CompanyStaff::SUPER_ADMIN,\Modules\Partner\App\Models\CompanyStaff::ADMIN]))
+                                                    <option value="{{ $key }}" {{ $staffDetails->role == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>

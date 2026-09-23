@@ -17,7 +17,7 @@ use Modules\Invoice\App\Http\Controllers\InvoiceController;
 Route::group([
     'prefix' => '',
     'as' => 'manage.',
-    'middleware' => ['auth', 'PreventBackHistory']
+    'middleware' => ['auth', 'PreventBackHistory', 'role:super_admin,admin']
 ], function () {
     Route::get('invoice', [InvoiceController::class, 'getInvoices'])->name('invoice');
     Route::get('/invoice/{id}/pdf', [InvoiceController::class, 'downloadPdf'])->name('invoice.pdf');

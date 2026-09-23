@@ -585,6 +585,7 @@
                         </a>
                     </li> --}}
 
+                    @role(['super_admin','admin'])
                     <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">File Accounting</h6>
@@ -621,6 +622,7 @@
                             <span class="">Refund Data</span>
                         </a>
                     </li>
+                    @endrole
 
                     <li class="sidebar-main-title">
                         <div>
@@ -628,7 +630,7 @@
                         </div>
                     </li>
 
-                    <li class="sidebar-list">
+                    {{-- <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.payu-log') }}" data-bs-original-title="" title="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card">
@@ -650,7 +652,7 @@
                             <span class="">SabPaisa Logs</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
@@ -664,7 +666,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-list">
+                    {{-- <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.phonepay-log') }}" data-bs-original-title="" title="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card">
@@ -710,7 +712,7 @@
                             <span class="">CCAvenue Logs</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- <li class="sidebar-main-title">
                         <div>
@@ -1000,6 +1002,7 @@
                     </li>
 
 
+                    @role(['super_admin'])
                     <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Marketing Head</h6>
@@ -1023,6 +1026,7 @@
                             {{-- <li><a href="{{ route('manage.remarketing.schedule.index') }}">Remarketing Schedule</a></li> --}}
                         </ul>
                     </li>
+                    @endrole
 
                     <!--<li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
@@ -1065,22 +1069,8 @@
                         </div>
                     </li>
 
-                    @if(auth()->user()->role == \Modules\Partner\App\Models\CompanyStaff::ROLE_PARTNER)
-                    @can('staff-list')
-                    <li class="sidebar-list">
-                        <i class="fa fa-thumb-tack"></i>
-                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.staff.index') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
-                            <span class="">Staff Management</span>
-                        </a>
-                    </li>
-                    @endcan
-
+                    {{-- @if(auth()->user()->role == \Modules\Partner\App\Models\CompanyStaff::ADMIN) --}}
+                    @role(['super_admin', 'admin'])
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav " href="{{ route('manage.staff.account') }}" data-bs-original-title="" title="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
@@ -1093,7 +1083,8 @@
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>
-                    @endif
+                    @endrole
+                    {{-- @endif --}}
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav " href="{{ route('manage.profile.detail') }}" data-bs-original-title="" title="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
