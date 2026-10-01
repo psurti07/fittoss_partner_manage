@@ -45,7 +45,7 @@ class DriveLinks extends Model
         22 => 'IT Coordinator',
         23 => 'Social Media Profile Manager',
         24 => 'Basic Digital Marketing',
-        25 => 'Facebook Ad Campaign Coordinator',
+        25 => 'Fittoss Facebook Ad',
         26 => 'Payment Gateway',
         27 => 'Google Ads',
         28 => 'Bulk SMS/RCS',
@@ -66,7 +66,7 @@ class DriveLinks extends Model
         43 => 'Profassinal Manager',
         44 => 'Meeting Manager 2',
         45 => 'Meeting Manager 1',
-        46 => 'Marketing Coordinator',
+        // 46 => 'Digital Head',
         47 => 'CRM WhatsApp Marketing',
         // 48 => 'IT Coordinator',
         49 => 'Marketing Analysis',
@@ -87,5 +87,10 @@ class DriveLinks extends Model
         64 => 'Diagnose call counsellor',
         65 => 'Lead Auto 2',
         66 => 'AP Content Writer',
+        67 => 'Marketing Coordinator',
+        68 => 'Social media strategist',
+        69 => 'Videographer',
+        70 => 'App Development',
+        71 => 'Verification Department',
     ];
 }
