@@ -27,7 +27,7 @@ class DriveLinks extends Model
         4  => 'HR Recruiter',
         5  => 'Inhouse Human Resource Management',
         6  => 'Data Management',
-        7  => 'In Door Reception',
+        // 7  => 'In Door Reception',
         8  => 'Out Door Reception',
         9  => 'Review Department',
         10 => 'Associate Relationship Manager',
@@ -92,5 +92,6 @@ class DriveLinks extends Model
         69 => 'Videographer',
         70 => 'App Development',
         71 => 'Verification Department',
+        72 => 'Company Head',
     ];
 }
