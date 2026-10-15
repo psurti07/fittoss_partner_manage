@@ -37,12 +37,12 @@
                         @csrf
                         <div class="col-12 mt-3">
                             <label class="form-label" for="payment_numbers">Payment Number (1 Rs payment)<span class="text-danger">*</span></label>
-                            <textarea class="form-control" name="payment_numbers" id="payment_numbers"> {{ $numbers->payment_numbers ?? "" }} </textarea>
+                            <textarea class="form-control" rows="3" name="payment_numbers" id="payment_numbers"> {{ $numbers->payment_numbers ?? "" }} </textarea>
                             @component('components.ajax-error', ['field' => 'payment_numbers'])@endcomponent
                         </div>
                         <div class="col-12 mt-3">
                             <label class="form-label" for="remarketing_numbers">Remarketing Numbers<span class="text-danger">*</span></label>
-                            <textarea class="form-control" name="remarketing_numbers" id="remarketing_numbers"> {{ $numbers->remarketing_numbers ?? "" }} </textarea>
+                            <textarea class="form-control" rows="3" name="remarketing_numbers" id="remarketing_numbers"> {{ $numbers->remarketing_numbers ?? "" }} </textarea>
                             @component('components.ajax-error', ['field' => 'remarketing_numbers'])@endcomponent
                         </div>
                         <div class="form-footer mt-3 d-flex justify-content-between align-items-center">
