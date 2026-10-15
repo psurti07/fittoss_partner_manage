@@ -64,6 +64,7 @@
         $('#eventsTable').DataTable({
             processing: true,
             serverSide: true,
+            responsive: true,
             pageLength: 50,
             lengthMenu: [50, 100, 200],
             ajax: "{{ route('manage.events.index') }}",

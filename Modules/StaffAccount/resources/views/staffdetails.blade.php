@@ -200,6 +200,7 @@
 <script>
     $("#logs-list-table").DataTable({
         pageLength: 50
+        , responsive: true
         , lengthMenu: [
             [50, 100, 200]
             , [50, 100, 200]

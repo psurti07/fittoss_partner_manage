@@ -75,6 +75,7 @@
             processing: true,
             serverSide: true,
             pageLength: 50,
+            responsive: true,
             lengthMenu: [50, 100, 200],
             ajax: "{{ route('manage.products.index') }}",
             columns: [
