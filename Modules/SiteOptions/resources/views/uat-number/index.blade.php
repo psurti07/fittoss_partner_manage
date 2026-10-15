@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-12 mt-3">
                             <label class="form-label" for="remarketing_numbers">Remarketing Numbers<span class="text-danger">*</span></label>
-                            <textarea class="form-control numeric-input" name="remarketing_numbers" maxlength="10" minlength="10" id="remarketing_numbers"> {{ $numbers->remarketing_numbers ?? "" }} </textarea>
+                            <textarea class="form-control" name="remarketing_numbers" id="remarketing_numbers"> {{ $numbers->remarketing_numbers ?? "" }} </textarea>
                             @component('components.ajax-error', ['field' => 'remarketing_numbers'])@endcomponent
                         </div>
                         <div class="form-footer mt-3 d-flex justify-content-between align-items-center">
