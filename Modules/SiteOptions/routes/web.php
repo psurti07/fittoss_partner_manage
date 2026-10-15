@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Modules\SiteOptions\App\Http\Controllers\FacebookSettingController;
 use Modules\SiteOptions\App\Http\Controllers\SiteOptionsController;
 use Modules\SiteOptions\App\Http\Controllers\SMSSettingController;
+use Modules\SiteOptions\App\Http\Controllers\UATNumberController;
 use Modules\SiteOptions\App\Http\Controllers\WhatsappSettingController;
 
 /*
@@ -46,4 +47,16 @@ Route::group([
 
     Route::get('/sms-settings', [SiteOptionsController::class, 'smsSettings'])->name('sms.settings');
     Route::post('/sms-settings-update', [SiteOptionsController::class, 'smsSettingsUpdate'])->name('sms.settings.update');
+});
+
+Route::group([
+    'prefix' => '',
+    'as' => 'manage.',
+    'middleware' => ['auth', 'PreventBackHistory', 'role:super_admin,admin']
+], function () {
+    
+    Route::group(['prefix' => 'uat-setting', 'as' => 'uat-setting.'], function () {
+        Route::get('/', [UATNumberController::class, 'index'])->name('index');
+        Route::post('/', [UATNumberController::class, 'update'])->name('update');
+    });
 });

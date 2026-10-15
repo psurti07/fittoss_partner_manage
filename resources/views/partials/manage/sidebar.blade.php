@@ -1085,6 +1085,13 @@
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav " href="{{ route('manage.uat-setting.index') }}" data-bs-original-title="" title="">
+                            <i data-feather="phone"></i>
+                            <span class="">UAT Numbers</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
                     @endrole
                     {{-- @endif --}}
                     <li class="sidebar-list">
