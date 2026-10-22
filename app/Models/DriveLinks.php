@@ -93,5 +93,6 @@ class DriveLinks extends Model
         70 => 'App Development',
         71 => 'Verification Department',
         72 => 'Company Head',
+        73 => 'AP Social Media Profile Manager',
     ];
 }

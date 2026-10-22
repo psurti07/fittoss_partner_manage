@@ -57,6 +57,13 @@
                                     <th>City</th>
                                     <th>State</th>
                                     <th>Pincode</th>
+                                    <!-- hidden export columns -->
+                                    <th>Height</th>
+                                    <th>Weight</th>
+                                    <th>BMI</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Medical Issue</th>
                                     <th class="text-center">Details</th>
                                 </tr>
                             </thead>
@@ -107,10 +114,19 @@
                 {data: 'date', name: 'date'},
                 {data: 'fullname', name: 'first_name'},
                 {data: 'mobile_no', name: 'mobile_no'},
-                {data: 'email', name: 'email'},
-                {data: 'city', name: 'city'},
-                {data: 'state', name: 'state'},
-                {data: 'pincode', name: 'pincode'},
+                {data: 'email', name: 'email', visible: false},
+                {data: 'city', name: 'city', visible: false},
+                {data: 'state', name: 'state', visible: false},
+                {data: 'pincode', name: 'pincode', visible: false},
+
+                // extra export columns
+                {data: 'height', name: 'height', visible: true},
+                {data: 'weight', name: 'weight', visible: true},
+                {data: 'bmi', name: 'bmi', visible: true},
+                {data: 'age', name: 'age', visible: false},
+                {data: 'gender', name: 'gender', visible: false},
+                {data: 'medical_issue', name: 'medical_issue', visible: false},
+                
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             order: [[1, 'desc']],
