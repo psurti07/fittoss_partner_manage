@@ -194,7 +194,7 @@
                                             <span class="badge bg-success text-white rounded-pill p-2">Completed</span>
                                         </li>
                                         <li class="list-group-item d-flex align-items-start flex-wrap">
-                                            <div class="ms-2 me-auto">Personal Details</div>
+                                            <div class="ms-2 me-auto">Weigh Loss Goal</div>
                                             @if($details->process_step === 1)
                                             <span class="badge bg-warning text-white rounded-pill p-2">Current</span>
                                             @elseif($details->process_step >= 2)
@@ -204,7 +204,7 @@
                                             @endif
                                         </li>
                                         <li class="list-group-item d-flex align-items-start flex-wrap">
-                                            <div class="ms-2 me-auto">Health Details</div>
+                                            <div class="ms-2 me-auto">Personal Details</div>
                                             @if($details->process_step === 2)
                                             <span class="badge bg-warning text-white rounded-pill p-2">Current</span>
                                             @elseif($details->process_step >= 3)
@@ -214,7 +214,7 @@
                                             @endif
                                         </li>
                                         <li class="list-group-item d-flex align-items-start flex-wrap">
-                                            <div class="ms-2 me-auto">Disease Detail</div>
+                                            <div class="ms-2 me-auto">Health Details</div>
                                             @if($details->process_step === 3)
                                             <span class="badge bg-warning text-white rounded-pill p-2">Current</span>
                                             @elseif($details->process_step >= 4)
@@ -224,7 +224,7 @@
                                             @endif
                                         </li>
                                         <li class="list-group-item d-flex align-items-start flex-wrap">
-                                            <div class="ms-2 me-auto">BMI Report</div>
+                                            <div class="ms-2 me-auto">Disease Detail</div>
                                             @if($details->process_step === 4)
                                             <span class="badge bg-warning text-white rounded-pill p-2">Current</span>
                                             @elseif($details->process_step >= 5)
@@ -234,10 +234,20 @@
                                             @endif
                                         </li>
                                         <li class="list-group-item d-flex align-items-start flex-wrap">
-                                            <div class="ms-2 me-auto">Payment</div>
+                                            <div class="ms-2 me-auto">BMI Report</div>
                                             @if($details->process_step === 5)
                                             <span class="badge bg-warning text-white rounded-pill p-2">Current</span>
                                             @elseif($details->process_step >= 6)
+                                            <span class="badge bg-success text-white rounded-pill p-2">Completed</span>
+                                            @else
+                                            <span class="badge bg-danger text-white rounded-pill p-2">Pending</span>
+                                            @endif
+                                        </li>
+                                        <li class="list-group-item d-flex align-items-start flex-wrap">
+                                            <div class="ms-2 me-auto">Payment</div>
+                                            @if($details->process_step === 6)
+                                            <span class="badge bg-warning text-white rounded-pill p-2">Current</span>
+                                            @elseif($details->process_step >= 7)
                                             <span class="badge bg-success text-white rounded-pill p-2">Completed</span>
                                             @else
                                             <span class="badge bg-danger text-white rounded-pill p-2">Pending</span>
