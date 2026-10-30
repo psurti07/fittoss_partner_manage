@@ -116,15 +116,16 @@
                                                 <td>{{ optional($details->personalDetails)->weight ? optional($details->personalDetails)->weight . ' kg' : 'N/A' }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Purpose</th>
+                                                <th>Weight Loss Goal</th>
                                                 <td>
-                                                    {{ match(optional($details->personalDetails)->purpose) {
+                                                    {{ optional($details->personalDetails)->weight_loss_goal . " Kg" }}
+                                                    {{-- {{ match(optional($details->personalDetails)->purpose) {
                                                         1 => 'Lose weight',
                                                         2 => 'Build muscle',
                                                         3 => 'Feel better',
                                                         4 => 'Stay healthy',
                                                         default => 'N/A'
-                                                    } }}
+                                                    } }} --}}
                                                 </td>
                                             </tr>
                                             <tr>

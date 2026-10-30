@@ -15,6 +15,7 @@ class UserPersonalDetails extends Model
     protected $fillable = [
         'userid',
         'purpose',
+        'weight_loss_goal',
         'active_rate',
         'medical_issue',
         'height',
