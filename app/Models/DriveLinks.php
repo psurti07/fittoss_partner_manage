@@ -94,5 +94,7 @@ class DriveLinks extends Model
         71 => 'Verification Department',
         72 => 'Company Head',
         73 => 'AP Social Media Profile Manager',
+        74 => 'HR Coordinator',
+        75 => 'Business Consulting Provider',
     ];
 }
