@@ -65,6 +65,8 @@
                 $routeName = route('manage.child-nutrition-offer.leads');
             } elseif ($userData->product_id == config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID')) {
                 $routeName = route('manage.bodyfat-analysis-workshop.leads');
+            } elseif ($userData->product_id == config('constant.DIET_PLAN_ID')) {
+                $routeName = route('manage.diet-plan.leads');
             }else{
                 $routeName = route('manage.weight-loss-program.leads');
             }             

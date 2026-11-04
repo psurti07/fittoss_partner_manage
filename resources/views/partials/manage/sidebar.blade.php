@@ -254,6 +254,27 @@
                         </div>
                     </li>
 
+                    <li class="sidebar-list  {{ request()->routeIs('manage.diet-plan.*') ? 'active' : 'close' }}">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title {{ request()->routeIs('manage.diet-plan.*') ? 'active' : '' }}" href="#" data-bs-original-title="" title="">
+                            <i data-feather="tag"></i>
+                            <span class="">Diet Plan</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                        <ul class="sidebar-submenu" style="display: {{ request()->routeIs('manage.diet-plan.*') ? 'block' : 'none' }};">
+                            <li class="{{ request()->routeIs('manage.diet-plan.leads') || request()->routeIs('manage.diet-plan.customer.details') ? 'active' : '' }}">
+                                <a href="{{ route('manage.diet-plan.leads') }}" class="{{ request()->routeIs('manage.diet-plan.leads') || request()->routeIs('manage.diet-plan.customer.details') ? 'active' : '' }}">
+                                    Leads
+                                </a>
+                            </li>
+                            <li class="{{ request()->routeIs('manage.diet-plan.customers') || request()->routeIs('manage.diet-plan.customer.details') ? 'active' : '' }}">
+                                <a href="{{ route('manage.diet-plan.customers') }}" class="{{ request()->routeIs('manage.diet-plan.customers') || request()->routeIs('manage.diet-plan.customer.details') ? 'active' : '' }}">
+                                    Customers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="sidebar-list  {{ request()->routeIs('manage.fitone.*') ? 'active' : 'close' }}">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title {{ request()->routeIs('manage.fitone.*') ? 'active' : '' }}" href="#" data-bs-original-title="" title="">

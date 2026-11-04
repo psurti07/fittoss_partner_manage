@@ -16,6 +16,60 @@ use Illuminate\Support\Facades\Log;
 
 class LeadsController extends Controller
 {
+    public function dpLeads(Request $request)
+    {
+        if ($request->ajax()) {
+            $search = $request->input('search')['value'] ?? NULL;
+            $fromDate = $request->input('fromDate');
+            $toDate = $request->input('toDate');
+            $query = Customer::select(
+                'id',
+                'first_name',
+                'last_name',
+                'email',
+                'mobile_no',
+                'product_id',
+                'city',
+                'pincode',
+                'state',
+                'updated_at'
+            )
+                ->where('is_user', 0)
+                ->where('is_delete', 0)
+                ->where('product_id', config('constant.DIET_PLAN_ID'));
+            if (!empty($fromDate) && !empty($toDate)) {
+                $query->whereRaw('DATE(updated_at)  BETWEEN  ? AND ?', [$fromDate, $toDate]);
+            }
+            if (!empty($search)) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('mobile_no', 'like', "%{$search}%")
+                        ->orWhere('first_name', 'like', "%{$search}%")
+                        ->orWhere('last_name', 'like', "%{$search}%")
+                        ->orWhere('city', 'like', "%{$search}%")
+                        ->orWhere('state', 'like', "%{$search}%");
+                });
+            }
+            $data = $query->orderByDesc('id');
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('date', function ($row) {
+                    return date('d-m-Y', strtotime($row->updated_at)) . '<br>' . date('h:i:s A', strtotime($row->updated_at));
+                })
+                ->addColumn('fullname', function ($row) {
+                    return $row->first_name . ' ' . $row->last_name;
+                })
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '<ul class="action" style="display:block">
+                                    <li class="info" style="display: flex;align-items: center;justify-content: center;"> <a href="javascript:;" onclick="openInfoModal(' . $row->id . ')"><i class="fa fa-info-circle"></i></a></li>
+                                </ul>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['date', 'fullname', 'action'])
+                ->make(true);
+        }
+        return view('offeruser::diet-plan.leads');
+    }
+
     public function wloLeads(Request $request)
     {
         if ($request->ajax()) {
@@ -304,6 +358,8 @@ class LeadsController extends Controller
             $tableId = "weightLossWebinarOfferLeadTable";
         } elseif ($customer->product_id == config('constant.CHILD_NUTRITION_OFFER_ID')) {
             $tableId = "childNutritionOfferLeadTable";
+        } elseif ($customer->product_id == config('constant.DIET_PLAN_ID')) {
+            $tableId = "dietPlanLeadsTable";
         }
         $rec['tableId'] = $tableId;
         return view('offeruser::infodetails')->with($rec);

@@ -37,6 +37,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('delete-account', [CustomersController::class, 'deleteAccount'])->name('delete.account');
     });
 
+    Route::group(['prefix' => 'diet-plan', 'as' => 'manage.diet-plan.'], function () {
+        Route::get('leads', [LeadsController::class, 'dpLeads'])->name('leads');
+        Route::get('customers', [CustomersController::class, 'dpCustomers'])->name('customers');
+    });
+
     Route::group(['prefix' => 'weight-loss-offer', 'as' => 'manage.weight-loss-offer.'], function () {
         Route::get('leads', [LeadsController::class, 'wloLeads'])->name('leads');
         Route::get('customers', [CustomersController::class, 'wloCustomers'])->name('customers');

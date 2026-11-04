@@ -48,6 +48,7 @@ return [
     'CUSTOMIZE_PROGRAM_ID' => 25,
     'WEIGHT_LOSS_WEBINAR_OFFER_ID' => 26,
     'CHILD_NUTRITION_OFFER_ID' => 27,
+    'DIET_PLAN_ID' => 7,
 
     # Interakt template names
     "WEIGHT_LOSS_PROGRAM_SUCCESS_TEMPLATE_NAME" => 'weightlossprogram_pay_success',
