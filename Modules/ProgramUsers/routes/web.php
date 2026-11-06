@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\ProgramUsers\App\Http\Controllers\BFAWorkshopController;
+use Modules\ProgramUsers\App\Http\Controllers\BMIController;
 use Modules\ProgramUsers\App\Http\Controllers\WLPCustomersController;
 use Modules\ProgramUsers\App\Http\Controllers\WLPLeadsController;
 use Modules\ProgramUsers\App\Http\Controllers\CustomersController;
@@ -42,6 +43,31 @@ Route::group([
     Route::post('customers/delete-account', [WLPCustomersController::class, 'deleteAccount'])->name('customers.delete.account');
 
     Route::get('statistics', [WLPLeadsController::class, 'statistics'])->name('statistics');
+});
+
+Route::group([
+    'prefix' => 'bmi',
+    'as' => 'manage.bmi.',
+    'middleware' => ['auth'],
+], function () {
+    Route::get('leads', [BMIController::class, 'leads'])->name('leads');
+    Route::post('leads-info', [BMIController::class, 'info'])->name('leads.info');
+    Route::post('leads/block-user', [BMIController::class, 'blockUser'])->name('leads.block.user');
+    Route::post('leads/dnd-user', [BMIController::class, 'dndUser'])->name('leads.dnd.user');
+    Route::post('leads/delete-user', [BMIController::class, 'destroyUser'])->name('leads.destroy.user');
+    Route::post('leads/convert-customer', [BMIController::class, 'convertCustomer'])->name('leads.convertcustomer');
+
+    Route::get('customers', [BMIController::class, 'customers'])->name('customers');
+    Route::get('customers/{userId}', [BMIController::class, 'usersDetails'])->name('customers.details');
+    Route::post('customers/update', [BMIController::class, 'usersDetailsUpdate'])->name('customers.update');
+    Route::get('/invoice/{id}/pdf', [BMIController::class, 'downloadPdf'])->name('customers.invoice.pdf');
+    Route::get('bmi/{id}/pdf', [BMIController::class, 'downloadBMIReport'])->name('customers.bmi.pdf');
+
+    Route::post('customers/update-password', [BMIController::class, 'updatePassword'])->name('customers.update.password');
+    Route::post('customers/deactivate-account', [BMIController::class, 'deactivateAccount'])->name('customers.deactivate.account');
+    Route::post('customers/delete-account', [BMIController::class, 'deleteAccount'])->name('customers.delete.account');
+
+    Route::get('statistics', [BMIController::class, 'statistics'])->name('statistics');
 });
 
 Route::group([

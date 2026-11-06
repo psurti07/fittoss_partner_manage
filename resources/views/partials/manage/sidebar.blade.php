@@ -71,7 +71,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-main-title">
+                     <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Weight Loss Program</h6>
                         </div>
@@ -116,7 +116,7 @@
 
                     <li class="sidebar-main-title">
                         <div>
-                            <h6 class="heading-color">Weight Loss Webinar</h6>
+                            <h6 class="heading-color">Health Awareness Session</h6>
                         </div>
                     </li>
 
@@ -147,6 +147,92 @@
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.weight-loss-webinar.customers') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span class="">Customers</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6 class="heading-color">Diet Plan</h6>
+                        </div>
+                    </li>
+
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.diet-plan.statistics') }}" data-bs-original-title="" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            <span class="">Statistics</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.diet-plan.leads') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            <span class="">Leads</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.diet-plan.customers') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span class="">Customers</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6 class="heading-color">BMI Calculator</h6>
+                        </div>
+                    </li>
+
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.bmi.statistics') }}" data-bs-original-title="" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            <span class="">Statistics</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.bmi.leads') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            <span class="">Leads</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.bmi.customers') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="9" cy="7" r="4"></circle>
@@ -252,27 +338,6 @@
                         <div>
                             <h6 class="heading-color">Digital Marketing (Offers)</h6>
                         </div>
-                    </li>
-
-                    <li class="sidebar-list  {{ request()->routeIs('manage.diet-plan.*') ? 'active' : 'close' }}">
-                        <i class="fa fa-thumb-tack"></i>
-                        <a class="sidebar-link sidebar-title {{ request()->routeIs('manage.diet-plan.*') ? 'active' : '' }}" href="#" data-bs-original-title="" title="">
-                            <i data-feather="tag"></i>
-                            <span class="">Diet Plan</span>
-                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
-                        </a>
-                        <ul class="sidebar-submenu" style="display: {{ request()->routeIs('manage.diet-plan.*') ? 'block' : 'none' }};">
-                            <li class="{{ request()->routeIs('manage.diet-plan.leads') || request()->routeIs('manage.diet-plan.customer.details') ? 'active' : '' }}">
-                                <a href="{{ route('manage.diet-plan.leads') }}" class="{{ request()->routeIs('manage.diet-plan.leads') || request()->routeIs('manage.diet-plan.customer.details') ? 'active' : '' }}">
-                                    Leads
-                                </a>
-                            </li>
-                            <li class="{{ request()->routeIs('manage.diet-plan.customers') || request()->routeIs('manage.diet-plan.customer.details') ? 'active' : '' }}">
-                                <a href="{{ route('manage.diet-plan.customers') }}" class="{{ request()->routeIs('manage.diet-plan.customers') || request()->routeIs('manage.diet-plan.customer.details') ? 'active' : '' }}">
-                                    Customers
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
                     <li class="sidebar-list  {{ request()->routeIs('manage.fitone.*') ? 'active' : 'close' }}">

@@ -68,6 +68,23 @@ class CustomersController extends Controller
         return view('offeruser::diet-plan.customers');
     }
 
+    public function dpStatistics()
+    {
+        $data = Customer::whereDate('updated_at', now())
+            ->where('product_id', config('constant.DIET_PLAN_ID'))
+            ->where('is_active', 1)
+            ->where('is_delete', 0)
+            ->selectRaw("SUM(CASE WHEN is_user = 0 THEN 1 ELSE 0 END) as leads,
+                         SUM(CASE WHEN is_user = 1 THEN 1 ELSE 0 END) as customers,
+                         SUM(CASE WHEN is_user = 1 THEN grand_total ELSE 0 END) as amount")
+            ->first();
+
+        $leads = $data->leads ?? 0;
+        $customers = $data->customers ?? 0;
+        $amount = $data->amount ?? 0;
+        return view('offeruser::diet-plan.statistics', compact('leads', 'customers', 'amount'));
+    }
+
     public function wloCustomers(Request $request)
     {
         if ($request->ajax()) {

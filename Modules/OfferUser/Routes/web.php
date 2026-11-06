@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'diet-plan', 'as' => 'manage.diet-plan.'], function () {
         Route::get('leads', [LeadsController::class, 'dpLeads'])->name('leads');
         Route::get('customers', [CustomersController::class, 'dpCustomers'])->name('customers');
+        Route::get('statistics', [CustomersController::class, 'dpStatistics'])->name('statistics');
     });
 
     Route::group(['prefix' => 'weight-loss-offer', 'as' => 'manage.weight-loss-offer.'], function () {

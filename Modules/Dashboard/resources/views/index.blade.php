@@ -21,7 +21,7 @@
     <div class="row widget-grid">
         <div class="col-xxl-12 col-md-12 box-col-12">
             <div class="card">
-                <div class="card-header card-no-border">
+                <div class="card-header card-no-border pb-0">
                     <div class="header-top"> 
                         <h5>Weight Loss Program</h5>
                         <a class="f-light d-flex align-items-center" href="{{ route('manage.weight-loss-program.statistics') }}">View all <i class="f-w-700 icon-arrow-top-right"></i></a>
@@ -93,9 +93,9 @@
     <div class="row widget-grid">
         <div class="col-xxl-12 col-md-12 box-col-12">
             <div class="card">
-                <div class="card-header card-no-border">
+                <div class="card-header card-no-border pb-0">
                     <div class="header-top"> 
-                        <h5>Weight Loss Webinar</h5>
+                        <h5>Health Awareness Session</h5>
                         <a class="f-light d-flex align-items-center" href="{{ route('manage.weight-loss-webinar.statistics') }}">View all <i class="f-w-700 icon-arrow-top-right"></i></a>
                     </div>
                 </div>
@@ -165,7 +165,66 @@
     <div class="row widget-grid">
         <div class="col-xxl-12 col-md-12 box-col-12">
             <div class="card">
-                <div class="card-header card-no-border">
+                <div class="card-header card-no-border pb-0">
+                    <div class="header-top"> 
+                        <h5>Diet Plan</h5>
+                        <a class="f-light d-flex align-items-center" href="{{ route('manage.diet-plan.statistics') }}">View all <i class="f-w-700 icon-arrow-top-right"></i></a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row g-sm-3 g-2">
+                        <div class="col-lg-3 col-md-3 col-12">
+                            <div class="light-card balance-card">
+                                <div class="svg-box">
+                                    <svg class="svg-fill">
+                                        <use href="{{ asset('assets/svg/icon-sprite.svg#user-visitor') }}"></use>
+                                    </svg>
+                                </div>
+                                <div> 
+                                    <span class="f-light">Leads</span>
+                                    <h6 class="mt-1 mb-0">{{ $data->get(config('constant.DIET_PLAN_ID'))->leads ?? 0 }}</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-12">
+                            <div class="light-card balance-card">
+                                <div class="svg-box">
+                                    <svg class="svg-fill">
+                                        <use href="{{ asset('assets/svg/icon-sprite.svg#customers') }}"></use>
+                                    </svg>
+                                </div>
+                                <div> 
+                                    <span class="f-light">Customers</span>
+                                    <h6 class="mt-1 mb-0">{{ $data->get(config('constant.DIET_PLAN_ID'))->customers ?? 0 }}</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-12">
+                            <div class="light-card balance-card">
+                                <div class="svg-box">
+                                    <svg class="svg-fill">
+                                        <use href="{{ asset('assets/svg/icon-sprite.svg#new-order') }}"></use>
+                                    </svg>
+                                </div>
+                                <div> 
+                                    <span class="f-light">Amount</span>
+                                    <h6 class="mt-1 mb-0">{{ $data->get(config('constant.DIET_PLAN_ID'))->amount ?? 0 }}</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row widget-grid">
+        <div class="col-xxl-12 col-md-12 box-col-12">
+            <div class="card">
+                <div class="card-header card-no-border pb-0">
                     <div class="header-top"> 
                         <h5>Body Fat Analysis Workshop</h5>
                         <a class="f-light d-flex align-items-center" href="{{ route('manage.bodyfat-analysis-workshop.statistics') }}">View all <i class="f-w-700 icon-arrow-top-right"></i></a>
@@ -182,7 +241,7 @@
                                 </div>
                                 <div> 
                                     <span class="f-light">Leads</span>
-                                    <h6 class="mt-1 mb-0">{{ $data->get(config('constant.BODY_FAT_ANALYSIS_WORKSHOP_ID'))->leads ?? 0 }}</h6>
+                                    <h6 class="mt-1 mb-0">{{ $data->get(config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID'))->leads ?? 0 }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -196,7 +255,7 @@
                                 </div>
                                 <div> 
                                     <span class="f-light">Customers</span>
-                                    <h6 class="mt-1 mb-0">{{ $data->get(config('constant.BODY_FAT_ANALYSIS_WORKSHOP_ID'))->customers ?? 0 }}</h6>
+                                    <h6 class="mt-1 mb-0">{{ $data->get(config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID'))->customers ?? 0 }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -210,7 +269,7 @@
                                 </div>
                                 <div> 
                                     <span class="f-light">Amount</span>
-                                    <h6 class="mt-1 mb-0">{{ $data->get(config('constant.BODY_FAT_ANALYSIS_WORKSHOP_ID'))->amount ?? 0 }}</h6>
+                                    <h6 class="mt-1 mb-0">{{ $data->get(config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID'))->amount ?? 0 }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -224,7 +283,7 @@
                                 </div>
                                 <div> 
                                     <span class="f-light">OTPs</span>
-                                    <h6 class="mt-1 mb-0">{{ $otps->get(config('constant.BODY_FAT_ANALYSIS_WORKSHOP_ID'))->total ?? 0 }}</h6>
+                                    <h6 class="mt-1 mb-0">{{ $otps->get(config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID'))->total ?? 0 }}</h6>
                                 </div>
                             </div>
                         </div>

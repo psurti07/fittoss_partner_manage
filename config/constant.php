@@ -49,6 +49,7 @@ return [
     'WEIGHT_LOSS_WEBINAR_OFFER_ID' => 26,
     'CHILD_NUTRITION_OFFER_ID' => 27,
     'DIET_PLAN_ID' => 7,
+    'BMI_PRODUCT_ID' => 28,
 
     # Interakt template names
     "WEIGHT_LOSS_PROGRAM_SUCCESS_TEMPLATE_NAME" => 'weightlossprogram_pay_success',
