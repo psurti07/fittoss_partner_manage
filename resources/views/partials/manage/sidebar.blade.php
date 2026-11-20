@@ -114,7 +114,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-main-title">
+                    {{-- <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Health Awareness Session</h6>
                         </div>
@@ -155,7 +155,7 @@
                             </svg>
                             <span class="">Customers</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="sidebar-main-title">
                         <div>
@@ -243,7 +243,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-main-title">
+                    {{-- <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Bodyfat Analysis Workshop</h6>
                         </div>
@@ -284,7 +284,7 @@
                             </svg>
                             <span class="">Customers</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="sidebar-main-title">
                         <div>

@@ -21,9 +21,8 @@ class DashboardController extends Controller
         $data = Customer::whereDate('updated_at', now())
             ->whereIn('product_id', [
                 config('constant.WEIGHT_LOSS_PROGRAM_ID'),
-                config('constant.WEIGHT_LOSS_WEBINAR_ID'),
                 config('constant.DIET_PLAN_ID'),
-                config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID')
+                config('constant.BMI_PRODUCT_ID')
             ])
             ->where('is_active', 1)
             ->where('is_delete', 0)
@@ -38,9 +37,8 @@ class DashboardController extends Controller
         $otps = OtpVerification::whereDate('updated_at', now())
             ->whereIn('product_id', [
                 config('constant.WEIGHT_LOSS_PROGRAM_ID'),
-                config('constant.WEIGHT_LOSS_WEBINAR_ID'),
                 config('constant.DIET_PLAN_ID'),
-                config('constant.BODYFAT_ANALYSIS_WORKSHOP_ID')
+                config('constant.BMI_PRODUCT_ID')
             ])
             ->selectRaw("product_id,count(id) as total")
             ->groupBy('product_id')

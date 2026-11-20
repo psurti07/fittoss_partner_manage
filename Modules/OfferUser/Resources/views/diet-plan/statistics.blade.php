@@ -49,6 +49,20 @@
         </a>
     </div>
     <div class="col-lg-3 col-md-3 col-12">
+        <a href="{{ route('manage.sendotps',['filter' => 'today','product_id' => config('constant.BMI_PRODUCT_ID')]) }}" data-bs-original-title="" title="">
+            <div class="card widget-1">
+                <div class="card-body">
+                    <div class="widget-content">
+                        <div>
+                            <h4>0</h4>
+                            <span class="f-light">Total OTPs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-12">
         <a href="javascript:;" data-bs-original-title="" title="">
             <div class="card widget-1">
                 <div class="card-body">
