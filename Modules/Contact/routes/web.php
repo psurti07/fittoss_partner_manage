@@ -21,3 +21,6 @@ Route::group([
 ], function () {
     Route::resource('contact', ContactController::class)->names('contact');
 });
+
+Route::post('/contact/add-remark', [ContactController::class, 'storeRemark'])->name('contact.add-remark');
+Route::post('/contact/change-status', [ContactController::class, 'changeSupportStatus'])->name('contact.change-status');

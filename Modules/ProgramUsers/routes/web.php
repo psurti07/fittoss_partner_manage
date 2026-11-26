@@ -6,6 +6,7 @@ use Modules\ProgramUsers\App\Http\Controllers\BMIController;
 use Modules\ProgramUsers\App\Http\Controllers\WLPCustomersController;
 use Modules\ProgramUsers\App\Http\Controllers\WLPLeadsController;
 use Modules\ProgramUsers\App\Http\Controllers\CustomersController;
+use Modules\ProgramUsers\App\Http\Controllers\ExpertConsultController;
 use Modules\ProgramUsers\App\Http\Controllers\LeadsController;
 use Modules\ProgramUsers\App\Http\Controllers\WLWebinarController;
 
@@ -68,6 +69,21 @@ Route::group([
     Route::post('customers/delete-account', [BMIController::class, 'deleteAccount'])->name('customers.delete.account');
 
     Route::get('statistics', [BMIController::class, 'statistics'])->name('statistics');
+});
+
+Route::group([
+    'prefix' => 'expert-consultation',
+    'as' => 'manage.expert-consultation.',
+    'middleware' => ['auth'],
+], function () {
+    Route::get('leads', [ExpertConsultController::class, 'leads'])->name('leads');
+    Route::post('leads-info', [ExpertConsultController::class, 'info'])->name('leads.info');
+    Route::post('leads/block-user', [ExpertConsultController::class, 'blockUser'])->name('leads.block.user');
+    Route::post('leads/dnd-user', [ExpertConsultController::class, 'dndUser'])->name('leads.dnd.user');
+    Route::post('leads/delete-user', [ExpertConsultController::class, 'destroyUser'])->name('leads.destroy.user');
+    Route::post('leads/convert-customer', [ExpertConsultController::class, 'convertCustomer'])->name('leads.convertcustomer');
+
+    Route::get('statistics', [ExpertConsultController::class, 'statistics'])->name('statistics');
 });
 
 Route::group([

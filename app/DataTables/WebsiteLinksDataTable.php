@@ -53,13 +53,21 @@ class WebsiteLinksDataTable extends DataTable
                     ? date('d/m/Y H:i:s A', strtotime($row->rec_date))
                     : 'N/A';
             })
+            ->editColumn('type', function ($row) {
+                return match ((string) $row->type) {
+                    '1' => '<span class="badge badge-light-info">Website</span>',
+                    '2' => '<span class="badge badge-light-success">Social Media</span>',
+                    '3' => '<span class="badge badge-light-warning">Offer Page</span>',
+                    default => '<span class="badge badge-light-secondary">N/A</span>',
+                };
+            })
             ->editColumn('isActive', function ($row) {
                 $statusClass = $row->isActive == 1 ? 'btn-outline-success' : 'btn-outline-danger';
                 $statusText = $row->isActive == 1 ? 'Active' : 'Inactive';
                 return '<span class="btn btn-xs ' . $statusClass . '" style="cursor:pointer;" onclick="websiteLinksStatus(' . $row->id . ')">' . $statusText . '</span>';
             })
             ->setRowId('id')
-            ->rawColumns(['action', 'rec_date', 'view', 'isActive']);
+            ->rawColumns(['action', 'rec_date', 'view', 'type', 'isActive']);
     }
 
     /**
@@ -70,9 +78,14 @@ class WebsiteLinksDataTable extends DataTable
      */
     public function query(WebsiteLinks $model, Request $request): QueryBuilder
     {
-        return $model->newQuery()
+        $query = $model->newQuery()
             ->company()
             ->where('isDelete', 0);
+
+        if ($request->filled('link_type')) {
+            $query->where('type', $request->input('link_type'));
+        }
+        return $query;
 
         // if (request()->filled('fromdate') && request()->filled('todate')) {
         //     $from = Carbon::parse(request('fromdate'))->startOfDay();
@@ -119,7 +132,8 @@ class WebsiteLinksDataTable extends DataTable
         return [
             Column::make('DT_RowIndex')->title('#')->searchable(false)->orderable(false)->width(5),
             Column::make('rec_date')->title('Date')->data('rec_date')->name('rec_date'),
-            Column::make('title')->title('title')->data('title')->name('Title'),
+            Column::make('title')->title('Title')->data('title')->name('Title'),
+            Column::make('type')->title('Type')->data('type')->name('Type'),
             Column::computed('view')->exportable(false)->printable(false)->title('Visit Link')->addClass('text-center'),
             Column::make('short_link')->title('Short Link')->addClass('text-center'),
             column::make('isActive')->title('Status')->data('isActive')->name('isActive'),

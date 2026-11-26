@@ -22,6 +22,24 @@
                             <small class="text-danger ajax-error title"></small>
                         </div>
 
+                        <!-- Link Type -->
+                        <div class="col-12">
+                            <label class="form-label d-block">Link Type <span class="text-danger">*</span></label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="type_website" value="1" checked>
+                                <label class="form-check-label" for="type_website">Website</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="type_social_media" value="2">
+                                <label class="form-check-label" for="type_social_media">Social Media</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="type_offer_page" value="3">
+                                <label class="form-check-label" for="type_offer_page">OfferPage</label>
+                            </div>
+                            @component('components.ajax-error', ['field' => 'type'])@endcomponent
+                        </div>
+
                         <!-- LINK -->
                         <div class="col-12">
                             <label class="form-label">Link <span class="text-danger">*</span></label>

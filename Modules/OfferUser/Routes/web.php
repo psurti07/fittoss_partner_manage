@@ -74,10 +74,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/invoice/{userId}/pdf', [FitoneUserController::class, 'downloadPdf'])->name('invoice.pdf');
     });
 
-    Route::group(['prefix' => 'expert-consultation', 'as' => 'manage.expert.consultation.'], function () {
-        Route::get('leads', [ExpertConsultationController::class, 'leads'])->name('leads');
-        Route::get('customers', [ExpertConsultationController::class, 'customers'])->name('customers');
-    });
+    // Route::group(['prefix' => 'expert-consultation', 'as' => 'manage.expert.consultation.'], function () {
+    //     Route::get('leads', [ExpertConsultationController::class, 'leads'])->name('leads');
+    //     Route::get('customers', [ExpertConsultationController::class, 'customers'])->name('customers');
+    // });
 
     Route::group(['prefix' => 'membership-plan', 'as' => 'manage.membership-plan.'], function () {
         Route::get('leads', [ExpertConsultationController::class, 'membershipLeads'])->name('leads');

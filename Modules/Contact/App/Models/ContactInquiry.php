@@ -15,5 +15,5 @@ class ContactInquiry extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['id', 'first_name', 'title',  'mobile_no', 'email', 'server_ip', 'message', 'is_active', 'is_delete'];
+    protected $fillable = ['id', 'first_name', 'title',  'mobile_no', 'email', 'server_ip', 'message', 'remarks', 'is_active', 'is_delete'];
 }

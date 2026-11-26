@@ -39,7 +39,8 @@ class WebsiteLinksController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'link' => 'required|url|max:255',
-            'short_link' => 'nullable'
+            'short_link' => 'nullable',
+            'type' => 'required|in:1,2,3',
         ]);
 
         try {
@@ -49,6 +50,7 @@ class WebsiteLinksController extends Controller
                 'title' => $validated['title'],
                 'link' => $validated['link'],
                 'short_link' => $validated['short_link'],
+                'type' => $validated['type'],
                 'isActive' => 1,
                 'isDelete' => 0,
             ]);
@@ -101,7 +103,8 @@ class WebsiteLinksController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'link' => 'required|url|max:255',
-            'short_link' => 'nullable'
+            'short_link' => 'nullable',
+            'type' => 'required|in:1,2,3',
         ]);
 
         try {
@@ -112,6 +115,7 @@ class WebsiteLinksController extends Controller
                 'title' => $validated['title'],
                 'link' => $validated['link'],
                 'short_link' => $validated['short_link'],
+                'type' => $validated['type'],
                 'isActive' => 1,
                 'isDelete' => 0,
             ];

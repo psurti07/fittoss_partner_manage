@@ -243,6 +243,37 @@
                         </a>
                     </li>
 
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6 class="heading-color">Expert Consultation</h6>
+                        </div>
+                    </li>
+
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.expert-consultation.statistics') }}" data-bs-original-title="" title="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            <span class="">Statistics</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.expert-consultation.leads') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span class="">Leads</span>
+                        </a>
+                    </li>
+
                     {{-- <li class="sidebar-main-title">
                         <div>
                             <h6 class="heading-color">Bodyfat Analysis Workshop</h6>
@@ -361,7 +392,7 @@
                         </ul>
                     </li>
 
-                    <li class="sidebar-list  {{ request()->routeIs('manage.expert.consultation.*') ? 'active' : 'close' }}">
+                    {{-- <li class="sidebar-list  {{ request()->routeIs('manage.expert.consultation.*') ? 'active' : 'close' }}">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title {{ request()->routeIs('manage.expert.consultation.*') ? 'active' : '' }}" href="#" data-bs-original-title="" title="">
                             <i data-feather="tag"></i>
@@ -380,7 +411,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     <li class="sidebar-list  {{ request()->routeIs('manage.membership-plan.*') ? 'active' : 'close' }}">
                         <i class="fa fa-thumb-tack"></i>

@@ -46,7 +46,7 @@
             } elseif ($userData->product_id == config('constant.FITONE_OFFER_ID')) {
                 $routeName = route('manage.fitone.leads');
             } elseif ($userData->product_id == config('constant.EXPERT_CONSULTATION_OFFER_ID')) {
-                $routeName = route('manage.expert.consultation.leads');
+                $routeName = route('manage.expert-consultation.leads');
             } elseif ($userData->product_id == config('constant.ADVANCE_PLAN_OFFER_ID')) {
                 $routeName = route('manage.advance-plan.leads');
             } elseif ($userData->product_id == config('constant.ASSOCIATE_PARTNER_PROGRAM_OFFER_ID')) {

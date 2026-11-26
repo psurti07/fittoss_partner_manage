@@ -27,6 +27,23 @@
                             @component('components.ajax-error', ['field' => 'title'])@endcomponent
                         </div>
 
+                        <div class="col-12">
+                            <label class="form-label d-block">Link Type <span class="text-danger">*</span></label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="type_website" value="1" {{ $websitelinks->type == 1 ? 'checked' : '' }}>
+                                <label class="form-check-label" for="type_website">Website</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="type_social_media" value="2" {{ $websitelinks->type == 2 ? 'checked' : '' }}>
+                                <label class="form-check-label" for="type_social_media">Social Media</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="type_offer_page" value="3" {{ $websitelinks->type == 3 ? 'checked' : '' }}>
+                                <label class="form-check-label" for="type_offer_page">Offer Page</label>
+                            </div>
+                            @component('components.ajax-error', ['field' => 'type'])@endcomponent
+                        </div>
+
                         <!-- LINK -->
                         <div class="col-12">
                             <label class="form-label">Link <span class="text-danger">*</span></label>

@@ -8,7 +8,7 @@
 @endpush
 
 @section('breadcrumb-title')
-<h3>Weight Loss Webinar Statistics</h3>
+<h3>BMI Statistics</h3>
 @endsection
 
 @section('breadcrumb-items')

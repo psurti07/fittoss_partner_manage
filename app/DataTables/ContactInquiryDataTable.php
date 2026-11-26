@@ -21,14 +21,37 @@ class ContactInquiryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addIndexColumn()
+            ->addColumn('status', function ($model) {
+                switch ($model->status) {
+                    case 1:
+                        $status = '<span class="text-info">Open</span>';
+                        break;
+                    case 2:
+                        $status = '<span class="text-danger">Processing</span>';
+                        break;
+                    case 3:
+                        $status = '<span class="text-warning">Closed</span>';
+                        break;
+                    case 4:
+                        $status = '<span class="text-success">Solved</span>';
+                        break;
+                    case 5:
+                        $status = '<span class="text-danger">Closed – No Response</span>';
+                        break;
+                    default:
+                        $status = "-";
+                        break;
+                }
+                return $status;
+            })
             ->addColumn('action', function ($row) {
-                $action = '';
-                $action = '<a href="#" data-id="' . $row->id . '" class="btn">
-                                   <i class="fa fa-info-circle text-success"></i>
-                               </a>';
-
+                $action = '<ul class="action justify-content-center">
+                                <li class="info"><a href="javascript:;" onclick="openDetailsModal(' . $row->id . ')"><i class="fa fa-info-circle"></i></a></li>
+                            </ul>';
                 return $action;
-            });
+            })
+            ->setRowId('id')
+            ->rawColumns(['action', 'status']);
     }
 
     /**
@@ -75,11 +98,12 @@ class ContactInquiryDataTable extends DataTable
             Column::make('email'),
             Column::make('mobile_no'),
             Column::make('message'),
-            // Column::computed('action')
-            //   ->exportable(false)
-            //   ->printable(false)
-            //   ->width(60)
-            //   ->addClass('text-center'),
+            Column::make('status')->title('Status'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 

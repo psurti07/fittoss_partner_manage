@@ -22,7 +22,8 @@ class DashboardController extends Controller
             ->whereIn('product_id', [
                 config('constant.WEIGHT_LOSS_PROGRAM_ID'),
                 config('constant.DIET_PLAN_ID'),
-                config('constant.BMI_PRODUCT_ID')
+                config('constant.BMI_PRODUCT_ID'),
+                config('constant.EXPERT_CONSULTATION_OFFER_ID')
             ])
             ->where('is_active', 1)
             ->where('is_delete', 0)
@@ -38,7 +39,8 @@ class DashboardController extends Controller
             ->whereIn('product_id', [
                 config('constant.WEIGHT_LOSS_PROGRAM_ID'),
                 config('constant.DIET_PLAN_ID'),
-                config('constant.BMI_PRODUCT_ID')
+                config('constant.BMI_PRODUCT_ID'),
+                config('constant.EXPERT_CONSULTATION_OFFER_ID')
             ])
             ->selectRaw("product_id,count(id) as total")
             ->groupBy('product_id')

@@ -34,8 +34,26 @@
 @section('content')
 <div class="container-fluid">
     <div class="row g-3">
-        <div class="col-12 text-end">
-            <a href="javascript:;" onclick="openAddModal()" class="btn btn-outline-secondary" id="add-website-btn"><i class="fa fa-plus-square"></i>&nbsp;Add Website Links</a>
+        <div class="col-12">
+            <div class="d-flex align-items-end">
+                <div class="d-flex justify-content-start align-items-end gap-3">
+                    <div class="col-md-8 col-12">
+                        <label class="form-label">Link Type</label>
+                        <select class="form-select" id="link_type">
+                            <option value="">All</option>
+                            <option value="1">Website</option>
+                            <option value="2">Social Media</option>
+                            <option value="3">Offer Page</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-outline-warning" id="dateBtn">
+                        Show
+                    </button>
+                </div>
+                <div class="ms-auto">
+                    <a href="javascript:;" onclick="openAddModal()" class="btn btn-outline-secondary" id="add-website-btn"><i class="fa fa-plus-square"></i>&nbsp;Add Website Links</a>
+                </div>
+            </div>
         </div>
         <div class="col-12">
             <div class="card">
@@ -55,6 +73,14 @@
 @push('script-tag')
 {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 <script>
+    const table = $("#websitelinks-table");
+    table.on('preXhr.dt', function(e, settings, data) {
+        data.link_type = $('#link_type').val();
+    });
+    $('#dateBtn').on('click', function() {
+        table.DataTable().ajax.reload();
+        return false;
+    })
     // OPEN ADD MODAL
     function openAddModal() {
         $.ajax({

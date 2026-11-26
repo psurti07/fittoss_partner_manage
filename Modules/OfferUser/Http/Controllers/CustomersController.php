@@ -353,7 +353,7 @@ class CustomersController extends Controller
             } elseif ($customer->product_id == config('constant.FITONE_OFFER_ID')) {
                 $redirectRoute = route('manage.fitone.customers');
             } elseif ($customer->product_id == config('constant.EXPERT_CONSULTATION_OFFER_ID')) {
-                $redirectRoute = route('manage.expert.consultation.customers');
+                $redirectRoute = "";
             } elseif ($customer->product_id == config('constant.ADVANCE_PLAN_OFFER_ID')) {
                 $redirectRoute = route('manage.advance-plan.customers');
             } elseif ($customer->product_id == config('constant.ASSOCIATE_PARTNER_PROGRAM_OFFER_ID')) {

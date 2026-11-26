@@ -14,7 +14,7 @@ class WebsiteLinks extends Model
 
     public $table = 'website_links';
 
-    protected $fillable = ['id', 'rec_date', 'company_id', 'title', 'link', 'short_link', 'isActive', 'isDelete'];
+    protected $fillable = ['id', 'rec_date', 'company_id', 'title', 'type', 'link', 'short_link', 'isActive', 'isDelete'];
 
     public function scopeCompany(Builder $query): Builder
     {
