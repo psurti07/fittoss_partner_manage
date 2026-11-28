@@ -62,7 +62,6 @@
                                     <th>Challenge</th>
                                     <th>Health Issues</th>
                                     <th>Medical Issue</th>
-                                    <th>Discuss</th>
                                     <th class="text-center">Details</th>
                                 </tr>
                             </thead>
@@ -123,7 +122,6 @@
                 {data: 'challenge', name: 'challenge', visible: false},
                 {data: 'is_medical', name: 'is_medical', visible: false},
                 {data: 'medical', name: 'medical', visible: false},
-                {data: 'discuss', name: 'discuss', visible: false},
 
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],

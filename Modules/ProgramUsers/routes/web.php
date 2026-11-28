@@ -83,6 +83,14 @@ Route::group([
     Route::post('leads/delete-user', [ExpertConsultController::class, 'destroyUser'])->name('leads.destroy.user');
     Route::post('leads/convert-customer', [ExpertConsultController::class, 'convertCustomer'])->name('leads.convertcustomer');
 
+    Route::get('customers', [ExpertConsultController::class, 'customers'])->name('customers');
+    Route::get('customers/{userId}', [ExpertConsultController::class, 'usersDetails'])->name('customers.details');
+    Route::post('customers/update', [ExpertConsultController::class, 'usersDetailsUpdate'])->name('customers.update');
+
+    Route::post('customers/update-password', [ExpertConsultController::class, 'updatePassword'])->name('customers.update.password');
+    Route::post('customers/deactivate-account', [ExpertConsultController::class, 'deactivateAccount'])->name('customers.deactivate.account');
+    Route::post('customers/delete-account', [ExpertConsultController::class, 'deleteAccount'])->name('customers.delete.account');
+
     Route::get('statistics', [ExpertConsultController::class, 'statistics'])->name('statistics');
 });
 

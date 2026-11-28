@@ -1,5 +1,5 @@
 @extends('layouts.manage')
-@section('title', 'Weight Loss Webinar Customers')
+@section('title', 'BMI Customers')
 
 @push('css-links')
 @include('stacks.css.manage.datatables')
@@ -15,7 +15,7 @@
 @endpush
 
 @section('breadcrumb-title')
-<h3>Weight Loss Webinar Customers</h3>
+<h3>BMI Customers</h3>
 @endsection
 
 @section('breadcrumb-items')

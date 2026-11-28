@@ -6,12 +6,222 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\OtpVerification;
+use App\Models\UserPersonalDetails;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Log;
 
 class ExpertConsultController extends Controller
 {
+    public function customers(Request $request)
+    {
+        if ($request->ajax()) {
+            $columns = [
+                0 => 'id',
+                1 => 'updated_at',
+                2 => 'first_name',
+                3 => 'mobile_no',
+                4 => 'email',
+                5 => 'city',
+                6 => 'age'
+            ];
+
+            $search = $request->input('search')['value'] ?? NULL;
+            $orderColumnIndex = $request->input('order.0.column');
+            $orderDir = $request->input('order.0.dir', 'asc');
+            $fromDate = $request->input('fromDate');
+            $toDate = $request->input('toDate');
+            $query = Customer::with('personalDetails')
+                ->select(
+                    'id',
+                    'first_name',
+                    'last_name',
+                    'email',
+                    'mobile_no',
+                    'product_id',
+                    'city',
+                    'pincode',
+                    'state',
+                    'is_attend',
+                    'updated_at'
+                )
+                ->where('is_active', 1)
+                ->where('is_user', 1)
+                ->where('is_delete', 0)
+                ->where('product_id', config('constant.EXPERT_CONSULTATION_OFFER_ID'));
+            if (!empty($fromDate) && !empty($toDate)) {
+                $query->whereRaw('DATE(updated_at)  BETWEEN  ? AND ?', [$fromDate, $toDate]);
+            }
+            if (!empty($search)) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('mobile_no', 'like', "%{$search}%")
+                        ->orWhere('first_name', 'like', "%{$search}%")
+                        ->orWhere('last_name', 'like', "%{$search}%")
+                        ->orWhere('city', 'like', "%{$search}%")
+                        ->orWhere('state', 'like', "%{$search}%");
+                });
+            }
+            if (isset($columns[$orderColumnIndex])) {
+                $query->orderBy($columns[$orderColumnIndex], $orderDir);
+            } else {
+                $query->orderBy('updated_at', 'desc');
+            }
+            return DataTables::of($query)
+                ->addIndexColumn()
+                ->addColumn('date', function ($row) {
+                    return date('d-m-Y', strtotime($row->updated_at)) . '<br>' . date('h:i:s A', strtotime($row->updated_at));
+                })
+                ->addColumn('fullname', function ($row) {
+                    return $row->first_name . ' ' . $row->last_name;
+                })
+                ->addColumn('age', function ($row) {
+                    return optional($row->personalDetails)->age;
+                })
+                // Export columns
+                ->addColumn('goal', function ($row) {
+                    return optional($row->personalDetails)->goal;
+                })
+                ->addColumn('challenge', function ($row) {
+                    return optional($row->personalDetails)->challenge;
+                })
+                ->addColumn('gender', function ($row) {
+                    return  match (optional($row->personalDetails)->gender) {
+                        1 => 'Male',
+                        2 => 'Female',
+                        default => 'Other'
+                    };
+                })
+                ->addColumn('is_medical', function ($row) {
+                    return  match (optional($row->personalDetails)->is_medical) {
+                        1 => 'Yes',
+                        2 => 'No',
+                        3 => 'Prefer not to say',
+                        default => 'N/A'
+                    };
+                })
+                ->addColumn('medical', function ($row) {
+                    return optional($row->personalDetails)->medical;
+                })
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '<a class="" href="' . route('manage.expert-consultation.customers.details', ['userId' => $row->id]) . '"><i class="fa fa-info-circle"></i></a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['date', 'fullname', 'action'])
+                ->make(true);
+        }
+        return view('programusers::expert-consultation.customers');
+    }
+
+    public function usersDetails($userId)
+    {
+        $customer = Customer::with('personalDetails')->where(['id' => $userId, 'is_delete' => 0, 'is_user' => 1])->first();
+        $referralUsers = [];
+
+        if ($customer != null) {
+            return view('programusers::expert-consultation.customerDetails', compact(['customer', 'referralUsers']));
+        } else {
+            return response()->json(array('type' => 'ERROR', 'message' => 'Users not found!', 'data' => ''));
+        }
+    }
+
+    public function usersDetailsUpdate(Request $request)
+    {
+        $userId = $request->input('userid');
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            // 'email' => 'required|email|unique:customers,email,' . $userId . ',id,product_id,' . config('constant.EXPERT_CONSULTATION_OFFER_ID'),
+            'email' => 'required|email',
+            'city' => 'required',
+        ]);
+
+        $result = Customer::where('id', $userId)->update(array(
+            'first_name' => trim(ucfirst($request->input('first_name'))),
+            'last_name' => trim(ucfirst($request->input('last_name'))),
+            'email' => trim(strtolower($request->input('email'))),
+            'city' => $request->input('city'),
+        ));
+
+        $userPersonalDetail = [
+            'userid' => $userId,
+            'goal'        => $request->goal,
+            'challenge'   => $request->challenge ?? NULL,
+            'is_medical'   => $request->is_medical ?? NULL,
+            'medical'   => $request->medical ?? NULL,
+            'age' => $request->age ?? NULL,
+            'preferred_datetime' => $request->preferred_datetime,
+            'gender' => $request->gender ?? 1,
+        ];
+        UserPersonalDetails::updateOrCreate(
+            ['userid' => $userId],
+            $userPersonalDetail
+        );
+        if ($result > 0) {
+            return response()->json(array('type' => 'SUCCESS', 'message' => 'Data updated successfully', 'data' => ''));
+        } else {
+            return response()->json(array('type' => 'ERROR', 'message' => 'Data already updated!', 'data' => ''));
+        }
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $user = Customer::find($request->input('userid'));
+        if ($user != null) {
+            $request->validate([
+                'new_password' => 'required',
+                'retype_password' => 'required|same:new_password'
+            ]);
+            $result = $user->update([
+                'password' => Hash::make($request->input('new_password')),
+            ]);
+            if ($result) {
+                sendChangePasswordEmail($user->first_name . ' ' . $user->last_name, $user->email, $user->mobile_no, $request->input('new_password'));
+                return response()->json(array('type' => 'SUCCESS', 'message' => 'Password updated successfully', 'data' => []));
+            } else {
+                return response()->json(array('type' => 'ERROR', 'message' => 'Oops! Something went wrong.', 'data' => []));
+            }
+        } else {
+            return response()->json(array('type' => 'ERROR', 'message' => 'User not found!', 'data' => []));
+        }
+    }
+
+    public function deactivateAccount(Request $request)
+    {
+        $user = Customer::find($request->input('userid'));
+        if ($user) {
+            $updateData = array('is_active' => $request->input('status'));
+            $result = Customer::where('id', $request->input('userid'))->update($updateData);
+            $message = '';
+            if ($request->input('status') == 1) {
+                $message = 'Account activated successfully';
+            } else {
+                $message = 'Account deactivate successfully';
+            }
+            if ($result > 0) {
+                return response()->json(['type' => 'SUCCESS', 'message' => $message]);
+            } else {
+                return response()->json(['type' => 'ERROR', 'message' => 'Oops! Something went wrong.']);
+            }
+        } else {
+            return response()->json(['type' => 'ERROR', 'message' => 'Invalid user perform action!']);
+        }
+    }
+
+    public function deleteAccount(Request $request)
+    {
+        try {
+            $userId = $request->input('userid');
+            DB::transaction(function () use ($userId) {
+                Customer::where('id', $userId)->update(['is_delete' => 1]);
+            });
+            return response()->json(array('type' => 'SUCCESS', 'message' => 'Customer remove successfully!'));
+        } catch (\Exception $e) {
+            Log::error('error', ['error' => $e->getMessage()]);
+            return response()->json(array('type' => 'ERROR', 'message' => 'Oops! Something went wrong.'));
+        }
+    }
+
     // Leads
     public function statistics()
     {
@@ -120,9 +330,6 @@ class ExpertConsultController extends Controller
                 })
                 ->addColumn('medical', function ($row) {
                     return optional($row->personalDetails)->medical;
-                })
-                ->addColumn('discuss', function ($row) {
-                    return optional($row->personalDetails)->discuss;
                 })
                 ->addColumn('action', function ($row) {
                     $actionBtn = '<ul class="action" style="display:block">

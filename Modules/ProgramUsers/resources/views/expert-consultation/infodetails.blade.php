@@ -98,11 +98,11 @@
                                                 <td>{{ optional($details->personalDetails)->age }}</td>
                                             </tr>
                                             <tr>
-                                                <th>goal</th>
+                                                <th>Goal</th>
                                                 <td>{{ optional($details->personalDetails)->goal ? optional($details->personalDetails)->goal : 'N/A' }}</td>
                                             </tr>
                                             <tr>
-                                                <th>challenge</th>
+                                                <th>Challenge</th>
                                                 <td>{{ optional($details->personalDetails)->challenge ? optional($details->personalDetails)->challenge : 'N/A' }}</td>
                                             </tr>                                            
                                                 <th>Health Issues</th>
@@ -118,10 +118,6 @@
                                             <tr>
                                                 <th>Medical Issues</th>
                                                 <td>{{ optional($details->personalDetails)->medical ? optional($details->personalDetails)->medical : 'N/A' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Discuss Message</th>
-                                                <td>{{ optional($details->personalDetails)->discuss ? optional($details->personalDetails)->discuss : 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Request Date Time</th>

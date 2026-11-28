@@ -17,7 +17,7 @@
 @endpush
 
 @section('breadcrumb-title')
-<h3>Weight Loss Webinar - Customer Details</h3>
+<h3>BMI - Customer Details</h3>
 @endsection
 
 @section('breadcrumb-items')
